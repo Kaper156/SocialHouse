@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="post">
+        <a href="{% url 'news_post' slug_url=post.slug_url %}"><h2 class="title">{{ Title }}</h2></a>
+        <div class="post_info">
+            <div class="post_author">{{ post.author }}</div>
+            <div class="post_date-of-create">{{ post.date_of_creation }}</div>
+            <div class="post_date-of-update">{{ post.date_of_update }}</div>
+        </div>
+    </div>
+{% endblock %}

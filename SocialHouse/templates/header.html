@@ -1,0 +1,39 @@
+{% load static %}
+<header class="header">
+    {#    <img src="{% static "img/logo.jpg" %}" alt="logo" class="header__logo logo">#}
+    {#    <div class="header-left">#}
+    <a class="header-left header__logo" href="/">
+        <img src="{% static 'img/gerb.gif' %}" alt="Логотип">
+    </a>
+    {#    </div>#}
+
+    <div class="header-center">
+        <div class="header__title">
+            <h2 class="header__text">
+                Тевризское отделение социального обслуживания на дому граждан пожилого возраста, проживающих в домах
+                муниципального
+                специализированного жилищного фонда, для социальной защиты отдельных категорий граждан
+            </h2>
+            {#            <h3 class="header__sub-text">Оффициальный сайт</h3>#}
+        </div>
+        <nav class="navigation navigation_top">
+            <ul class="navigation__list">
+                <li class="navigation__item"><a href="{% url 'news' %}" class="navigation__link">Новости</a></li>
+                <li class="navigation__item"><a href="#" class="navigation__link">Нормативные акты</a></li>
+                <li class="navigation__item"><a href="#" class="navigation__link">Об отделении</a></li>
+                <li class="navigation__item"><a href="#" class="navigation__link">Контакты</a></li>
+            </ul>
+        </nav>
+
+    </div>
+    <div class="header-right">
+        <div class="personal-page">
+{#            {% if user.is_authenticated %}#}
+{#            {% else %}#}
+            {{ user.Worker.FIO }}
+            <a href="{% url 'login' %}" class="personal-page__link">Войти в личный кабинет</a>
+{#            {% elif %}#}
+        </div>
+    </div>
+
+</header>

@@ -9,9 +9,11 @@ class Worker(models.Model):
         verbose_name = "Сотрудник"
         verbose_name_plural = "Сотрудники"
 
+    # TODO переделать описание
     STATUSES = (
         ('FI', "Уволен"),
         ('WO', "Работает"),
+        ('ME', "Больничный"),
         ('VA', "В отпуске"),
     )
 
@@ -23,16 +25,25 @@ class Worker(models.Model):
 
     is_man = models.BooleanField(default=False,
                                  verbose_name="Пол")
-    date_of_birth = models.DateField(null=True, blank=True, verbose_name="Дата рождения")
     # TODO forms: http://qaru.site/questions/107195/django-booleanfield-as-radio-buttons
+    date_of_birth = models.DateField(null=True, blank=True, verbose_name="Дата рождения")
 
     status = models.CharField(max_length=2, choices=STATUSES, verbose_name="Статус", default='WO')
     positions = models.ManyToManyField('Position', through='WorkerPosition', related_name='Workers')
 
     def FIO(self, full=False):
-        if not full:
-            return f"{self.name[0]}.{self.patronymic[0]}. {self.surname}"
-        return f"{self.name} {self.patronymic} {self.surname}"
+        try:
+            if not full:
+                return f'{self.name[0]}.{self.patronymic[0]}. {self.surname}'
+            return f'{self.name} {self.patronymic} {self.surname}'
+        except self.DoesNotExist:
+            return "Неизвестный работник"
+
+    def fullFIO(self):
+        return self.FIO(full=True)
+
+    def __str__(self):
+        return self.FIO()
 
 
 class Position(models.Model):
@@ -42,6 +53,9 @@ class Position(models.Model):
 
     title = models.CharField(max_length=128, verbose_name="Название должности")
     purpose = models.TextField(max_length=1024, verbose_name="Назначение должности", blank=True)
+
+    def __str__(self):
+        return f'{self.title}'
 
 
 class WorkerPosition(models.Model):
@@ -57,17 +71,22 @@ class WorkerPosition(models.Model):
     dismissal_date = models.DateField(verbose_name="Дата увольнения с должности", null=True)
     rate = models.FloatField(verbose_name="Ставка", default=1)
 
+    def __str__(self):
+        return f'{self.person} ({self.position}) [x{self.rate}]'
+
 
 class ServicedPerson(models.Model):
     class Meta:
         verbose_name = "Обслуживаемый"
         verbose_name_plural = "Обслуживаемые"
 
+    # TODO переделать описание
     STATUSES = (
         ('LI', "Жив"),
         ('DE', "Мертв"),
         ('ME', "На лечении"),
-        ('OU', "Выписан"),
+        ('OU', "В поездке"),
+        ('LE', "Выписан"),
     )
     name = models.CharField(max_length=128, verbose_name="Имя")
     patronymic = models.CharField(max_length=128, blank=True, verbose_name="Отчество")

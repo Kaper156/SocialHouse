@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static "css/normalize.css" %}">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <title> 
+    {% if title %}
+        {{ title|add:" | Сайт отделения социальной помощи" }}
+    {% else %}
+        Сайт отделения социальной помощи
+    {% endif %}
+    </title>
+    {% block external_links %}
+    {% endblock %}
+</head>
+<body>
+<div class="page-container">
+{% include 'header.html' %}
+
+<div class="content container">
+    {% block content %}
+
+    {% endblock %}
+</div>
+
+{% include 'footer.html' %}
+</div>
+</body>
+</html>
