@@ -16,6 +16,11 @@ class Worker(models.Model):
         ('ME', "Больничный"),
         ('VA', "В отпуске"),
     )
+    # ONLY TWO.
+    GENDERS = (
+        ('M', 'Мужской'),
+        ('F', 'Женский'),
+    )
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="Пользователь")
 
@@ -23,8 +28,7 @@ class Worker(models.Model):
     patronymic = models.CharField(max_length=128, blank=True, verbose_name="Отчество")
     surname = models.CharField(max_length=256, blank=True, verbose_name="Фамилия")
 
-    is_man = models.BooleanField(default=False,
-                                 verbose_name="Пол")
+    gender = models.CharField(default='F', choices=GENDERS, max_length=1, verbose_name="Пол")
     # TODO forms: http://qaru.site/questions/107195/django-booleanfield-as-radio-buttons
     date_of_birth = models.DateField(null=True, blank=True, verbose_name="Дата рождения")
 
@@ -38,12 +42,24 @@ class Worker(models.Model):
             return f'{self.name} {self.patronymic} {self.surname}'
         except self.DoesNotExist:
             return "Неизвестный работник"
+        except IndexError:
+            return "Неизвестный работник"
 
     def fullFIO(self):
         return self.FIO(full=True)
 
     def __str__(self):
         return self.FIO()
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            try:
+                p = Worker.objects.get(user=self.user)
+                self.pk = p.pk
+            except Worker.DoesNotExist:
+                pass
+
+        super(Worker, self).save(*args, **kwargs)
 
 
 class Position(models.Model):

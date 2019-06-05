@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import User
 
 from .models import Worker, Position, WorkerPosition, ServicedPerson
 
@@ -6,6 +8,20 @@ from .models import Worker, Position, WorkerPosition, ServicedPerson
 class WorkerAdmin(admin.ModelAdmin):
     list_display = ('fullFIO', 'status')
 
+
+class WorkerAdminInline(admin.StackedInline):
+    verbose_name_plural = "Информация о сотруднике"
+    model = Worker
+    max_num = 1
+    can_delete = False
+
+
+class ExtUserAdminForm(UserAdmin):
+    inlines = (WorkerAdminInline,)
+
+
+admin.site.unregister(User)
+admin.site.register(User, ExtUserAdminForm)
 
 admin.site.register(Worker, WorkerAdmin)
 admin.site.register(Position)
