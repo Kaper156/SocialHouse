@@ -33,7 +33,7 @@ class Worker(models.Model):
     date_of_birth = models.DateField(null=True, blank=True, verbose_name="Дата рождения")
 
     status = models.CharField(max_length=2, choices=STATUSES, verbose_name="Статус", default='WO')
-    positions = models.ManyToManyField('Position', through='WorkerPosition', related_name='Workers')
+    # positions = models.ManyToManyField('Position', through='WorkerPosition', related_name='Workers')
 
     def FIO(self, full=False):
         try:
@@ -80,16 +80,16 @@ class WorkerPosition(models.Model):
         verbose_name = "Ставка сотрудника"
         verbose_name_plural = "Ставки сотрудников"
 
-    person = models.ForeignKey('Worker', related_name='membership', on_delete=models.CASCADE, verbose_name="Сотрудник")
+    worker = models.ForeignKey('Worker', related_name='membership', on_delete=models.CASCADE, verbose_name="Сотрудник")
     position = models.ForeignKey('Position', related_name='membership', on_delete=models.CASCADE,
                                  verbose_name="Должность")
     date_of_appointment = models.DateField(verbose_name="Дата устройства на должность",
                                            default=datetime.datetime.now)
-    dismissal_date = models.DateField(verbose_name="Дата увольнения с должности", null=True)
+    dismissal_date = models.DateField(verbose_name="Дата увольнения с должности", null=True, blank=True)
     rate = models.FloatField(verbose_name="Ставка", default=1)
 
     def __str__(self):
-        return f'{self.person} ({self.position}) [x{self.rate}]'
+        return f'{self.worker} ({self.position}) [x{self.rate}]'
 
 
 class ServicedPerson(models.Model):
