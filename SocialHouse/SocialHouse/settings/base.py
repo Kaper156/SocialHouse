@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'applications.core',
     'applications.news',
     # 'applications.',
-    'applications.socialEmployer',
+    'applications.social_work',
 ]
 
 MIDDLEWARE = [

@@ -1,8 +1,6 @@
-from django.db import models, IntegrityError
-# from django.contrib.auth.models import User
+from django.db import models
 from applications.core.models import Worker
 
-import datetime
 from applications.core.utils import slugify
 
 NEWS_STATUS = (
@@ -21,10 +19,10 @@ class News(models.Model):
     author = models.ForeignKey("core.Worker", on_delete=models.SET_NULL, verbose_name="Автор", null=True)
     title = models.CharField(max_length=256, verbose_name="Заголовок")
     content = models.TextField(verbose_name="Содержание")
-    date_of_creation = models.DateTimeField(verbose_name="Дата создания", default=datetime.datetime.now)
-    date_of_update = models.DateTimeField(verbose_name="Дата обновления", default=datetime.datetime.now)
+    date_of_creation = models.DateTimeField(verbose_name="Дата создания", auto_now_add=True)
+    date_of_update = models.DateTimeField(verbose_name="Дата обновления", auto_now=True)
     status = models.CharField(verbose_name="Статус", choices=NEWS_STATUS, max_length=1, default=NEWS_STATUS[1][0])
-    slug_url = models.SlugField(max_length=350, unique=True, verbose_name="URL")
+    slug_url = models.SlugField(max_length=350, unique=True, verbose_name="URL", editable=False)
 
     def __str__(self):
         return f"[{self.date_of_creation}] {self.title}"
