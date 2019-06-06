@@ -30,8 +30,10 @@ class News(models.Model):
     def save(self, *args, **kwargs):
         self.slug_url = slugify(self.title)
         try:
-            if News.objects.get(slug_url__iexact=self.slug_url):
-                self.slug_url += f'{self.date_of_creation.strftime("__%Y_%B_%d_%H-%M-%S")}'
+            q = News.objects.filter(slug_url__iexact=self.slug_url)
+            if q.count():
+                self.slug_url += f'-{q.count()+1}'
+                # self.slug_url += f'{self.date_of_creation.strftime("__%Y_%B_%d_%H-%M-%S")}'
         except News.DoesNotExist:
             pass
         super(News, self).save(*args, **kwargs)

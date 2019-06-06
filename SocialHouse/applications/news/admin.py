@@ -11,6 +11,7 @@ class NewsAdmin(admin.ModelAdmin):
               'date_of_update',
               'status',
               )
+    readonly_fields = ('date_of_creation', 'date_of_update')
 
 
 admin.site.register(News, NewsAdmin)
