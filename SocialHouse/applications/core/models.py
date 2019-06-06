@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 import datetime
 
@@ -69,6 +69,7 @@ class Position(models.Model):
 
     title = models.CharField(max_length=128, verbose_name="Название должности")
     purpose = models.TextField(max_length=1024, verbose_name="Назначение должности", blank=True)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, verbose_name="Группа пользователей")
 
     def __str__(self):
         return f'{self.title}'
