@@ -1,0 +1,79 @@
+@font-face {
+  font-family: "Title-font";
+  src: url("/static/fonts/16898.otf");
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+
+p {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.container {
+  max-width: 1150px;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin: 0 auto;
+  background-color: #7BA6B4;
+}
+
+.title {
+  text-align: center;
+  font-size: larger;
+}
+
+.header {
+  background-color: #4F788D;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: nowrap;
+  line-height: 1.33em;
+  font-size: 1em;
+}
+.header__logo {
+  display: inline-flex;
+  width: 100%;
+}
+.header__logo img {
+  max-width: 200px;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+}
+.header-center {
+  flex-basis: 60%;
+}
+.header-left, .header-right {
+  flex-basis: 15%;
+}
+.header__text {
+  text-align: center;
+  font-family: Calibri;
+}
+
+.navigation__list {
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  background-color: #6d9db7;
+  margin: 0;
+  bottom: 0;
+}
+.navigation__item {
+  padding: 1em;
+}
+.navigation .navigation__list > li {
+  display: inline-block;
+  background-color: #c5c5c5;
+}
+.navigation .navigation__list > li a {
+  color: black;
+  margin: 3em auto;
+}
+
+/*# sourceMappingURL=style.css.map */

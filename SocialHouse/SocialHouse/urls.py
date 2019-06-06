@@ -3,14 +3,17 @@ SocialHouse URL Configuration
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth.views import LoginView
 
 from applications.core.views import profile
-# from applications.core import views as core_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('login/', 'django.contrib.auth.views.login', name="login"),
+    # path('login/', LoginView, name="login"),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('', include('applications.core.urls')),
     path('news/', include('applications.news.urls'), ),
-    path('accounts/profile/', profile)
+    path('profile/', profile, name='profile'),
+    path('', include('applications.core.urls')),
+
 ]
