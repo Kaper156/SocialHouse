@@ -30,12 +30,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'slugify',
-
+]
+MY_APPLICATIONS = [
     'applications.core',
     'applications.news',
     # 'applications.',
     'applications.social_work',
 ]
+INSTALLED_APPS += MY_APPLICATIONS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -122,3 +124,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
+# STATICFILES_DIRS += [f"/{app.replace('.', '/')}/static/" for app in MY_APPLICATIONS]
