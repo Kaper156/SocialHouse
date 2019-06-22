@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block external_links %}
+    <link rel="stylesheet" href="{% static "css/news.css" %}">
+{% endblock %}
 {% block content %}
     <h2 class="title">{{ Title }}</h2>
     {% for post in posts %}
-        <div class="post">
-            <a href="{% url 'news_post' slug_url=post.slug_url %}"><h3 class="post_title">{{ post.title }}</h3></a>
-            <div class="post_info">
-                <div class="post_author">{{ post.author }}</div>
-                <div class="post_date-of-create">{{ post.date_of_creation }}</div>
-                <div class="post_date-of-update">{{ post.date_of_update }}</div>
+        <article class="post">
+            <h3 class="post__title"><a href="{% url 'news_post' slug_url=post.slug_url %}">{{ post.title }}</a></h3>
+            <div class="post__content">{{ post.content|linebreaksbr|truncatewords:36 }}</div>
+            <div class="post__info">
+                <div class="post__author">Автор: {{ post.author }}</div>
+                <div class="post__date-of-create">Создана:{{ post.date_of_creation }}</div>
+                <div class="post__date-of-update">Изменена:{{ post.date_of_update }}</div>
             </div>
-        </div>
+        </article>
     {% endfor %}
 {% endblock %}

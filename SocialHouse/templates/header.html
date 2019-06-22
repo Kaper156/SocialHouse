@@ -16,7 +16,7 @@
             </h2>
             {#            <h3 class="header__sub-text">Оффициальный сайт</h3>#}
         </div>
-        <nav class="navigation navigation_top">
+        <nav class="navigation navigation__top">
             <ul class="navigation__list">
                 <li class="navigation__item"><a href="{% url 'news' %}" class="navigation__link">Новости</a></li>
                 <li class="navigation__item"><a href="#" class="navigation__link">Нормативные акты</a></li>
@@ -27,12 +27,25 @@
 
     </div>
     <div class="header-right">
-        <div class="personal-page">
-{#            {% if user.is_authenticated %}#}
-{#            {% else %}#}
-            {{ user.Worker.FIO }}
-            <a href="{% url 'login' %}" class="personal-page__link">Войти в личный кабинет</a>
-{#            {% elif %}#}
+        <div class="account-menu">
+            {% if user.is_authenticated %}
+                <p>Добро пожаловать, <i>{{ user.worker.FIO }}</i></p>
+                <ul class="account-menu__actions">
+                    <li>
+                        <a href="{% url 'profile' %}" class="account-menu__action account-menu__personal_page">
+                            Личный кабинет
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}" class="account-menu__action account-menu__logout">
+                            Выйти из аккаунта
+                        </a>
+                    </li>
+
+                </ul>
+            {% else %}
+                <a href="{% url 'login' %}" class="account-menu__link_top account__login">Войти в личный кабинет</a>
+            {% endif %}
         </div>
     </div>
 
