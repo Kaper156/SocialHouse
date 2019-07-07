@@ -2,10 +2,10 @@
 {% block content %}
     <h2 class="title">Личный кабинет</h2>
     <p>Добрый день, {{ user.worker.fullFIO }}</p>
-    {% if worker_positions.count %}
+    {% if user.worker.membership.count %}
         <p>На данный момент вы занимаете следующие должности:</p>
         <div class="profile__position-list">
-            {% for worker_pos in worker_positions %}
+            {% for worker_pos in user.worker.membership.all %}
                 <div class="position">
                     <span>Должность:</span> <span class="position__title"> {{ worker_pos.position.title }}</span> <br>
                     <span>Дата устройства:</span><em class="position__date-of-appointment">{{ worker_pos.date_of_appointment }}</em> <br>
