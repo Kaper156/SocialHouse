@@ -1,41 +1,24 @@
-@import "variables";
+@import 'bootstrap';
 
-* {
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+.wrapper {
+  min-height: 100vh;
 }
 
-a {
-  text-decoration: none;
-  color: black;
-}
-
-body {
-  background-color: #e8f2f7;
-}
-
-
-.container {
-  max-width: 1150px;
-  padding-left: 25px;
-  padding-right: 25px;
+.navbar-toggler {
+  width: 100%;
+  float: none;
   margin: 0 auto;
-  background-color: $c5;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  border-width: 0;
+  border-radius: 0;
+}
 
-  * {
-    margin: 0 auto;
 
+.news>.card-columns {
+  @include media-breakpoint-only(lg) {
+    column-count: 4;
+  }
+
+  @include media-breakpoint-only(xl) {
+    column-count: 5;
   }
 }
-
-.title {
-  text-align: center;
-  font-size: larger;
-  //padding: 25px;
-  padding-bottom: 10px;
-}
-
-@import "header";
-@import "footer";
-

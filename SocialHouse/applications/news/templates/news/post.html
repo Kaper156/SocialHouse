@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block external_links %}
-    <link rel="stylesheet" href="{% static "css/news.css" %}">
+    {{ block.super }}
+{#    <link rel="stylesheet" href="{% static "css/news.css" %}">#}
+{% endblock %}
+{% block title %}
+    {{ Title }} | {{ block.super }}
 {% endblock %}
 {% block content %}
     <article class="post">

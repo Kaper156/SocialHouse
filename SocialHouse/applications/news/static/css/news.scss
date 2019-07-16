@@ -1,37 +1,14 @@
-.post {
+@import "./scss/_functions.scss";
+@import "./scss/_variables.scss";
+@import "./scss/mixins/_breakpoints.scss";
 
-  //border: #7BA6B4 2px;
-  border: #4F788D 2px solid;
-  border-radius: 25px 0;
-  background-color: #3A5E48;
-  color: #c5c5c5;
-  padding: 15px 20px;
-  &__title {
-    text-align: center;
-    padding-bottom: 10px;
-    a {
-      color: #c5c5c5;
-      font-family: "Calibri";
-    }
 
-  }
-  &__info {
-    padding-top: 20px;
-  }
-  &__author {
-
+.news>.card-columns {
+  @include media-breakpoint-only(lg) {
+    column-count: 4;
   }
 
-  &__date-of-create {
-  }
-
-  &__date-of-update {
-  }
-
-  &__date-of-create, &__date-of-update {
-    text-align: right;
-  }
-  &__content {
-    color: white;
+  @include media-breakpoint-only(xl) {
+    column-count: 5;
   }
 }

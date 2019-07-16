@@ -1,52 +1,77 @@
 {% load static %}
-<header class="header">
-    {#    <img src="{% static "img/logo.jpg" %}" alt="logo" class="header__logo logo">#}
-    {#    <div class="header-left">#}
-    <a class="header-left header__logo" href="/">
-        <img src="{% static 'img/gerb.gif' %}" alt="Логотип">
-    </a>
-    {#    </div>#}
+<nav class="navbar bg-light navbar-expand-lg navbar-light">
+    <div class="container">
+        <a href="/" class="navbar-brand d-none d-lg-block">
+            <img src="{% static 'img/gerb.gif' %}" alt="Забота, милосердие, доброта" class="img-fluid" width="170px">
+        </a>
+        <button class="navbar-toggler text-center" type="button" data-toggle="collapse" data-target=".mobile-menu">
+            <span class="navbar-toggler-icon"></span> Навигация
+        </button>
 
-    <div class="header-center">
-        <div class="header__title">
-            <h2 class="header__text">
-                Тевризское отделение социального обслуживания на дому граждан пожилого возраста, проживающих в домах
-                муниципального
-                специализированного жилищного фонда, для социальной защиты отдельных категорий граждан
-            </h2>
-            {#            <h3 class="header__sub-text">Оффициальный сайт</h3>#}
-        </div>
-        <nav class="navigation navigation__top">
-            <ul class="navigation__list">
-                <li class="navigation__item"><a href="{% url 'news' %}" class="navigation__link">Новости</a></li>
-                <li class="navigation__item"><a href="#" class="navigation__link">Нормативные акты</a></li>
-                <li class="navigation__item"><a href="#" class="navigation__link">Об отделении</a></li>
-                <li class="navigation__item"><a href="#" class="navigation__link">Контакты</a></li>
-            </ul>
-        </nav>
+        <div class="collapse navbar-collapse w-100 flex-md-column mobile-menu">
 
-    </div>
-    <div class="header-right">
-        <div class="account-menu">
             {% if user.is_authenticated %}
-                <p>Добро пожаловать, <i>{{ user.worker.FIO }}</i></p>
-                <ul class="account-menu__actions">
-                    <li>
-                        <a href="{% url 'profile' %}" class="account-menu__action account-menu__personal_page">
-                            Личный кабинет
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'logout' %}" class="account-menu__action account-menu__logout">
-                            Выйти из аккаунта
-                        </a>
-                    </li>
-
-                </ul>
+            <ul class="navbar-nav ml-auto small mb-2 mb-md-0 nav-justified">
+                <p class="navbar-text text-center">Добро пожаловать, <i>{{ user.worker.FIO }}</i></p>
+                <li class="nav-item text-nowrap">
+                    <a href="{% url 'profile' %}" class="nav-link">
+                        <i class="fas fa-user"></i>
+                        Личный кабинет
+                    </a>
+                </li>
+                <li class="nav-item text-nowrap">
+                    <a href="{% url 'logout' %}" class="nav-link">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Выйти из аккаунта
+                    </a>
+                </li>
+            </ul>
             {% else %}
-                <a href="{% url 'login' %}" class="account-menu__link_top account__login">Войти в личный кабинет</a>
+            <ul class="navbar-nav ml-auto small mb-2 mb-md-0 nav-justified">
+                <li class="nav-item">
+                    <a href="{% url 'login' %}" class="">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Войти в личный кабинет
+                    </a>
+                </li>
+            </ul>
             {% endif %}
+            </ul>
+            <div class="">
+                <h4 class="navbar-text text-center">
+                    Отделение социального обслуживания на дому граждан пожилого возраста, проживающих в домах
+                    муниципального специализированного жилищного фонда, для социальной защиты отдельных категорий
+                    граждан Тевризского района
+                </h4>
+            </div>
+            <ul class="navbar-nav nav nav-pills w-100 nav-justified justify-content-center  text-nowrap">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'news' %}">
+                        <i class="far fa-newspaper"></i>
+                        Новости
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-file-invoice"></i>
+                        <!-- <i class="fas fa-print"></i> -->
+                        Нормативные документы
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-photo-video"></i>
+                        Об отделении
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-comments"></i>
+                        Контакты
+                    </a>
+                </li>
+            </ul>
         </div>
-    </div>
 
-</header>
+    </div>
+</nav>
