@@ -4,7 +4,6 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-
 @import "functions";
 @import "variables";
 @import "mixins";
@@ -42,3 +41,29 @@
 @import "spinners";
 @import "utilities";
 @import "print";
+
+
+.wrapper {
+  min-height: 100vh;
+
+}
+
+
+.navbar-toggler {
+  width: 100%;
+  float: none;
+  margin: 0 auto;
+  border-width: 0;
+  border-radius: 0;
+}
+
+
+.news > .card-columns {
+  @include media-breakpoint-only(lg) {
+    column-count: 4;
+  }
+
+  @include media-breakpoint-only(xl) {
+    column-count: 5;
+  }
+}
