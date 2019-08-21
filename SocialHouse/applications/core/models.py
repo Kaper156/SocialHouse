@@ -3,6 +3,14 @@ from django.contrib.auth.models import User, Group
 
 import datetime
 
+# TODO show hint about format (dd.mm.yyyy) in all "date_of_birth" fields
+
+# ONLY TWO.
+GENDERS = (
+    ('M', 'Мужской'),
+    ('F', 'Женский'),
+)
+
 
 class Worker(models.Model):
     class Meta:
@@ -16,11 +24,6 @@ class Worker(models.Model):
         ('ME', "Больничный"),
         ('VA', "В отпуске"),
     )
-    # ONLY TWO.
-    GENDERS = (
-        ('M', 'Мужской'),
-        ('F', 'Женский'),
-    )
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="Пользователь")
 
@@ -33,6 +36,7 @@ class Worker(models.Model):
     date_of_birth = models.DateField(null=True, blank=True, verbose_name="Дата рождения")
 
     status = models.CharField(max_length=2, choices=STATUSES, verbose_name="Статус", default='WO')
+
     # positions = models.ManyToManyField('Position', through='WorkerPosition', related_name='Workers')
 
     def FIO(self, full=False):
@@ -98,6 +102,8 @@ class ServicedPerson(models.Model):
         verbose_name_plural = "Обслуживаемые"
 
     # TODO переделать описание
+    # TODO default LI
+    # TODO if status de - show when
     STATUSES = (
         ('LI', "Жив"),
         ('DE', "Мертв"),
@@ -108,6 +114,8 @@ class ServicedPerson(models.Model):
     name = models.CharField(max_length=128, verbose_name="Имя")
     patronymic = models.CharField(max_length=128, blank=True, verbose_name="Отчество")
     surname = models.CharField(max_length=256, verbose_name="Фамилия")
+
+    gender = models.CharField(default='F', choices=GENDERS, max_length=1, verbose_name="Пол")
     date_of_birth = models.DateField(null=True, verbose_name="Дата рождения")
     status = models.CharField(choices=STATUSES, max_length=2, verbose_name="Статус")
     date_of_death = models.DateField(null=True, blank=True, verbose_name="Дата смерти")
@@ -116,3 +124,6 @@ class ServicedPerson(models.Model):
         if not full:
             return f"{self.name[0]}.{self.patronymic[0]}. {self.surname}"
         return f"{self.name} {self.patronymic} {self.surname}"
+
+    def __str__(self):
+        return self.FIO()
