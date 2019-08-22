@@ -8,6 +8,8 @@ from django.views.generic import TemplateView
 class IndexView(TemplateView):
     template_name = 'index.html'
 
+
 @method_decorator(login_required, name='dispatch')
 class ProfileView(TemplateView):
     template_name = 'core/profile.html'
+
