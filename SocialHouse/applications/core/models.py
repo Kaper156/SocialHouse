@@ -3,7 +3,6 @@ from django.contrib.auth.models import User, Group
 
 import datetime
 
-# TODO show hint about format (dd.mm.yyyy) in all "date_of_birth" fields
 
 # ONLY TWO.
 GENDERS = (
@@ -33,7 +32,8 @@ class Worker(models.Model):
 
     gender = models.CharField(default='F', choices=GENDERS, max_length=1, verbose_name="Пол")
     # TODO forms: http://qaru.site/questions/107195/django-booleanfield-as-radio-buttons
-    date_of_birth = models.DateField(null=True, blank=True, verbose_name="Дата рождения")
+    date_of_birth = models.DateField(null=True, blank=True, verbose_name="Дата рождения",
+                                     help_text="В формате ДД.ММ.ГГГГ (например 27.02.2019")
 
     status = models.CharField(max_length=2, choices=STATUSES, verbose_name="Статус", default='WO')
 
@@ -116,7 +116,8 @@ class ServicedPerson(models.Model):
     surname = models.CharField(max_length=256, verbose_name="Фамилия")
 
     gender = models.CharField(default='F', choices=GENDERS, max_length=1, verbose_name="Пол")
-    date_of_birth = models.DateField(null=True, verbose_name="Дата рождения")
+    date_of_birth = models.DateField(null=True, verbose_name="Дата рождения",
+                                     help_text="В формате ДД.ММ.ГГГГ (например 27.02.2019")
     status = models.CharField(choices=STATUSES, max_length=2, verbose_name="Статус")
     date_of_death = models.DateField(null=True, blank=True, verbose_name="Дата смерти")
 
