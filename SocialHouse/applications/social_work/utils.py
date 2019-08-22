@@ -17,3 +17,38 @@ def get_date_range_around(date_in, p_type):
     aft = aft + timedelta(hours=23, minutes=59, seconds=59)
 
     return bef, aft
+
+
+def load_services_from_csv(path_to_csv, delimiter=';', quotechar='\n', field_pairs=None):
+    import csv
+    if field_pairs is None:
+        field_pairs = (
+            ('title', 'title'),
+            ('type_of_service', 'type_of_service'),
+            ('service_category', 'service_category'),
+            ('measurement', 'measurement'),
+            ('tax', 'tax'),
+            ('time_for_service', 'time_for_service'),
+            ('is_archived', 'is_archived'),
+
+        )
+    with open(path_to_csv, 'rt') as f:
+        csv_r = csv.reader(f, delimiter=delimiter, quotechar=quotechar)
+
+
+def save_services_to_csv(path_to_csv, delimiter=';', quotechar='\n', field_pairs=None):
+    from applications.social_work.models import Service, ServiceMeasurement
+    import csv
+    if field_pairs is None:
+        field_pairs = (
+            ('title', 'title'),
+            ('type_of_service', 'type_of_service'),
+            ('service_category', 'service_category'),
+            ('measurement', 'measurement'),
+            ('tax', 'tax'),
+            ('time_for_service', 'time_for_service'),
+            ('is_archived', 'is_archived'),
+
+        )
+    with open(path_to_csv, 'rt') as f:
+        pass

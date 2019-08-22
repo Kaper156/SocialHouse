@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
             name='Period',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('period', models.CharField(choices=[('W', 'Неделя'), ('M', 'Месяц'), ('H', 'Полугодие'), ('Y', 'Год')], max_length=1, verbose_name='Тип периода')),
+                ('measurement', models.CharField(choices=[('W', 'Неделя'), ('M', 'Месяц'), ('H', 'Полугодие'), ('Y', 'Год')], max_length=1, verbose_name='Тип периода')),
                 ('count', models.IntegerField(default=1, verbose_name='Количество')),
             ],
             options={
@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
                 ('title', models.TextField(max_length=512, verbose_name='Название')),
                 ('service_category', models.CharField(choices=[('SB', 'Социальная'), ('PS', 'Психологическая'), ('OT', '-Прочие')], max_length=2, verbose_name='Категория')),
                 ('type_of_service', models.CharField(choices=[('G', 'Гарантированная'), ('A', 'Дополнительная'), ('P', 'Платная')], max_length=1, verbose_name='Тип')),
-                ('period', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='social_work.Period', verbose_name='Периодизация')),
+                # ('measurement', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='social_work.ServiceMeasurement', verbose_name='Периодизация')),
             ],
             options={
                 'verbose_name': 'Услуга',

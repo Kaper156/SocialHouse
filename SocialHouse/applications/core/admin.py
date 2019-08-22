@@ -6,6 +6,7 @@ from .models import Worker, Position, WorkerPosition, ServicedPerson
 
 
 class WorkerAdmin(admin.ModelAdmin):
+    # TODO filters: FIO, birthday, status
     list_display = ('fullFIO', 'status')
 
 
@@ -39,5 +40,5 @@ admin.site.register(Group, ExtGroupAdminForm)
 
 admin.site.register(Worker, WorkerAdmin)
 admin.site.register(Position)
-admin.site.register(WorkerPosition)
+admin.site.register(WorkerPosition)  # TODO Filter by fio, status, rate
 admin.site.register(ServicedPerson)
