@@ -1,22 +1,4 @@
-astroid==2.2.5
-autopep8==1.4.4
-colorama==0.4.1
-csscompressor==0.9.5
 Django==2.1.7
-django-appconf==1.0.3
-django-compressor==2.3
-isort==4.3.20
-lazy-object-proxy==1.4.1
-mccabe==0.6.1
-pycodestyle==2.5.0
-pylint==2.3.1
-pylint-django==2.0.11
-pylint-plugin-utils==0.5
-pytz==2018.9
-rcssmin==1.0.6
-rjsmin==1.1.0
-six==1.12.0
-typed-ast==1.3.5
-Unidecode==1.0.23
-wrapt==1.11.1
--e git+https://github.com/simplylizz/django-slugify.git#egg=slugify
+pytz==2019.2
+-e git+https://github.com/simplylizz/django-slugify.git@bfb0467ba42e859a0483f60c97b706db56b70853#egg=slugify
+Unidecode==1.1.1
