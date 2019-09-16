@@ -105,12 +105,14 @@ class ServicedPerson(models.Model):
     # TODO default LI
     # TODO if status de - show when
     STATUSES = (
-        ('LI', "Жив"),
-        ('DE', "Мертв"),
+        # ('LI', "Жив"),
+        # ('DE', "Мертв"),
+        ('HE', "На обслуживании"),
         ('ME', "На лечении"),
         ('OU', "В поездке"),
         ('LE', "Выписан"),
     )
+
     name = models.CharField(max_length=128, verbose_name="Имя")
     patronymic = models.CharField(max_length=128, blank=True, verbose_name="Отчество")
     surname = models.CharField(max_length=256, verbose_name="Фамилия")

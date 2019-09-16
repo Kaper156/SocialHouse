@@ -1,4 +1,14 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
-
+    {% crispy form %}
+    <hr>
+    <h3>Ранее оказанные услуги</h3>
+    <ul>
+        {% for service_journal in objs %}
+            <li>
+                {{ service_journal.date_of }}
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}
