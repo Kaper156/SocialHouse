@@ -30,12 +30,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'slugify',
+    'crispy_forms',
+
+    'django_extensions',
+    # ./SocialHouse/manage.py graph_models core news social_work cabinet -a -X
+    # Permission,ContentType,LogEntry,AbstractUser -o my_project_visualized.png --settings=SocialHouse.settings.dev
+
 ]
 MY_APPLICATIONS = [
     'applications.core',
     'applications.news',
     # 'applications.',
     'applications.social_work',
+    'applications.cabinet',
 ]
 INSTALLED_APPS += MY_APPLICATIONS
 
@@ -68,6 +75,8 @@ TEMPLATES = [
         },
     },
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 WSGI_APPLICATION = 'SocialHouse.wsgi.application'
 
