@@ -1,4 +1,17 @@
 from datetime import timedelta, datetime
+from calendar import monthrange
+
+
+def get_range_around_month(date=None):
+    if date is None:
+        date = datetime.now()
+    d1, d2 = [datetime(date.year, date.month, d) for d in monthrange(date.year, date.month)]
+    d2 += timedelta(hours=23, minutes=59, seconds=59)
+    return d1, d2
+
+
+def is_dates_in_one_month(date1: datetime, date2: datetime):
+    return (date1.year == date2.year) & (date1.month == date2.month)
 
 
 def get_date_range_around(date_in, p_type):

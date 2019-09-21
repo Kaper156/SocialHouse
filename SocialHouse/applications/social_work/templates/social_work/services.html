@@ -1,4 +1,23 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
+    {% crispy form %}
+    {% if objs %}
+        <hr>
+        <h3>Ранее оказанные услуги {{ objs_cnt }}</h3>
+        <div class="list-group">
+            {% for service_journal in objs %}
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ service_journal.serviced.FIO }}</h5>
+                        <small>{{ service_journal.date_of }}</small>
+                    </div>
+                    {#                TODO: use __str__#}
+                    <p class="mb-1">{{ service_journal.service.title }}</p>
+                    {#                <small>Donec id elit non mi porta.</small>#}
+                </a>
+            {% endfor %}
+        </div>
+    {% endif %}
 
 {% endblock %}
