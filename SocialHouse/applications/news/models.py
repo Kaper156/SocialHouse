@@ -10,7 +10,7 @@ NEWS_STATUS = (
 
 )
 
-
+# TODO rename to POST
 class News(models.Model):
     class Meta:
         verbose_name = "Новость"

@@ -62,6 +62,7 @@ class Service(models.Model):
                                       help_text="Для совместимости со старыми отчетами, "
                                                 "установите флаг, вместо удаления услуги",
                                       default=False)
+    # TODO __str__
 
 
 class ServiceMeasurement(models.Model):
