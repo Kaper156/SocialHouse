@@ -38,10 +38,13 @@ INSTALLED_APPS = [
 
 ]
 MY_APPLICATIONS = [
-    'applications.core',
     'applications.news',
-    # 'applications.',
+
+    'applications.core',
+
     'applications.social_work',
+    'applications.chief',
+
     'applications.cabinet',
 ]
 INSTALLED_APPS += MY_APPLICATIONS

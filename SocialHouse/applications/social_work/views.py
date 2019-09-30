@@ -1,11 +1,12 @@
-from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.views.generic import CreateView
+from django.db.models import Q
+
 from applications.core.models import Worker
-from .models import ServiceJournal
 from .forms import ServiceJournalForm
 from .utils import get_range_around_month
-from django.db.models import Q
+from .models import ServiceJournal
 
 
 @method_decorator(login_required, name='dispatch')
