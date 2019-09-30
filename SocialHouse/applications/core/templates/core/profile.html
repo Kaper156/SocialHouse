@@ -17,7 +17,13 @@
                             <i class="fas fa-calendar-plus"></i>
                             Список оказанных услуг
                         </a>
+                    {% elif worker_pos.position.title == 'Заведующий' %}
+                        <a class="btn btn-primary" href="{% url 'url_serviced_persons_create' %}">
+                            <i class="fas fa-calendar-plus"></i>
+                            Список обслуживаемых
+                        </a>
                     {% endif %}
+
                 </div>
                 <hr>
             {% endfor %}
