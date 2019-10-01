@@ -113,7 +113,7 @@ class ServicedPerson(models.Model):
                                      help_text="В формате ДД.ММ.ГГГГ (например 27.02.2019")
     location = models.CharField(choices=LOCATIONS, max_length=2, verbose_name="Местонахождение", default="HE")
 
-    privilege = models.ForeignKey('Privilege', on_delete=models.SET_NULL)
+    privilege = models.ForeignKey('Privilege', on_delete=models.SET_NULL, verbose_name="Льготная категория", null=True)
 
     date_of_death = models.DateField(null=True, blank=True, verbose_name="Дата смерти")
     date_of_departure = models.DateField(null=True, blank=True, verbose_name="Дата ухода")
