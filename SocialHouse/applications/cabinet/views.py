@@ -6,4 +6,4 @@ from django.views.generic import TemplateView
 # Create your views here.
 @method_decorator(login_required, name='dispatch')
 class ProfileView(TemplateView):
-    template_name = 'core/profile.html'
+    template_name = 'cabinet/profile.html'
