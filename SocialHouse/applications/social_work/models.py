@@ -1,6 +1,6 @@
-from django.db import models
-
 import datetime
+
+from django.db import models
 
 SERVICE_TYPES = (
     ('G', "Гарантированная"),
@@ -62,7 +62,9 @@ class Service(models.Model):
                                       help_text="Для совместимости со старыми отчетами, "
                                                 "установите флаг, вместо удаления услуги",
                                       default=False)
-    # TODO __str__
+
+    def __str__(self):
+        return f'{self.title}'
 
 
 class ServiceMeasurement(models.Model):
