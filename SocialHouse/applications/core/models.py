@@ -1,8 +1,7 @@
-from django.db import models
-from django.contrib.auth.models import User, Group
-
 import datetime
 
+from django.contrib.auth.models import User, Group
+from django.db import models
 
 # ONLY TWO.
 GENDERS = (
@@ -20,7 +19,7 @@ class Worker(models.Model):
     STATUSES = (
         ('FI', "Уволен"),
         ('WO', "Работает"),
-        ('ME', "Больничный"),
+        ('ME', "На больничном"),
         ('VA', "В отпуске"),
     )
 
@@ -31,13 +30,11 @@ class Worker(models.Model):
     surname = models.CharField(max_length=256, blank=True, verbose_name="Фамилия")
 
     gender = models.CharField(default='F', choices=GENDERS, max_length=1, verbose_name="Пол")
-    # TODO forms: http://qaru.site/questions/107195/django-booleanfield-as-radio-buttons
+
     date_of_birth = models.DateField(null=True, blank=True, verbose_name="Дата рождения",
                                      help_text="В формате ДД.ММ.ГГГГ (например 27.02.2019")
 
     status = models.CharField(max_length=2, choices=STATUSES, verbose_name="Статус", default='WO')
-
-    # positions = models.ManyToManyField('Position', through='WorkerPosition', related_name='Workers')
 
     def FIO(self, full=False):
         try:
@@ -101,27 +98,25 @@ class ServicedPerson(models.Model):
         verbose_name = "Обслуживаемый"
         verbose_name_plural = "Обслуживаемые"
 
-    # TODO переделать описание
-    # TODO default LI
-    # TODO if status de - show when
-    STATUSES = (
-        # ('LI', "Жив"),
-        # ('DE', "Мертв"),
+    LOCATIONS = (
         ('HE', "На обслуживании"),
         ('ME', "На лечении"),
         ('OU', "В поездке"),
-        ('LE', "Выписан"),
     )
 
     name = models.CharField(max_length=128, verbose_name="Имя")
     patronymic = models.CharField(max_length=128, blank=True, verbose_name="Отчество")
     surname = models.CharField(max_length=256, verbose_name="Фамилия")
 
-    gender = models.CharField(default='F', choices=GENDERS, max_length=1, verbose_name="Пол")
+    gender = models.CharField(default='M', choices=GENDERS, max_length=1, verbose_name="Пол")
     date_of_birth = models.DateField(null=True, verbose_name="Дата рождения",
                                      help_text="В формате ДД.ММ.ГГГГ (например 27.02.2019")
-    status = models.CharField(choices=STATUSES, max_length=2, verbose_name="Статус")
+    location = models.CharField(choices=LOCATIONS, max_length=2, verbose_name="Местонахождение", default="HE")
+
+    privilege = models.ForeignKey('Privilege', on_delete=models.SET_NULL)
+
     date_of_death = models.DateField(null=True, blank=True, verbose_name="Дата смерти")
+    date_of_departure = models.DateField(null=True, blank=True, verbose_name="Дата ухода")
 
     def FIO(self, full=False):
         if not full:
@@ -130,3 +125,20 @@ class ServicedPerson(models.Model):
 
     def __str__(self):
         return self.FIO()
+
+
+class Privilege(models.Model):
+    title = models.CharField(max_length=128, verbose_name="Название категории")
+
+
+# Keep minimal needed info from passport to perform data in documents
+class PassportData(models.Model):
+    class Meta:
+        verbose_name = "Пасспортные данные"
+
+    serial = models.CharField(max_length=4, verbose_name="Серия")
+    number = models.CharField(max_length=6, verbose_name="Номер")
+    date_of_issue = models.DateField(verbose_name="Дата выдачи")
+
+    serviced_person = models.OneToOneField('ServicedPerson', on_delete=models.CASCADE,
+                                           verbose_name="Обслуживаемый гражданин")

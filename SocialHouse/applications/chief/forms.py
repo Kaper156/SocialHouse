@@ -14,7 +14,7 @@ class ServicedPersonForm(CrispyFormWithSubmit, forms.ModelForm):
                   'surname',
                   'gender',
                   'date_of_birth',
-                  'status',
+                  'location',
                   ]
         widgets = {
             'date_of_birth': forms.DateInput(attrs={'class': 'datepicker'}),
