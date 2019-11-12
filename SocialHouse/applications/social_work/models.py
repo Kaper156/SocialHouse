@@ -54,8 +54,11 @@ class Service(models.Model):
     type_of_service = models.CharField(verbose_name="Тип", choices=SERVICE_TYPES, max_length=1)
     service_category = models.CharField(verbose_name="Категория", choices=SERVICE_CATEGORIES,
                                         max_length=2)
-    measurement = models.ForeignKey(to='ServiceMeasurement', on_delete=models.CASCADE,
+    measurement = models.ForeignKey(to='ServiceMeasurement', on_delete=models.DO_NOTHING,
                                     verbose_name="Единица измерения (периодизация)")
+    period = models.ForeignKey(to='ServicePeriod', on_delete=models.DO_NOTHING, verbose_name="Периодизация",
+                               help_text="Оставьте пустым, если стоимость не зависит от переодичности",
+                               null=True, blank=True)
     tax = models.DecimalField(verbose_name="Стоимость", max_digits=6, decimal_places=2)  # max is 9999.99
     time_for_service = models.PositiveIntegerField(verbose_name="Количество рабочего времени (мин)", blank=True)
     is_archived = models.BooleanField(verbose_name="В архиве",
@@ -67,35 +70,32 @@ class Service(models.Model):
         return f'{self.title}'
 
 
-class ServiceMeasurement(models.Model):
+class ServicePeriod(models.Model):
     class Meta:
-        verbose_name = "Единица измерения услуги"
-        verbose_name_plural = "Единицы измерения услуг"
+        verbose_name = "Периодизация услуги"
+        verbose_name_plural = "Периодизации услуг"
 
     PERIODS = (
         ('D', "День"),
         ('W', "Неделю"),
         ('M', "Месяц"),
     )
-
-    MEASUREMENTS = (
-        ('R', "раз"),
-        ('Q', "кв-я"),  # Квитанция
-        ('M', "кв. м."),
-        ('C', "час"),
-        ('B', "бл-о"),  # Блюдо
-    )
-
-    measurement = models.CharField(verbose_name="Единица измерения", choices=MEASUREMENTS, editable=True, max_length=1)
     count = models.IntegerField(verbose_name="Количество", default=1)
-    period = models.CharField(verbose_name="В срок",
-                              help_text="Оставьте пустым, если стоимость не зависит от переодичности", max_length=1,
-                              choices=PERIODS, blank=True)
+    period = models.CharField(verbose_name="В срок", max_length=1,
+                              choices=PERIODS)
 
     def __str__(self):
-        if self.period:
-            return f'{self.count} {self.get_measurement_display()} в {self.get_period_display().lower()}'
-        else:
-            return f'{self.count} {self.get_measurement_display()}'
-
+        return f'{self.count} единица в {self.get_period_display().lower()}'
     # TODO various signals for periods
+
+
+class ServiceMeasurement(models.Model):
+    class Meta:
+        verbose_name = "Единица измерения услуги"
+        verbose_name_plural = "Единицы измерения услуг"
+
+    title = models.CharField(verbose_name="Единица измерения", max_length=128)
+    short_title = models.CharField(verbose_name="Сокращенная запись", max_length=32, blank=True, null=True)
+
+    def __str__(self):
+        return self.short_title or self.title
