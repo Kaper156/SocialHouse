@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load display_object %}
+{% block content %}
+    <h2 class="title text-center">Список обслуживаемых</h2>
+    <div class="list-group">
+        {% for sp in object_list %}
+            <div>
+                <a href="{% url 'serviced_person_detail' sp.id %}"
+                   class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ sp.FIO }}</h5>
+                        {% if sp.privilege %}
+                            <small>{{ sp.privilege }}</small>
+                        {% else %}
+                            <small> Без льгот</small>
+                        {% endif %}
+                    </div>
+                    <p class="mb-1">
+                        Дата рождения: {{ sp.date_of_birth }}
+                        {% if sp.date_of_death %}
+                            Дата смерти: {{ sp.date_of_death }}
+                        {% elif sp.date_of_departure %}
+                            Дата выписки: {{ sp.date_of_departure }}
+                        {% endif %}
+                    </p>
+                </a>
+
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

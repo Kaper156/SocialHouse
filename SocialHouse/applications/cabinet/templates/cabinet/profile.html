@@ -18,10 +18,15 @@
                             Список оказанных услуг
                         </a>
                     {% elif worker_pos.position.title == 'Заведующий' %}
-                        <a class="btn btn-primary" href="{% url 'url_serviced_persons_create' %}">
+                        <a class="btn btn-primary" href="{% url 'serviced_person_list' %}">
                             <i class="fas fa-calendar-plus"></i>
                             Список обслуживаемых
                         </a>
+                        <a class="btn btn-primary" href="{% url 'url_serviced_persons_create' %}">
+                            <i class="fas fa-calendar-plus"></i>
+                            Добавить обслуживаемого
+                        </a>
+
                     {% endif %}
 
                 </div>
