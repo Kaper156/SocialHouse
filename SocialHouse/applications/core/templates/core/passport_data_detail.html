@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load display_object %}
+{#TODO write it by hand#}
+{% block title %}
+    Пасспортные данные обслуживаемого {{ object.serviced_person.FIO }} | {{ block.super }}
+{% endblock %}
+{% block content %}
+    <h3 class="text-center"> Пасспортные данные обслуживаемого {{ object.serviced_person.FIO }}</h3>
+    <br>
+    {% display_object object %}
+    <br>
+    {% if object.serviced_person %}
+        <a class="btn btn-primary" href="{{ object.serviced_person.get_absolute_url }}">
+            <i class="fas fa-user"></i> Данные об обслуживаемом
+        </a>
+    {% endif %}
+{% endblock %}

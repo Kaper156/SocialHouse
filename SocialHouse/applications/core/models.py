@@ -2,6 +2,7 @@ import datetime
 
 from django.contrib.auth.models import User, Group
 from django.db import models
+from django.urls import reverse
 
 # ONLY TWO.
 GENDERS = (
@@ -123,6 +124,9 @@ class ServicedPerson(models.Model):
             return f"{self.name[0]}.{self.patronymic[0]}. {self.surname}"
         return f"{self.name} {self.patronymic} {self.surname}"
 
+    def get_absolute_url(self):
+        return reverse('serviced_person_detail', args=[str(self.id)])
+
     def __str__(self):
         return self.FIO()
 
@@ -142,3 +146,12 @@ class PassportData(models.Model):
 
     serviced_person = models.OneToOneField('ServicedPerson', on_delete=models.CASCADE,
                                            verbose_name="Обслуживаемый гражданин")
+
+    def __str__(self):
+        if self.serviced_person.gender == 'M':
+            return f"Пасспорт гр-на {self.serviced_person}"
+        else:
+            return f"Пасспорт гр-ки {self.serviced_person}"
+
+    def get_absolute_url(self):
+        return reverse('passport_data_detail', args=[str(self.id)])
