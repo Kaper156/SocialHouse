@@ -13,7 +13,7 @@ from .utils import get_range_around_month
 class ServiceJournalCreateView(CreateView):
     model = Worker
     form_class = ServiceJournalForm
-    template_name = 'social_work/services.html'
+    template_name = 'social_work/service_journals_list.html'
 
     def get_context_data(self, **kwargs):
         ctx = super(ServiceJournalCreateView, self).get_context_data(**kwargs)

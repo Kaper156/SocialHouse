@@ -1,6 +1,7 @@
 from django import forms
-from .models import ServiceJournal
+
 from applications.core.utils import CrispyFormWithSubmit
+from .models import ServiceJournal
 
 
 class ServiceJournalForm(CrispyFormWithSubmit, forms.ModelForm):
@@ -14,3 +15,6 @@ class ServiceJournalForm(CrispyFormWithSubmit, forms.ModelForm):
                   'service',
                   'type_of_service'  # TODO delete after add signals for checking
                   ]
+        widgets = {
+            'date_of': forms.DateInput(attrs={'type': 'date'}),
+        }
