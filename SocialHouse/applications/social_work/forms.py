@@ -1,18 +1,17 @@
 from django import forms
 
 from applications.core.utils import CrispyFormWithSubmit
-from .models import ServiceJournal
+from applications.social_work.submodels.ippsu import ProvidedService
 
 
 class ServiceJournalForm(CrispyFormWithSubmit, forms.ModelForm):
     __submit_text__ = 'Сохранить оказанную услугу'
 
     class Meta:
-        model = ServiceJournal
+        model = ProvidedService
         fields = ['date_of',
-                  'serviced',
-                  'employer',
                   'service',
+                  'ippsu',
                   'type_of_service'  # TODO delete after add signals for checking
                   ]
         widgets = {

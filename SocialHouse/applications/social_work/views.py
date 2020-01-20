@@ -5,7 +5,7 @@ from django.views.generic import CreateView
 
 from applications.core.models import Worker
 from .forms import ServiceJournalForm
-from .models import ServiceJournal
+from applications.social_work.submodels.ippsu import ProvidedService
 from .utils import get_range_around_month
 
 
@@ -19,7 +19,7 @@ class ServiceJournalCreateView(CreateView):
         ctx = super(ServiceJournalCreateView, self).get_context_data(**kwargs)
         worker = Worker.objects.get(user=self.request.user)
         d1, d2 = get_range_around_month()
-        ctx['objs'] = ServiceJournal.objects.filter(employer__worker=worker, date_of__range=(d1, d2))
+        ctx['objs'] = ProvidedService.objects.filter(employer__worker=worker, date_of__range=(d1, d2))
         ctx['objs_cnt'] = ctx['objs'].count()
         return ctx
 

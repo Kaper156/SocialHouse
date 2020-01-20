@@ -16,7 +16,6 @@ class Worker(models.Model):
         verbose_name = "Сотрудник"
         verbose_name_plural = "Сотрудники"
 
-    # TODO переделать описание
     STATUSES = (
         ('FI', "Уволен"),
         ('WO', "Работает"),
@@ -114,7 +113,8 @@ class ServicedPerson(models.Model):
                                      help_text="В формате ДД.ММ.ГГГГ (например 27.02.2019")
     location = models.CharField(choices=LOCATIONS, max_length=2, verbose_name="Местонахождение", default="HE")
 
-    privilege = models.ForeignKey('Privilege', on_delete=models.SET_NULL, verbose_name="Льготная категория", null=True)
+    privileges = models.ForeignKey(to='Privilege', verbose_name='Льготные категории', null=True, blank=True,
+                                   on_delete=models.DO_NOTHING)
 
     date_of_death = models.DateField(null=True, blank=True, verbose_name="Дата смерти")
     date_of_departure = models.DateField(null=True, blank=True, verbose_name="Дата ухода")
@@ -132,7 +132,17 @@ class ServicedPerson(models.Model):
 
 
 class Privilege(models.Model):
+    class Meta:
+        verbose_name = "Льготная категория"
+        verbose_name_plural = "Льготные категории"
+
     title = models.CharField(max_length=128, verbose_name="Название категории")
+
+    sale_guaranteed = models.FloatField(verbose_name="Скидка на гарантированные услуги", default=0)
+    sale_additional = models.FloatField(verbose_name="Скидка на дополнительные услуги", default=0)
+
+    def __str__(self):
+        return self.title
 
 
 # Keep minimal needed info from passport to perform data in documents
