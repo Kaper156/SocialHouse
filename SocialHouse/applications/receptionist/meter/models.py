@@ -46,15 +46,6 @@ class MeterData(models.Model):
                                      on_delete=models.CASCADE)
 
 
-#
-# class MeterDataJournal(models.Model):
-#     class Meta:
-#         verbose_name = "Журнал показаний счётчиков"
-#         verbose_name_plural = "Журналы показаний счётчиков"
-#     date_of = models.DateField(verbose_name="Период от", default=datetime.datetime.now)
-#     date_to = models.DateField(verbose_name="Период до")
-
-
 class UtilityBil(models.Model):
     class Meta:
         verbose_name = "Квитанция коммунальных услуг"

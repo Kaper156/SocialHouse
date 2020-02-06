@@ -14,13 +14,13 @@ class ServicedPersonDetailView(DetailView):
     pk_url_kwarg = 'pk_sp'
 
 
-class PassportDataDetailView(DetailView):
-    model = PassportData
-    template_name = 'core/passport_data_detail.html'
-    pk_url_kwarg = 'pk_pas'
-
-
 class ServicedPersonListView(ListView):
     model = ServicedPerson
     template_name = 'core/serviced_person_list.html'
     paginate_by = 50
+
+
+class PassportDataDetailView(DetailView):
+    model = PassportData
+    template_name = 'core/passport_data_detail.html'
+    pk_url_kwarg = 'pk_pas'

@@ -149,6 +149,7 @@ class Privilege(models.Model):
 class PassportData(models.Model):
     class Meta:
         verbose_name = "Пасспортные данные"
+        verbose_name_plural = "Пасспортные данные"
 
     serial = models.CharField(max_length=4, verbose_name="Серия")
     number = models.CharField(max_length=6, verbose_name="Номер")

@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin, GroupAdmin
 from django.contrib.auth.models import User, Group
 
-from .models import Worker, Position, WorkerPosition, ServicedPerson, PassportData
+from .models import Worker, Position, WorkerPosition, ServicedPerson, PassportData, Privilege
 
 
 class WorkerAdmin(admin.ModelAdmin):
@@ -43,3 +43,4 @@ admin.site.register(Position)
 admin.site.register(WorkerPosition)  # TODO Filter by fio, status, rate
 admin.site.register(ServicedPerson)
 admin.site.register(PassportData)
+admin.site.register(Privilege)

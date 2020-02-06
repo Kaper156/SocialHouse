@@ -43,8 +43,10 @@ MY_APPLICATIONS = [
     'applications.core',
     'applications.social_work',
     'applications.receptionist',
+    'applications.receptionist.visits',
+    'applications.receptionist.overnight',
+    'applications.receptionist.meter',
 
-    'applications.chief',
     'applications.cabinet',
 ]
 INSTALLED_APPS += MY_APPLICATIONS

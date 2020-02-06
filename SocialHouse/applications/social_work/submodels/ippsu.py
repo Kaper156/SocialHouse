@@ -2,14 +2,15 @@ import datetime
 
 from django.db import models
 
-from .services import SERVICE_TYPES, Service
 # from  submodels.services import SERVICE_TYPES, Service
 from applications.core.models import ServicedPerson, WorkerPosition
+from .services import SERVICE_TYPES, Service
 
 
 class IPPSU(models.Model):
     class Meta:
         verbose_name = "ИППСУ"
+        verbose_name_plural = "ИППСУ"
 
     social_worker = models.ForeignKey(to=WorkerPosition, on_delete=models.DO_NOTHING,
                                       verbose_name="Социальный работник")
