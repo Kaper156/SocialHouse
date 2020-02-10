@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'slugify',
     'crispy_forms',
+    'formtools',
 
     'django_extensions',
     # ./SocialHouse/manage.py graph_models core news social_work cabinet -a -X

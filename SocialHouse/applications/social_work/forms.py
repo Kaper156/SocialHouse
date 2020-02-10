@@ -1,12 +1,10 @@
 from django import forms
 
-from applications.core.utils import CrispyFormWithSubmit
+# from applications.core.utils import CrispyFormWithSubmit
 from applications.social_work.submodels.ippsu import ProvidedService
 
 
-class ServiceJournalForm(CrispyFormWithSubmit, forms.ModelForm):
-    __submit_text__ = 'Сохранить оказанную услугу'
-
+class ServiceJournalForm(forms.ModelForm):
     class Meta:
         model = ProvidedService
         fields = ['date_of',

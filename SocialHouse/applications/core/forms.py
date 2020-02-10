@@ -1,12 +1,9 @@
 from django import forms
 
-from applications.core.utils import CrispyFormWithSubmit
 from .models import ServicedPerson, PassportData
 
 
-class ServicedPersonForm(CrispyFormWithSubmit, forms.ModelForm):
-    __submit_text__ = 'Добавить нового осблуживаемого'
-
+class ServicedPersonForm(forms.ModelForm):
     class Meta:
         model = ServicedPerson
         fields = ['name',
@@ -15,13 +12,14 @@ class ServicedPersonForm(CrispyFormWithSubmit, forms.ModelForm):
                   'gender',
                   'date_of_birth',
                   'location',
+                  'privileges'
                   ]
         widgets = {
             'date_of_birth': forms.DateInput(attrs={'type': 'date'}),
         }
 
 
-class PassportDataForm(CrispyFormWithSubmit, forms.ModelForm):
+class PassportDataForm(forms.ModelForm):
     __submit_text__ = 'Добавить пасспортные данные'
 
     class Meta:
@@ -29,7 +27,7 @@ class PassportDataForm(CrispyFormWithSubmit, forms.ModelForm):
         fields = ['serial',
                   'number',
                   'date_of_issue',
-                  'serviced_person',
+                  # 'serviced_person',
                   ]
         widgets = {
             'date_of_issue': forms.DateInput(attrs={'type': 'date'}),

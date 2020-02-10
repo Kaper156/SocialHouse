@@ -11,7 +11,11 @@
 
     {% if object.passportdata %}
         <a class="btn btn-primary" href="{{ object.passportdata.get_absolute_url }}">
-            <i class="fas fa-passport"></i> Пасспортные данные
+            <i class="fas fa-passport"></i> Изменить пасспортные данные
+        </a>
+    {% else %}
+        <a class="btn btn-primary" href="{% url 'passport_data_create' pk_sp=object.id %}">
+            <i class="fas fa-passport"></i> Добавить пасспортные данные
         </a>
     {% endif %}
 {% endblock %}

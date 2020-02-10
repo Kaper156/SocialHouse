@@ -1,4 +1,11 @@
 Django==2.1.7
+django-crispy-forms==1.8.1
+django-extensions==2.2.6
+django-formtools==2.2
+pydot==1.4.1
+pydotplus==2.0.2
+pyparsing==2.4.6
 pytz==2019.2
+six==1.14.0
 -e git+https://github.com/simplylizz/django-slugify.git@bfb0467ba42e859a0483f60c97b706db56b70853#egg=slugify
 Unidecode==1.1.1

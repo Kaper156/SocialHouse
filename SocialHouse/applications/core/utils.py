@@ -1,6 +1,8 @@
-from django.template.defaultfilters import slugify as django_slugify
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
+from django.shortcuts import redirect
+from django.template.defaultfilters import slugify as django_slugify
+from django.views.generic import TemplateView
 
 alphabet = {'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo', 'ж': 'zh', 'з': 'z', 'и': 'i',
             'й': 'j', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't',
@@ -15,8 +17,8 @@ def slugify(s):
     return django_slugify(''.join(alphabet.get(w, w) for w in s.lower()))
 
 
-class CrispyFormWithSubmit:
-    __submit_text__ = 'Сохранить объект'
+class SubmitForm:
+    __submit_text__ = 'Сохранить запись'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -27,3 +29,42 @@ class CrispyFormWithSubmit:
         # TODO submit in center
         self.helper.label_class = 'col-lg-3'
         self.helper.field_class = 'col-lg-9'
+
+
+class OneToOneCreateView(TemplateView):
+    main_form = None
+    sub_form = None
+    sub_relation_field = None
+    success_url = None
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['main_form'] = kwargs.get('main_form', self.main_form(prefix='main'))
+        context['sub_form'] = kwargs.get('sub_form', self.sub_form(prefix='sub'))
+        return context
+
+    def form_valid(self, form, form_2):
+
+        main_obj = form.save()
+
+        sub_obj = form_2.save(commit=False)
+        setattr(sub_obj, self.sub_relation_field, main_obj)
+        sub_obj.save()
+
+        return redirect(self.success_url)
+
+    def form_invalid(self, main_form, sub_form):
+        return self.render_to_response(
+            self.get_context_data(
+                main_form=main_form,
+                sub_form=sub_form
+            )
+        )
+
+    def post(self, request, *args, **kwargs):
+        main_form = self.main_form(data=request.POST, prefix='main')
+        sub_form = self.sub_form(data=request.POST, prefix='sub')
+        if main_form.is_valid() and sub_form.is_valid():
+            return self.form_valid(main_form, sub_form)
+        else:
+            return self.form_invalid(main_form, sub_form)

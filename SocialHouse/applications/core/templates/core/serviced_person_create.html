@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h3>Приём граждан на обслуживание</h3>
+    <form method="post">{% csrf_token %}
+        <h4>Информация об обслуживаемом</h4>
+        {#            {% crispy serviced_form %}#}
+
+        {{ main_form|crispy }}
+        <h4>Пасспортные данные</h4>
+        {#            {% crispy passport_form %}#}
+        {{ sub_form|crispy }}
+        <input type="submit" value="Добавить">
+    </form>
+{% endblock %}
