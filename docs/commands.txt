@@ -1,1 +1,2 @@
 SocialHouse\manage.py makemigrations core news social_work receptionist visits meter overnight --settings=SocialHouse.settings.dev
+SocialHouse\manage.py services_import --file=.\source_data\services.xlsx --settings=SocialHouse.settings.dev

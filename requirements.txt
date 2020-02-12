@@ -9,3 +9,4 @@ pytz==2019.2
 six==1.14.0
 -e git+https://github.com/simplylizz/django-slugify.git@bfb0467ba42e859a0483f60c97b706db56b70853#egg=slugify
 Unidecode==1.1.1
+xlrd==1.2.0
