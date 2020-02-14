@@ -39,7 +39,7 @@ class Worker(models.Model):
     def FIO(self, full=False):
         try:
             if not full:
-                return f'{self.name[0]}.{self.patronymic[0]}. {self.surname}'
+                return f'{self.surname} {self.name[0]}.{self.patronymic[0]}.'
             return f'{self.name} {self.patronymic} {self.surname}'
         except self.DoesNotExist:
             return "Неизвестный работник"
@@ -48,6 +48,13 @@ class Worker(models.Model):
 
     def fullFIO(self):
         return self.FIO(full=True)
+
+    FIO.short_description = "Ф.И.О."
+
+    def get_positions(self):
+        return '; '.join(wp.position.title for wp in self.membership.all())
+
+    get_positions.short_description = "Занимаемые должности"
 
     def __str__(self):
         return self.FIO()
@@ -121,8 +128,10 @@ class ServicedPerson(models.Model):
 
     def FIO(self, full=False):
         if not full:
-            return f"{self.name[0]}.{self.patronymic[0]}. {self.surname}"
+            return f"{self.surname} {self.name[0]}.{self.patronymic[0]}."
         return f"{self.name} {self.patronymic} {self.surname}"
+
+    FIO.short_description = "Ф.И.О."
 
     def get_absolute_url(self):
         return reverse('serviced_person_detail', args=[str(self.id)])

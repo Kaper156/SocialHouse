@@ -23,6 +23,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # 'grappelli',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -135,6 +137,7 @@ USE_TZ = False  # True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
@@ -146,3 +149,7 @@ STATICFILES_FINDERS = (
 )
 
 # STATICFILES_DIRS += [f"/{app.replace('.', '/')}/static/" for app in MY_APPLICATIONS]
+
+# Grappelli settings
+GRAPPELLI_ADMIN_TITLE = 'Административная панель сайта отделения социальной помощи'
+GRAPPELLI_SWITCH_USER = True

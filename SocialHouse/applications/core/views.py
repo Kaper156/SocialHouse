@@ -1,3 +1,4 @@
+from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView, DeleteView, UpdateView
 from django.views.generic import TemplateView
 
@@ -16,7 +17,7 @@ class ServicedPersonCreateView(OneToOneCreateView):
     main_form = ServicedPersonForm
     sub_form = PassportDataForm
     sub_relation_field = 'serviced_person'
-    success_url = '/'
+    success_url = reverse_lazy('serviced_person_list')
 
 
 class ServicedPersonDetailView(DetailView):

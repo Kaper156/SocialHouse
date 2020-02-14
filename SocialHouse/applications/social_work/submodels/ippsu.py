@@ -25,6 +25,9 @@ class IPPSU(models.Model):
                                                 "установите флаг, вместо удаления услуги",
                                       default=False)
 
+    def __str__(self):
+        return f"ИППСУ {self.serviced_person} ({self.social_worker})"
+
 
 class IncludedService(models.Model):
     class Meta:
