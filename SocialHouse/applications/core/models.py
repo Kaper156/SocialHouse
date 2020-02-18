@@ -105,10 +105,12 @@ class ServicedPerson(models.Model):
         verbose_name = "Обслуживаемый"
         verbose_name_plural = "Обслуживаемые"
 
-    LOCATIONS = (
+    STATUSES = (
         ('HE', "На обслуживании"),
         ('ME', "На лечении"),
         ('OU', "В поездке"),
+        ('LE', "Покинул отделение"),
+        ('DE', "Умерший"),
     )
 
     name = models.CharField(max_length=128, verbose_name="Имя")
@@ -118,10 +120,9 @@ class ServicedPerson(models.Model):
     gender = models.CharField(default='M', choices=GENDERS, max_length=1, verbose_name="Пол")
     date_of_birth = models.DateField(null=True, verbose_name="Дата рождения",
                                      help_text="В формате ДД.ММ.ГГГГ (например 27.02.2019")
-    location = models.CharField(choices=LOCATIONS, max_length=2, verbose_name="Местонахождение", default="HE")
+    location = models.CharField(choices=STATUSES, max_length=2, verbose_name="Местонахождение", default="HE")
 
-    privileges = models.ForeignKey(to='Privilege', verbose_name='Льготные категории', null=True, blank=True,
-                                   on_delete=models.DO_NOTHING)
+    privileges = models.ManyToManyField(to='Privilege', verbose_name='Льготные категории', blank=True)
 
     date_of_death = models.DateField(null=True, blank=True, verbose_name="Дата смерти")
     date_of_departure = models.DateField(null=True, blank=True, verbose_name="Дата ухода")
@@ -131,7 +132,21 @@ class ServicedPerson(models.Model):
             return f"{self.surname} {self.name[0]}.{self.patronymic[0]}."
         return f"{self.name} {self.patronymic} {self.surname}"
 
+    def privileges_in_str(self):
+        if not self.privileges.exists():
+            return 'Без льгот'
+        return '; '.join(p.title for p in self.privileges.all())
+
+    def is_dead(self):
+        return self.date_of_death and self.date_of_death < datetime.datetime.now()
+
+    def is_leave(self):
+        return self.date_of_departure and self.date_of_departure < datetime.datetime.now()
+
     FIO.short_description = "Ф.И.О."
+    privileges_in_str.short_description = "Льготные категории"
+    is_dead.short_description = "Умерший"
+    is_leave.short_description = "Покинувший отделение"
 
     def get_absolute_url(self):
         return reverse('serviced_person_detail', args=[str(self.id)])
@@ -145,10 +160,10 @@ class Privilege(models.Model):
         verbose_name = "Льготная категория"
         verbose_name_plural = "Льготные категории"
 
-    title = models.CharField(max_length=128, verbose_name="Название категории")
+    title = models.TextField(max_length=1024, verbose_name="Название категории")
 
-    sale_guaranteed = models.FloatField(verbose_name="Скидка на гарантированные услуги", default=0)
-    sale_additional = models.FloatField(verbose_name="Скидка на дополнительные услуги", default=0)
+    # sale_guaranteed = models.FloatField(verbose_name="Скидка на гарантированные услуги", default=0)
+    # sale_additional = models.FloatField(verbose_name="Скидка на дополнительные услуги", default=0)
 
     def __str__(self):
         return self.title

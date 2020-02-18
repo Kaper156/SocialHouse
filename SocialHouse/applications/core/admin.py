@@ -1,7 +1,11 @@
+from datetime import datetime
+
 from django.contrib import admin
 from django.contrib.auth.models import User
 
+from .filters import DeadFilter, LeavedFilter
 from .models import Worker, Position, WorkerPosition, ServicedPerson, Privilege, PassportData
+from .utils import YearFilter
 
 
 class UserAdminInLine(admin.StackedInline):
@@ -13,11 +17,11 @@ class UserAdminInLine(admin.StackedInline):
 
 class WorkerPositionAdminInLine(admin.StackedInline):
     model = WorkerPosition
-    max_num = 4
-    min_num = 1
-    # extra =
+    min_num = 0
+    extra = 1
+    max_num = 3
     can_delete = True
-    verbose_name_plural = "Ставка"
+    verbose_name_plural = "Ставки"
 
 
 @admin.register(Worker)
@@ -36,7 +40,8 @@ class WorkerAdmin(admin.ModelAdmin):
         'membership__position'
         # 'date_of_birth' # Todo make abstract filter by age
     )
-    search_fields = ('name', 'surname', 'patronymic', 'user__username', 'membership__position__title',)
+    search_fields = ('name__iexact', 'surname__iexact', 'patronymic__iexact', 'user__username__iexact',
+                     'membership__position__title__iexact',)
     # raw_id_fields = (,)
     inlines = (WorkerPositionAdminInLine,)
 
@@ -69,33 +74,43 @@ class ServicedPersonAdmin(admin.ModelAdmin):
     list_display = (
         'FIO',
         'gender',
-        # 'date_of_birth' # Todo make abstract filter by age
+        'date_of_birth',  # Todo make abstract filter by age
         'location',
-        'privileges',
+        'privileges_in_str',
         'date_of_death',
         'date_of_departure',
     )
+    date_hierarchy = 'date_of_birth'
     list_filter = (
         'location',
         'date_of_birth',
         'privileges',
-        'date_of_death',
-        'date_of_departure',
+        DeadFilter,
+        LeavedFilter,
+        # 'date_of_death',
+        # 'date_of_departure',
     )
-    search_fields = ('name',)
+    # raw_id_fields = ('privileges',)
+    autocomplete_fields = ('privileges',)
+    search_fields = ('name__iexact', 'surname__iexact', 'patronymic__iexact',)
 
 
 @admin.register(Privilege)
 class PrivilegeAdmin(admin.ModelAdmin):
-    list_display = ('title', 'sale_guaranteed', 'sale_additional')
+    list_display = ('title',)  # 'sale_guaranteed', 'sale_additional'
+    search_fields = ('title',)
 
 
 @admin.register(PassportData)
 class PassportDataAdmin(admin.ModelAdmin):
     list_display = (
-        'serial',
-        'number',
-        'date_of_issue',
+        # 'serial',
+        # 'number',
         'serviced_person',
+        'date_of_issue',
     )
-    list_filter = ('date_of_issue', 'serviced_person')
+    list_filter = ('date_of_issue', 'serviced_person',
+                   # 'is_dead', 'is_leave',
+                   # DeadFilter, LeavedFilter,
+                   )
+    date_hierarchy = 'date_of_issue'

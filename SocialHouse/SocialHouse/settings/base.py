@@ -23,35 +23,30 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    # 'grappelli',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+ANOTHER_APPS = [
+    'formtools',
     'slugify',
     'crispy_forms',
-    'formtools',
-
     'django_extensions',
-    # ./SocialHouse/manage.py graph_models core news social_work cabinet -a -X
-    # Permission,ContentType,LogEntry,AbstractUser -o my_project_visualized.png --settings=SocialHouse.settings.dev
-
 ]
 MY_APPLICATIONS = [
     'applications.news',
-
     'applications.core',
     'applications.social_work',
     'applications.receptionist',
     'applications.receptionist.visits',
     'applications.receptionist.overnight',
     'applications.receptionist.meter',
-
     'applications.cabinet',
 ]
+INSTALLED_APPS += ANOTHER_APPS
 INSTALLED_APPS += MY_APPLICATIONS
 
 MIDDLEWARE = [
@@ -133,9 +128,6 @@ USE_L10N = True
 
 USE_TZ = False  # True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.1/howto/static-files/
-
 STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
@@ -148,8 +140,6 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
+# STATICFILES_STORAGE = 'ManifestStaticFilesStorage'
 # STATICFILES_DIRS += [f"/{app.replace('.', '/')}/static/" for app in MY_APPLICATIONS]
 
-# Grappelli settings
-GRAPPELLI_ADMIN_TITLE = 'Административная панель сайта отделения социальной помощи'
-GRAPPELLI_SWITCH_USER = True

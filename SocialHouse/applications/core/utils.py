@@ -1,5 +1,8 @@
+from datetime import datetime
+
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
+from django.contrib import admin
 from django.shortcuts import redirect
 from django.template.defaultfilters import slugify as django_slugify
 from django.views.generic import TemplateView
@@ -68,3 +71,25 @@ class OneToOneCreateView(TemplateView):
             return self.form_valid(main_form, sub_form)
         else:
             return self.form_invalid(main_form, sub_form)
+
+
+class YearFilter(admin.SimpleListFilter):
+    year_from = 2015
+    filtered_parameter = None
+
+    def __init__(self, request, params, model, model_admin):
+        super().__init__(request, params, model, model_admin)
+        if not self.filtered_parameter:  # Use parameter name
+            self.filtered_parameter = self.parameter_name
+        self.filtered_parameter += '__year'  # Add filter-condition
+
+    def lookups(self, request, model_admin):
+        return (
+            (str(y), y) for y in range(self.year_from, datetime.now().year)
+        )
+
+    def queryset(self, request, queryset):
+        value = self.value()
+        if not value:
+            return queryset
+        return queryset.filter(**{self.filtered_parameter: value})

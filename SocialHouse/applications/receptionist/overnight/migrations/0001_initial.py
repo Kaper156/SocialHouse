@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('visits', '0002_auto_20200203_2326'),
-        ('core', '0012_auto_20200203_1730'),
+        # ('core', '0012_auto_20200203_1730'),
     ]
 
     operations = [
