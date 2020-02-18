@@ -1,4 +1,6 @@
 SocialHouse\manage.py makemigrations core news social_work receptionist visits meter overnight --settings=SocialHouse.settings.dev
+SocialHouse\manage.py migrate --settings=SocialHouse.settings.dev
 SocialHouse\manage.py services_import --file=.\source_data\services.xlsx --settings=SocialHouse.settings.dev
 SocialHouse\manage.py admin_generator core --settings=SocialHouse.settings.dev
-
+SocialHouse\manage.py graph_models core news social_work receptionist meter visits overnight -a -X Permission,ContentType,LogEntry,AbstractUser -o models.png --settings=SocialHouse.settings.dev
+SocialHouse\manage.py dumpdata --indent 2 --settings=SocialHouse.settings.dev > test_db.json
