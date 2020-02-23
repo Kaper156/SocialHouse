@@ -92,7 +92,7 @@ class ServicedPersonAdmin(admin.ModelAdmin):
     )
     # raw_id_fields = ('privileges',)
     autocomplete_fields = ('privileges',)
-    search_fields = ('name__iexact', 'surname__iexact', 'patronymic__iexact',)
+    search_fields = ('name', 'surname', 'patronymic',)
 
 
 @admin.register(Privilege)

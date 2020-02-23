@@ -45,6 +45,7 @@ MY_APPLICATIONS = [
     'applications.receptionist.overnight',
     'applications.receptionist.meter',
     'applications.cabinet',
+    'applications.leaving',
 ]
 INSTALLED_APPS += ANOTHER_APPS
 INSTALLED_APPS += MY_APPLICATIONS
