@@ -2,8 +2,8 @@ import datetime
 
 from django.db import models
 
-# from  submodels.services import SERVICE_TYPES, Service
 from applications.core.models import ServicedPerson, WorkerPosition
+from applications.core.utils.datetime import later_3_years
 from .services import SERVICE_TYPES, Service
 
 
@@ -18,11 +18,11 @@ class IPPSU(models.Model):
                                         verbose_name="Обслуживаемый")
 
     date_from = models.DateField(verbose_name="Действует от", default=datetime.datetime.now)
-    date_to = models.DateField(verbose_name="Действителен до", default=datetime.datetime.now, null=True, blank=True)
+    date_to = models.DateField(verbose_name="Действителен до", default=later_3_years)
 
     is_archived = models.BooleanField(verbose_name="В архиве",
                                       help_text="Для совместимости со старыми отчетами, "
-                                                "установите флаг, вместо удаления услуги",
+                                                "установите флаг, вместо удаления ИППСУ",
                                       default=False)
 
     def __str__(self):

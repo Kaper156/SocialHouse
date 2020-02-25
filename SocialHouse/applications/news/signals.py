@@ -3,7 +3,7 @@ from django.dispatch import receiver
 from applications.news.models import News
 
 # from django.utils.text import slugify
-from applications.core.utils import slugify
+from applications.core.utils.slug import slugify
 
 #
 # @receiver(post_save, sender=News)

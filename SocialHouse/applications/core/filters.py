@@ -1,4 +1,4 @@
-from applications.core.utils import YearFilter
+from applications.core.utils.mixin import YearFilter
 
 
 class DeadFilter(YearFilter):

@@ -11,7 +11,39 @@ GENDERS = (
 )
 
 
-class Worker(models.Model):
+class Person(models.Model):
+    class Meta:
+        abstract = True
+        ordering = ['surname', 'name', 'patronymic']
+
+    name = models.CharField(max_length=128, blank=False, verbose_name="Имя")
+    patronymic = models.CharField(max_length=128, blank=False, verbose_name="Отчество")
+    surname = models.CharField(max_length=256, blank=False, verbose_name="Фамилия")
+
+    def FIO(self, full=False):
+        if full:
+            return f'{self.name} {self.patronymic} {self.surname}'
+        return f'{self.surname} {self.name[0]}.{self.patronymic[0]}.'
+
+    def fullFIO(self):
+        return self.FIO(full=True)
+
+    FIO.short_description = "Ф.И.О."
+
+    def __str__(self):
+        return self.fullFIO()
+
+
+class ExtendedPerson(Person):
+    class Meta:
+        abstract = True
+
+    gender = models.CharField(default='F', choices=GENDERS, max_length=1, verbose_name="Пол")
+    date_of_birth = models.DateField(null=False, blank=False, verbose_name="Дата рождения",
+                                     help_text="В формате ДД.ММ.ГГГГ (например 27.02.2019")
+
+
+class Worker(ExtendedPerson):
     class Meta:
         verbose_name = "Сотрудник"
         verbose_name_plural = "Сотрудники"
@@ -24,40 +56,12 @@ class Worker(models.Model):
     )
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="Пользователь")
-
-    name = models.CharField(max_length=128, blank=True, verbose_name="Имя")
-    patronymic = models.CharField(max_length=128, blank=True, verbose_name="Отчество")
-    surname = models.CharField(max_length=256, blank=True, verbose_name="Фамилия")
-
-    gender = models.CharField(default='F', choices=GENDERS, max_length=1, verbose_name="Пол")
-
-    date_of_birth = models.DateField(null=True, blank=True, verbose_name="Дата рождения",
-                                     help_text="В формате ДД.ММ.ГГГГ (например 27.02.2019")
-
     status = models.CharField(max_length=2, choices=STATUSES, verbose_name="Статус", default='WO')
-
-    def FIO(self, full=False):
-        try:
-            if not full:
-                return f'{self.surname} {self.name[0]}.{self.patronymic[0]}.'
-            return f'{self.name} {self.patronymic} {self.surname}'
-        except self.DoesNotExist:
-            return "Неизвестный работник"
-        except IndexError:
-            return "Неизвестный работник"
-
-    def fullFIO(self):
-        return self.FIO(full=True)
-
-    FIO.short_description = "Ф.И.О."
 
     def get_positions(self):
         return '; '.join(wp.position.title for wp in self.membership.all())
 
     get_positions.short_description = "Занимаемые должности"
-
-    def __str__(self):
-        return self.FIO()
 
     def save(self, *args, **kwargs):
         if not self.pk:
@@ -100,7 +104,7 @@ class WorkerPosition(models.Model):
         return f'{self.worker} ({self.position}) [x{self.rate}]'
 
 
-class ServicedPerson(models.Model):
+class ServicedPerson(ExtendedPerson):
     class Meta:
         verbose_name = "Обслуживаемый"
         verbose_name_plural = "Обслуживаемые"
@@ -112,25 +116,12 @@ class ServicedPerson(models.Model):
         ('LE', "Покинул отделение"),
         ('DE', "Умерший"),
     )
-
-    name = models.CharField(max_length=128, verbose_name="Имя")
-    patronymic = models.CharField(max_length=128, blank=True, verbose_name="Отчество")
-    surname = models.CharField(max_length=256, verbose_name="Фамилия")
-
-    gender = models.CharField(default='M', choices=GENDERS, max_length=1, verbose_name="Пол")
-    date_of_birth = models.DateField(null=True, verbose_name="Дата рождения",
-                                     help_text="В формате ДД.ММ.ГГГГ (например 27.02.2019")
     location = models.CharField(choices=STATUSES, max_length=2, verbose_name="Местонахождение", default="HE")
 
     privileges = models.ManyToManyField(to='Privilege', verbose_name='Льготные категории', blank=True)
 
     date_of_death = models.DateField(null=True, blank=True, verbose_name="Дата смерти")
     date_of_departure = models.DateField(null=True, blank=True, verbose_name="Дата ухода")
-
-    def FIO(self, full=False):
-        if not full:
-            return f"{self.surname} {self.name[0]}.{self.patronymic[0]}."
-        return f"{self.name} {self.patronymic} {self.surname}"
 
     def privileges_in_str(self):
         if not self.privileges.exists():
@@ -143,7 +134,6 @@ class ServicedPerson(models.Model):
     def is_leave(self):
         return self.date_of_departure and self.date_of_departure < datetime.datetime.now()
 
-    FIO.short_description = "Ф.И.О."
     privileges_in_str.short_description = "Льготные категории"
     is_dead.short_description = "Умерший"
     is_leave.short_description = "Покинувший отделение"
@@ -161,9 +151,6 @@ class Privilege(models.Model):
         verbose_name_plural = "Льготные категории"
 
     title = models.TextField(max_length=1024, verbose_name="Название категории")
-
-    # sale_guaranteed = models.FloatField(verbose_name="Скидка на гарантированные услуги", default=0)
-    # sale_additional = models.FloatField(verbose_name="Скидка на дополнительные услуги", default=0)
 
     def __str__(self):
         return self.title

@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 from .filters import DeadFilter, LeavedFilter
 from .models import Worker, Position, WorkerPosition, ServicedPerson, Privilege, PassportData
-from .utils import YearFilter
+from .utils.mixin import YearFilter
 
 
 class UserAdminInLine(admin.StackedInline):

@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 
 from .forms import ServicedPersonForm, PassportDataForm
 from .models import ServicedPerson, PassportData
-from .utils import OneToOneCreateView
+from .utils.mixin import OneToOneCreateView
 
 
 class IndexView(TemplateView):

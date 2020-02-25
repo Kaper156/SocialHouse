@@ -1,7 +1,7 @@
 from django.db import models
 from applications.core.models import Worker
 
-from applications.core.utils import slugify
+from applications.core.utils.slug import slugify
 
 NEWS_STATUS = (
     ('A', "Опубликована"),
@@ -10,13 +10,14 @@ NEWS_STATUS = (
 
 )
 
+
 # TODO rename to POST
 class News(models.Model):
     class Meta:
         verbose_name = "Новость"
         verbose_name_plural = "Новости"
 
-    author = models.ForeignKey("core.Worker", on_delete=models.SET_NULL, verbose_name="Автор", null=True)
+    author = models.ForeignKey(Worker, on_delete=models.SET_NULL, verbose_name="Автор", null=True)
     title = models.CharField(max_length=256, verbose_name="Заголовок")
     content = models.TextField(verbose_name="Содержание")
     date_of_creation = models.DateTimeField(verbose_name="Дата создания", auto_now_add=True)
@@ -32,7 +33,7 @@ class News(models.Model):
         try:
             q = News.objects.filter(slug_url__iexact=self.slug_url)
             if q.count():
-                self.slug_url += f'-{q.count()+1}'
+                self.slug_url += f'-{q.count() + 1}'
                 # self.slug_url += f'{self.date_of_creation.strftime("__%Y_%B_%d_%H-%M-%S")}'
         except News.DoesNotExist:
             pass

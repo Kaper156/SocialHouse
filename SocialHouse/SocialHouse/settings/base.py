@@ -21,7 +21,11 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # Application definition
-
+ANOTHER_APPS_PRE = [
+    'admin_tools.theming',
+    'admin_tools.menu',
+    'admin_tools.dashboard',
+]
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -30,7 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-ANOTHER_APPS = [
+ANOTHER_APPS_POST = [
     'formtools',
     'slugify',
     'crispy_forms',
@@ -47,7 +51,8 @@ MY_APPLICATIONS = [
     'applications.cabinet',
     'applications.leaving',
 ]
-INSTALLED_APPS += ANOTHER_APPS
+INSTALLED_APPS = ANOTHER_APPS_PRE + INSTALLED_APPS
+INSTALLED_APPS += ANOTHER_APPS_POST
 INSTALLED_APPS += MY_APPLICATIONS
 
 MIDDLEWARE = [
@@ -68,13 +73,18 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
         ],
-        'APP_DIRS': True,
+        'APP_DIRS': False,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+            ],
+            'loaders': [
+                'admin_tools.template_loaders.Loader',
+                'django.template.loaders.app_directories.Loader',
+
             ],
         },
     },
@@ -144,3 +154,9 @@ STATICFILES_FINDERS = (
 # STATICFILES_STORAGE = 'ManifestStaticFilesStorage'
 # STATICFILES_DIRS += [f"/{app.replace('.', '/')}/static/" for app in MY_APPLICATIONS]
 
+GRAPH_MODELS = {
+    'all_applications': True,
+    'group_models': True,
+    'exclude_models': 'Permission,ContentType,LogEntry,AbstractUser,User,Group',
+    'output': './docs/models.png',
+}
