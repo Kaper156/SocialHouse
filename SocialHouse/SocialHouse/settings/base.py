@@ -84,6 +84,7 @@ TEMPLATES = [
             'loaders': [
                 'admin_tools.template_loaders.Loader',
                 'django.template.loaders.app_directories.Loader',
+                'django.template.loaders.filesystem.Loader',
 
             ],
         },
@@ -160,3 +161,7 @@ GRAPH_MODELS = {
     'exclude_models': 'Permission,ContentType,LogEntry,AbstractUser,User,Group',
     'output': './docs/models.png',
 }
+
+ADMIN_TOOLS_MENU = 'SocialHouse.at.menu.SocialHouseMenu'
+ADMIN_TOOLS_INDEX_DASHBOARD = 'SocialHouse.at.dashboard.SocialHouseIndexDashboard'
+ADMIN_TOOLS_APP_INDEX_DASHBOARD = 'SocialHouse.at.dashboard.SocialHouseAppIndexDashboard'

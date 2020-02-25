@@ -5,6 +5,3 @@ SocialHouse\manage.py admin_generator core --settings=SocialHouse.settings.dev
 SocialHouse\manage.py graph_models core news social_work receptionist meter visits overnight leaving --settings=SocialHouse.settings.dev
 SocialHouse\manage.py graph_models -g -X Permission,ContentType,LogEntry,AbstractUser  -o models.png --settings=SocialHouse.settings.dev
 SocialHouse\manage.py dumpdata --indent 2 --settings=SocialHouse.settings.dev > test_db.json
-
-
-Add all forgiven migrations; split utils in core; install admin_tools; Add abstract Person, ExtendedPerson; Disable core signals; Add default 3-years-later value to IPPSU.date_to;
