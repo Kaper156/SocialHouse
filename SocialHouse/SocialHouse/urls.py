@@ -1,8 +1,9 @@
 from django.contrib import admin
 from django.urls import path, include
-import admin_tools
+from django.views.generic import RedirectView
 
 urlpatterns = [
+    path('favicon.ico', RedirectView.as_view(url='/static/favicon.ico'), name='favicon'),
     path('admin/', admin.site.urls),  # admin site
     path('admin-tools/', include('admin_tools.urls')),  # admin site
     path('accounts/', include('django.contrib.auth.urls')),

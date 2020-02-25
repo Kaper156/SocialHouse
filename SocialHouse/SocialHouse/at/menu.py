@@ -7,9 +7,9 @@ class SocialHouseMenu(Menu):
         Menu.__init__(self, **kwargs)
         self.children += [
             items.MenuItem("Административная панель", reverse('admin:index')),
-            items.Bookmarks(),
+            items.Bookmarks(title="Закладки"),
             items.AppList(
-                "Приложения",
+                "По приложениям",
                 exclude=('django.contrib.*',)
             ),
             items.AppList(

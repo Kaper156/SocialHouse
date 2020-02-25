@@ -2,16 +2,19 @@ from django.urls import reverse
 from admin_tools.dashboard import modules, Dashboard, AppIndexDashboard
 from admin_tools.utils import get_admin_site_name
 
+from SocialHouse.at.applist import all_models, receptionist_models
+
 
 class SocialHouseIndexDashboard(Dashboard):
     columns = 2
+    title = "Административная панель"
+
     def init_with_context(self, context):
         site_name = get_admin_site_name(context)
-        # append a link list module for "quick links"
         self.children.append(modules.LinkList(
             "Быстрый доступ",
             layout='inline',
-            draggable=False,
+            draggable=True,
             deletable=False,
             collapsible=False,
             children=[
@@ -20,10 +23,19 @@ class SocialHouseIndexDashboard(Dashboard):
             ]
         ))
 
-        # append an app list module for "Applications"
-        self.children.append(modules.AppList(
-            "Приложения",
-            exclude=('django.contrib.*',),
+        self.children.append(modules.Group(
+            title="Данные",
+            display="tabs",
+            children=[
+                modules.AppList(title=title, models=models) for title, models in all_models.items()
+            ]
+        ))
+        self.children.append(modules.Group(
+            title="Работа администратора",
+            display="tabs",
+            children=[
+                modules.AppList(title=title, models=models) for title, models in receptionist_models.items()
+            ]
         ))
 
         # append an app list module for "Administration"
@@ -33,7 +45,7 @@ class SocialHouseIndexDashboard(Dashboard):
         ))
 
         # append a recent actions module
-        self.children.append(modules.RecentActions("Последние действия", 5))
+        self.children.append(modules.RecentActions("Последние действия", 15))
 
 
 class SocialHouseAppIndexDashboard(AppIndexDashboard):
