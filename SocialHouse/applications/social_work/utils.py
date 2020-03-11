@@ -50,8 +50,8 @@ def load_services_from_csv(path_to_csv, delimiter=';', quotechar='\n', field_pai
 
 
 def save_services_to_csv(path_to_csv, delimiter=';', quotechar='\n', field_pairs=None):
-    from applications.social_work.submodels.services import ServiceMeasurement
-    from applications.social_work.submodels.services import Service
+    from applications.social_work.models.services import ServiceMeasurement
+    from applications.social_work.models.services import Service
     import csv
     if field_pairs is None:
         field_pairs = (

@@ -3,7 +3,8 @@ from decimal import Decimal
 
 import xlrd
 
-from applications.social_work.models import Service, ServiceMeasurement, SERVICE_TYPES, ServicesList
+from applications.core.enums import ServiceTypeEnum
+from applications.social_work.models import Service, ServiceMeasurement, ServicesList
 
 
 class Loader:
@@ -37,7 +38,7 @@ class Loader:
             tax = Decimal(tax)
             yield Service(
                 title=' '.join(title.split()),
-                type_of_service=SERVICE_TYPES[0][0],
+                type_of_service=ServiceTypeEnum.GUARANTEED,
                 service_category=category,
                 measurement=measurement,
                 tax=tax,
@@ -69,7 +70,7 @@ class Loader:
             place = Service.PLACES[0][0]  # Always 'at home'
             yield Service(
                 title=' '.join(title.split()),
-                type_of_service=SERVICE_TYPES[1][0],
+                type_of_service=ServiceTypeEnum.ADDITIONAL,
                 service_category=category,
                 measurement=measurement,
                 tax=tax,
@@ -105,7 +106,7 @@ class Loader:
                     place = Service.PLACES[i][0]  # select place from choices
                     yield Service(
                         title=' '.join(titles[i].split()),
-                        type_of_service=SERVICE_TYPES[2][0],
+                        type_of_service=ServiceTypeEnum.PAID,
                         measurement=measurement,
                         tax=taxes[i],
                         services_list=self.services_list,
@@ -115,7 +116,7 @@ class Loader:
                 tax = Decimal(tax)
                 yield Service(
                     title=' '.join(title.split()),
-                    type_of_service=SERVICE_TYPES[2][0],
+                    type_of_service=ServiceTypeEnum.PAID,
                     measurement=measurement,
                     tax=tax,
                     services_list=self.services_list

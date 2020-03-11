@@ -50,6 +50,7 @@ MY_APPLICATIONS = [
     'applications.receptionist.meter',
     'applications.cabinet',
     'applications.leaving',
+    'applications.documents',
 ]
 INSTALLED_APPS = ANOTHER_APPS_PRE + INSTALLED_APPS
 INSTALLED_APPS += ANOTHER_APPS_POST

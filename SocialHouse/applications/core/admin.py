@@ -4,7 +4,8 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 
 from .filters import DeadFilter, LeavedFilter
-from .models import Worker, Position, WorkerPosition, ServicedPerson, Privilege, PassportData
+from .models import Worker, WorkerPosition, ServicedPerson, Privilege, PassportData, LivingWage, \
+    AveragePerCapitaIncome
 from .utils.mixin import YearFilter
 
 
@@ -37,19 +38,13 @@ class WorkerAdmin(admin.ModelAdmin):
     date_hierarchy = 'date_of_birth'
     list_filter = (
         'status',
-        'membership__position'
+        # 'membership__position'
         # 'date_of_birth' # Todo make abstract filter by age
     )
     search_fields = ('name__iexact', 'surname__iexact', 'patronymic__iexact', 'user__username__iexact',
                      'membership__position__title__iexact',)
     # raw_id_fields = (,)
     inlines = (WorkerPositionAdminInLine,)
-
-
-@admin.register(Position)
-class PositionAdmin(admin.ModelAdmin):
-    list_display = ('title', 'purpose', 'group')
-    list_filter = ('group',)
 
 
 @admin.register(WorkerPosition)
@@ -75,10 +70,10 @@ class ServicedPersonAdmin(admin.ModelAdmin):
         'FIO',
         'gender',
         'date_of_birth',  # Todo make abstract filter by age
-        'location',
+        'contract_number',
+        'date_of_income',
         'privileges_in_str',
-        'date_of_death',
-        'date_of_departure',
+        'location',
     )
     date_hierarchy = 'date_of_birth'
     list_filter = (
@@ -114,3 +109,15 @@ class PassportDataAdmin(admin.ModelAdmin):
                    # DeadFilter, LeavedFilter,
                    )
     date_hierarchy = 'date_of_issue'
+
+
+@admin.register(LivingWage)
+class LivingWageAdmin(admin.ModelAdmin):
+    list_display = ('date_to', 'tax',)
+    sortable_by = ('date_to', 'tax',)
+
+
+@admin.register(AveragePerCapitaIncome)
+class AveragePerCapitaIncomeAdmin(admin.ModelAdmin):
+    list_display = ('serviced_person', 'date_to', 'avg_income')
+    sortable_by = ('date_to', 'avg_income', 'serviced_person',)

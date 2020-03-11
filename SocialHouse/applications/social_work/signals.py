@@ -1,13 +1,15 @@
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
-from .models import SERVICE_TYPES
-from applications.social_work.submodels.ippsu import ProvidedService
+from applications.social_work.models.ippsu import ProvidedService
 from .utils import get_date_range_around
 
 from applications.core.models import Worker
 
 
 # Проверка частоты оказания услуги
+from ..core.enums import ServiceTypeEnum
+
+
 def check_service_journal_period(instance):
     # Получить родительский SERVICE_TYPE
     instance.type_of_service = instance.service.type_of_service
@@ -17,7 +19,7 @@ def check_service_journal_period(instance):
     _count = ProvidedService.objects.filter(date_of__range=(d_from, d_to)).count()
     if _count > instance.service.period.count:
         # Услуга становится платной при превышении частоты оказания услуги
-        instance.type_of_service = SERVICE_TYPES[2][0]
+        instance.type_of_service = ServiceTypeEnum.PAID
 
 
 @receiver(pre_save, sender=ProvidedService)

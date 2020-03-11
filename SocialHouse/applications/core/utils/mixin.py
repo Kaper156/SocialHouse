@@ -5,6 +5,7 @@ from crispy_forms.layout import Submit
 from django.contrib import admin
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
+from django import forms
 
 
 class SubmitForm:

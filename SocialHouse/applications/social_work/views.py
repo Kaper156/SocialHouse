@@ -5,7 +5,7 @@ from django.views.generic import CreateView
 
 from applications.core.models import Worker
 from .forms import ServiceJournalForm
-from applications.social_work.submodels.ippsu import ProvidedService
+from applications.social_work.models.ippsu import ProvidedService
 from .utils import get_range_around_month
 
 
