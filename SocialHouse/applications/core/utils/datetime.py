@@ -1,5 +1,5 @@
-import datetime
 import calendar
+import datetime
 
 from applications.social_work.enums import PeriodEnum
 
@@ -28,6 +28,12 @@ def later_years(years, from_date=None):
 
 def later_3_years():
     return later_years(years=3)
+
+
+def random_date_between(date_from, date_to) -> datetime.date:
+    from random import randint
+    delta = date_to - date_from
+    return date_from + datetime.timedelta(days=randint(0, delta.days))
 
 
 def month_start(from_date=None):

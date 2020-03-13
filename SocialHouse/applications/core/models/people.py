@@ -1,7 +1,6 @@
 import datetime
 
-from choicesenum.django.fields import EnumIntegerField, EnumCharField
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 
@@ -40,34 +39,23 @@ class Worker(ExtendedPerson):
         super(Worker, self).save(*args, **kwargs)
 
 
-# class Position(models.Model):
-#     class Meta:
-#         verbose_name = "Должность"
-#         verbose_name_plural = "Должности"
-#
-#     title = models.CharField(max_length=128, verbose_name="Название должности")
-#     purpose = models.TextField(max_length=1024, verbose_name="Назначение должности", blank=True)
-#     group = models.ForeignKey(Group, on_delete=models.CASCADE, verbose_name="Группа пользователей")
-#
-#     def __str__(self):
-#         return f'{self.title}'
-
-
 class WorkerPosition(models.Model):
     class Meta:
         verbose_name = "Ставка сотрудника"
         verbose_name_plural = "Ставки сотрудников"
 
     worker = models.ForeignKey('Worker', related_name='membership', on_delete=models.CASCADE, verbose_name="Сотрудник")
-    position = EnumCharField(verbose_name="Должность", max_length=1,
-                             enum=WorkerPositionEnum, default=WorkerPositionEnum.SOCIAL_WORKER)
+    position = models.CharField(verbose_name="Должность", max_length=1,
+                                choices=WorkerPositionEnum.choices, default=WorkerPositionEnum.SOCIAL_WORKER)
     date_of_appointment = models.DateField(verbose_name="Дата устройства на должность",
                                            default=datetime.datetime.now)
     dismissal_date = models.DateField(verbose_name="Дата увольнения с должности", null=True, blank=True)
     rate = models.FloatField(verbose_name="Ставка", default=1)
 
     def __str__(self):
-        return f'{self.worker} ({self.position.description}) [x{self.rate}]'
+        if self.rate != 1:
+            return f'{self.worker.FIO(full=False)} ({self.get_position_display()}) [x{self.rate}]'
+        return f'{self.worker.FIO(full=False)} ({self.get_position_display()})'
 
 
 class ServicedPerson(ExtendedPerson):

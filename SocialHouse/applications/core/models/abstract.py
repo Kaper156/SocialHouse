@@ -49,6 +49,6 @@ class Journal(models.Model):
     date_to = models.DateField(verbose_name="Период до", default=month_end)
 
     def period(self):
-        return dateformat.format(self.date_from, 'Y-m (F)')
+        return dateformat.format(self.date_from, 'Y-m F')
 
     period.short_description = "Период"

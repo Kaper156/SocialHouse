@@ -1,8 +1,8 @@
 import datetime
 
-from choicesenum.django.fields import EnumCharField
-from django.db import models
 from django.core import validators
+from django.db import models
+
 from applications.core.models import ServicedPerson, WorkerPosition
 from applications.core.utils.datetime import later_3_years
 from .services import Service
@@ -41,6 +41,9 @@ class IncludedService(models.Model):
                               related_name="included_services")
     service = models.ForeignKey(to=Service, on_delete=models.CASCADE, verbose_name="Услуга")
 
+    def __str__(self):
+        return str(self.service)
+
 
 class ProvidedServiceJournal(Journal):
     class Meta:
@@ -50,15 +53,17 @@ class ProvidedServiceJournal(Journal):
     ippsu = models.ForeignKey(verbose_name="ИППСУ", to='IPPSU', on_delete=models.CASCADE,
                               related_name="provided_services_journals")
 
-    def save(self, force_insert=False, force_update=False, using=None,
-             update_fields=None):
+    def save(self, *args, **kwargs):
         # Check by quantity
         for provided in self.services.all():
             state = provided.service.measurement.volume_statement
             if not state:  # Skip services without volume statement
                 continue
 
-        super(models.Model, self).save(force_insert, force_update, using, update_fields)
+        super(ProvidedServiceJournal, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return f"[{self.period()}] {self.ippsu}"
 
 
 class ProvidedService(models.Model):
@@ -72,8 +77,8 @@ class ProvidedService(models.Model):
 
     service = models.ForeignKey(to=Service, on_delete=models.CASCADE, verbose_name="Услуга")
 
-    type_of_service = EnumCharField(verbose_name="Тип", enum=ServiceTypeEnum,
-                                    max_length=1, default=ServiceTypeEnum.UNDEFINED, editable=False)
+    type_of_service = models.CharField(verbose_name="Тип", choices=ServiceTypeEnum.choices,
+                                       max_length=1, default=ServiceTypeEnum.CALCULATING, editable=False)
     volume = models.FloatField(verbose_name="Оказанный объем услуги", default=1.0)
     quantity = models.PositiveSmallIntegerField(verbose_name="Количество услуг", default=1,
                                                 validators=[validators.MinValueValidator(1)])
@@ -148,4 +153,4 @@ class ProvidedService(models.Model):
     #     super(ProvidedService, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f"[{self.date_of}] {self.service}"
+        return f"[{self.date_of}][{self.service.get_type_of_service_display()[0].upper()}] {self.service}"

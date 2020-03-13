@@ -1,15 +1,14 @@
-from choicesenum import ChoicesEnum
+from django.db.models.enums import TextChoices
 
 
-class ServiceTypeEnum(ChoicesEnum):
+class ServiceTypeEnum(TextChoices):
     GUARANTEED = 'G', "гарантированная"
     ADDITIONAL = 'A', "дополнительная"
     PAID = 'P', "платная"
     CALCULATING = 'C', "-вычисляется-"
-    UNDEFINED = 'U', "-неопределенно-"
 
 
-class WorkerPositionEnum(ChoicesEnum):
+class WorkerPositionEnum(TextChoices):
     CHIEF = 'C', "Заведующий отделением"
     SOCIAL_WORKER = 'S', "Социальный работник"
     NURSE = 'N', "Сиделка"

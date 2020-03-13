@@ -17,6 +17,8 @@ def generate_serviced(N=30, dead=False, leaved=False, location=None):
     privils = Privilege.objects.all()
     for i in range(N):
         name, patronymic, surname = '', '', ''
+        date_of_income = datetime.now().date() - timedelta(randint(1, 365) * 2)
+        contract_number = f"№ {randint(11, 99)}/{randint(11, 99)}"
         if randint(1, 10) % 2:
             # Male
             gender = 'M'
@@ -36,7 +38,9 @@ def generate_serviced(N=30, dead=False, leaved=False, location=None):
             patronymic=patronymic,
             surname=surname,
             gender=gender,
-            date_of_birth=date_of_birth
+            date_of_birth=date_of_birth,
+            date_of_income=date_of_income,
+            contract_number=contract_number,
         )
         if dead:
             serviced.date_of_death = faker.date_of_birth(tzinfo=None, minimum_age=0, maximum_age=3)

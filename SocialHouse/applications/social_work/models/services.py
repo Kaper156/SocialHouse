@@ -2,10 +2,11 @@ import datetime
 
 from django.db import models
 
-from choicesenum.django.fields import EnumCharField, EnumIntegerField
-
 from applications.core.enums import ServiceTypeEnum
 from applications.social_work.enums import PeriodEnum, StatementEnum
+
+
+# from choicesenum.django.fields import EnumCharField, EnumIntegerField
 
 
 class Statement(models.Model):
@@ -13,8 +14,8 @@ class Statement(models.Model):
         verbose_name = "Условие для услуги"
         verbose_name_plural = "Условия для услуг"
 
-    statement = EnumCharField(verbose_name="Логический оператор", max_length=2,
-                              enum=StatementEnum, default=StatementEnum.EQUAL)
+    statement = models.CharField(verbose_name="Логический оператор", max_length=2,
+                                 choices=StatementEnum.choices, default=StatementEnum.EQUAL)
     limit = models.FloatField(verbose_name="Ограничение", default=1)
 
     def check_limit(self, num: float) -> bool:
@@ -29,7 +30,7 @@ class Statement(models.Model):
         return num - self.limit
 
     def __str__(self):
-        return f"{self.statement.description} {self.limit}"
+        return f"{self.get_statement_display()} {self.limit}"
 
 
 def default_statement():
@@ -48,10 +49,9 @@ class ServiceMeasurement(models.Model):
 
     title = models.CharField(verbose_name="Единица измерения", max_length=512)
 
-    period = EnumCharField(verbose_name="В срок", enum=PeriodEnum, default=PeriodEnum.UNDEFINED,
-                           help_text="Установите показатель, только если требуется ограничить услугу "
-                                     "по частоте оказания (условие периодичности)",
-                           null=True, blank=True, max_length=1)
+    period = models.IntegerField(verbose_name="В срок", choices=PeriodEnum.choices, null=True,
+                                 help_text="Установите показатель, только если требуется ограничить услугу "
+                                           "по частоте оказания (условие периодичности)")
 
     period_statement = models.ForeignKey(to=Statement, on_delete=models.SET_NULL, related_name='measurements_by_period',
                                          verbose_name="Условие периодичности", null=True, blank=True,
@@ -109,8 +109,8 @@ class Service(models.Model):
     )
 
     title = models.TextField(verbose_name="Наименование", max_length=512)
-    type_of_service = EnumCharField(verbose_name="Тип", enum=ServiceTypeEnum,
-                                    max_length=1, default=ServiceTypeEnum.UNDEFINED)
+    type_of_service = models.CharField(verbose_name="Тип", choices=ServiceTypeEnum.choices,
+                                       max_length=1, default=ServiceTypeEnum.PAID)
     service_category = models.CharField(verbose_name="Категория", choices=SERVICE_CATEGORIES,
                                         max_length=2, default='UN')
     measurement = models.ForeignKey(to=ServiceMeasurement, on_delete=models.CASCADE,

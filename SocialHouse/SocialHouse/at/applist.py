@@ -1,24 +1,23 @@
 all_models = {
     "Обслуживаемые": (
-        'applications.core.models.ServicedPerson',
-        'applications.core.models.PassportData',
-        'applications.core.models.Privilege',
+        'applications.core.models.people.ServicedPerson',
+        'applications.core.models.serviced_data.PassportData',
+        'applications.core.models.serviced_data.Privilege',
     ),
     "Работники": (
-        'applications.core.models.Worker',
-        'applications.core.models.Position',
-        'applications.core.models.WorkerPosition',
+        'applications.core.models.people.Worker',
+        'applications.core.models.people.WorkerPosition',
     ),
     "Оказание услуг": (
         'applications.core.models.ServicedPerson',
-        'applications.social_work.submodels.ippsu.IPPSU',
-        'applications.social_work.submodels.ippsu.IncludedService',
-        'applications.social_work.submodels.ippsu.ProvidedService',
+        'applications.social_work.models.ippsu.IPPSU',
+        'applications.social_work.models.ippsu.IncludedService',
+        'applications.social_work.models.ippsu.ProvidedService',
     ),
     "Хранимые услуги": (
-        'applications.social_work.submodels.services.ServiceMeasurement',
-        'applications.social_work.submodels.services.ServicesList',
-        'applications.social_work.submodels.services.Service',
+        'applications.social_work.models.services.ServiceMeasurement',
+        'applications.social_work.models.services.ServicesList',
+        'applications.social_work.models.services.Service',
     ),
     "Учет проживающих": (
         'applications.receptionist.visits.models.Visit',
