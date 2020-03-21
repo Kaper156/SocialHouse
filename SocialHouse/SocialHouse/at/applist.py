@@ -22,11 +22,11 @@ all_models = {
     "Учет проживающих": (
         'applications.receptionist.visits.models.Visit',
         'applications.receptionist.visits.models.Visitor',
-        'applications.receptionist.overnight.models.NightShift',
-        'applications.receptionist.overnight.models.ServicedPersonOvernight',
-        'applications.receptionist.overnight.models.VisitorOvernight',
-        'applications.leaving.models.SickLeave',
-        'applications.leaving.models.Travel',
+        'applications.receptionist.sleepover.models.NightShift',
+        'applications.receptionist.sleepover.models.ServicedPersonOvernight',
+        'applications.receptionist.sleepover.models.VisitorOvernight',
+        'applications.receptionist.movements.models.SickLeave',
+        'applications.receptionist.movements.models.Travel',
     )
 }
 
@@ -40,10 +40,10 @@ receptionist_models = {
     "Учет проживающих": (
         'applications.receptionist.visits.models.Visit',
         'applications.receptionist.visits.models.Visitor',
-        'applications.receptionist.overnight.models.NightShift',
-        'applications.receptionist.overnight.models.ServicedPersonOvernight',
-        'applications.receptionist.overnight.models.VisitorOvernight',
-        'applications.leaving.models.SickLeave',
-        'applications.leaving.models.Travel',
+        'applications.receptionist.sleepover.models.NightShift',
+        'applications.receptionist.sleepover.models.ServicedPersonOvernight',
+        'applications.receptionist.sleepover.models.VisitorOvernight',
+        'applications.receptionist.movements.models.SickLeave',
+        'applications.receptionist.movements.models.Travel',
     )
 }

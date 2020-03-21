@@ -8,7 +8,8 @@ from faker import Faker
 from random import randint, choice
 
 django.setup()
-from applications.core.models import ServicedPerson, Privilege, PassportData
+from applications.people.models import ServicedPerson
+from applications.serviced_data.models.data import PassportData, Privilege
 
 faker = Faker(locale='ru_RU')
 

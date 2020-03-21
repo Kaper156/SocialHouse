@@ -1,5 +1,5 @@
 # -= encoding
-from applications.core.models import Privilege
+from applications.serviced_data.models.data import Privilege
 
 privs = (
     "Ветераны труда",

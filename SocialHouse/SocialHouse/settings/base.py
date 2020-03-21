@@ -41,16 +41,26 @@ ANOTHER_APPS_POST = [
     'django_extensions',
 ]
 MY_APPLICATIONS = [
-    'applications.news',
-    'applications.core',
+    'applications.people',
+    'applications.serviced_data',
+    'applications.documents',
+
     'applications.social_work',
+    'applications.social_work.ippsu',
+    'applications.social_work.providing',
+    'applications.social_work.statements',
+    'applications.social_work.services',
+
     'applications.receptionist',
     'applications.receptionist.visits',
-    'applications.receptionist.overnight',
+    'applications.receptionist.sleepover',
     'applications.receptionist.meter',
-    'applications.cabinet',
-    'applications.leaving',
-    'applications.documents',
+    'applications.receptionist.movements',
+
+    'applications.website',
+    'applications.website.news',
+    'applications.website.cabinet',
+
 ]
 INSTALLED_APPS = ANOTHER_APPS_PRE + INSTALLED_APPS
 INSTALLED_APPS += ANOTHER_APPS_POST
@@ -157,7 +167,7 @@ STATICFILES_FINDERS = (
 # STATICFILES_DIRS += [f"/{app.replace('.', '/')}/static/" for app in MY_APPLICATIONS]
 
 GRAPH_MODELS = {
-    'all_applications': True,
+    'all_applications': False,
     'group_models': True,
     'exclude_models': 'Permission,ContentType,LogEntry,AbstractUser,User,Group',
     'output': './docs/models.png',

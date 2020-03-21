@@ -2,15 +2,8 @@ import datetime
 
 from django.db import models
 
-from applications.core.models import WorkerPosition
-
-METER_TYPES = (
-    ('C', "Холодная вода"),
-    ('W', "Горячая вода"),
-    ('G', "Газосноснабжение"),
-    ('E', "Электричество"),
-    ('O', "Отопление"),
-)
+from applications.people.models import WorkerPosition
+from .enums import MeterTypesEnum
 
 
 class Meter(models.Model):
@@ -18,7 +11,7 @@ class Meter(models.Model):
         verbose_name = "Счётчик"
         verbose_name_plural = "Счётчики"
 
-    meter_type = models.CharField(verbose_name="Тип счётчика", choices=METER_TYPES, max_length=1)
+    meter_type = models.CharField(verbose_name="Тип счётчика", choices=MeterTypesEnum.choices, max_length=1)
     serial_number = models.CharField(verbose_name="Серийный номер счетчика", max_length=64, )
 
 

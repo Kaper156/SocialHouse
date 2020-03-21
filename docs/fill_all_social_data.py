@@ -9,12 +9,15 @@ from faker import Faker
 from random import randint, choice
 
 django.setup()
-from applications.core.models import ServicedPerson, Privilege, PassportData, User, Worker, WorkerPosition
+from applications.people.models import ServicedPerson, User, Worker, WorkerPosition
+from applications.serviced_data.models.data import PassportData, Privilege
 
-from applications.core.enums import WorkerPositionEnum, ServiceTypeEnum
-from applications.core.utils.datetime import range_month, random_date_between
-from applications.social_work.models import IPPSU, IncludedService, Service, ServicesList, ProvidedServiceJournal, \
-    ProvidedService
+from applications.social_work.services.enums import ServiceTypeEnum
+from applications.people.enums import WorkerPositionEnum
+from utils.datetime import range_month, random_date_between
+from applications.social_work.services.models import ServicesList, Service
+from applications.social_work.providing.models import ProvidedServiceJournal, ProvidedService
+from applications.social_work.ippsu.models import IPPSU, IncludedService
 
 faker = Faker(locale='ru_RU')
 PASSWORD_FOR_TEST_USERS = 'aq12wsde3'
@@ -224,13 +227,16 @@ def generate_serviced(N=30, dead=False, left=False, location=None):
             patronymic = faker.middle_name_female()
             surname = faker.last_name_female()
         date_of_birth = faker.date_of_birth(tzinfo=None, minimum_age=50, maximum_age=98)
-
+        contract_number = f"№{randint(10, 99)}/{randint(10, 99)}"
+        date_of_income = faker.date_of_birth(tzinfo=None, minimum_age=0, maximum_age=2)
         serviced = ServicedPerson(
             name=name,
             patronymic=patronymic,
             surname=surname,
             gender=gender,
-            date_of_birth=date_of_birth
+            date_of_birth=date_of_birth,
+            contract_number=contract_number,
+            date_of_income=date_of_income,
         )
         if dead:
             serviced.date_of_death = faker.date_of_birth(tzinfo=None, minimum_age=0, maximum_age=3)

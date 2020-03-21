@@ -1,4 +1,4 @@
-SocialHouse\manage.py makemigrations core news social_work receptionist visits meter overnight leaving documents --settings=SocialHouse.settings.dev
+SocialHouse\manage.py makemigrations documents people serviced_data --settings=SocialHouse.settings.dev
 SocialHouse\manage.py migrate --settings=SocialHouse.settings.dev
 SocialHouse\manage.py services_import --file=.\source_data\services.xlsx --settings=SocialHouse.settings.dev
 SocialHouse\manage.py admin_generator core --settings=SocialHouse.settings.dev
