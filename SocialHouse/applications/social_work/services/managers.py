@@ -15,3 +15,10 @@ class ServiceByTypeManger(models.Manager):
 
     def paid(self):
         return super().get_queryset().filter(type_of_service=ServiceTypeEnum.PAID)
+
+    def other(self):
+        return super().get_queryset().exclude(type_of_service__in=[
+            ServiceTypeEnum.GUARANTEED,
+            ServiceTypeEnum.ADDITIONAL,
+            ServiceTypeEnum.PAID
+        ])

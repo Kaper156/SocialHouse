@@ -1,23 +1,25 @@
 all_models = {
     "Обслуживаемые": (
-        'applications.core.models.people.ServicedPerson',
-        'applications.core.models.serviced_data.PassportData',
-        'applications.core.models.serviced_data.Privilege',
+        'applications.people.models.people.ServicedPerson',
+        'applications.serviced_data.models.data.PassportData',
+        'applications.serviced_data.models.data.Privilege',
     ),
     "Работники": (
-        'applications.core.models.people.Worker',
-        'applications.core.models.people.WorkerPosition',
+        'applications.people.models.people.Worker',
+        'applications.people.models.people.WorkerPosition',
     ),
     "Оказание услуг": (
-        'applications.core.models.ServicedPerson',
-        'applications.social_work.models.ippsu.IPPSU',
-        'applications.social_work.models.ippsu.IncludedService',
-        'applications.social_work.models.ippsu.ProvidedService',
+        'applications.people.models.people.ServicedPerson',
+        'applications.social_work.ippsu.models.IPPSU',
+        'applications.social_work.providing.models.ProvidedService',
     ),
     "Хранимые услуги": (
-        'applications.social_work.models.services.ServiceMeasurement',
-        'applications.social_work.models.services.ServicesList',
-        'applications.social_work.models.services.Service',
+        'applications.social_work.services.models.ServiceMeasurement',
+        'applications.social_work.services.models.ServicesList',
+        'applications.social_work.services.models.Service',
+        'applications.social_work.limitations.models.VolumeLimitation',
+        'applications.social_work.limitations.models.PeriodLimitation',
+
     ),
     "Учет проживающих": (
         'applications.receptionist.visits.models.Visit',

@@ -48,7 +48,7 @@ MY_APPLICATIONS = [
     'applications.social_work',
     'applications.social_work.ippsu',
     'applications.social_work.providing',
-    'applications.social_work.statements',
+    'applications.social_work.limitations',
     'applications.social_work.services',
 
     'applications.receptionist',
@@ -155,7 +155,7 @@ STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 STATICFILES_FINDERS = (
@@ -165,6 +165,10 @@ STATICFILES_FINDERS = (
 
 # STATICFILES_STORAGE = 'ManifestStaticFilesStorage'
 # STATICFILES_DIRS += [f"/{app.replace('.', '/')}/static/" for app in MY_APPLICATIONS]
+
+FIXTURE_DIRS = [
+    os.path.join(BASE_DIR, 'SocialHouse/fixtures')
+]
 
 GRAPH_MODELS = {
     'all_applications': False,

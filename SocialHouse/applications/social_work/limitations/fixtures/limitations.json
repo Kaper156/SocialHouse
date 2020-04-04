@@ -1,0 +1,144 @@
+[
+  {
+    "model": "limitations.volumelimitation",
+    "pk": 26,
+    "fields": {
+      "limit": 1.0
+    }
+  },
+  {
+    "model": "limitations.volumelimitation",
+    "pk": 27,
+    "fields": {
+      "limit": 20.0
+    }
+  },
+  {
+    "model": "limitations.volumelimitation",
+    "pk": 28,
+    "fields": {
+      "limit": 30.0
+    }
+  },
+  {
+    "model": "limitations.volumelimitation",
+    "pk": 29,
+    "fields": {
+      "limit": 80.0
+    }
+  },
+  {
+    "model": "limitations.volumelimitation",
+    "pk": 30,
+    "fields": {
+      "limit": 90.0
+    }
+  },
+  {
+    "model": "limitations.volumelimitation",
+    "pk": 31,
+    "fields": {
+      "limit": 10.0
+    }
+  },
+  {
+    "model": "limitations.volumelimitation",
+    "pk": 32,
+    "fields": {
+      "limit": 40.0
+    }
+  },
+  {
+    "model": "limitations.volumelimitation",
+    "pk": 33,
+    "fields": {
+      "limit": 70.0
+    }
+  },
+  {
+    "model": "limitations.volumelimitation",
+    "pk": 34,
+    "fields": {
+      "limit": 60.0
+    }
+  },
+  {
+    "model": "limitations.volumelimitation",
+    "pk": 35,
+    "fields": {
+      "limit": 50.0
+    }
+  },
+  {
+    "model": "limitations.periodlimitation",
+    "pk": 21,
+    "fields": {
+      "period": 1,
+      "limit": 1
+    }
+  },
+  {
+    "model": "limitations.periodlimitation",
+    "pk": 22,
+    "fields": {
+      "period": 31,
+      "limit": 2
+    }
+  },
+  {
+    "model": "limitations.periodlimitation",
+    "pk": 23,
+    "fields": {
+      "period": 7,
+      "limit": 1
+    }
+  },
+  {
+    "model": "limitations.periodlimitation",
+    "pk": 24,
+    "fields": {
+      "period": 31,
+      "limit": 4
+    }
+  },
+  {
+    "model": "limitations.periodlimitation",
+    "pk": 25,
+    "fields": {
+      "period": 1,
+      "limit": 4
+    }
+  },
+  {
+    "model": "limitations.periodlimitation",
+    "pk": 26,
+    "fields": {
+      "period": 31,
+      "limit": 1
+    }
+  },
+  {
+    "model": "limitations.periodlimitation",
+    "pk": 27,
+    "fields": {
+      "period": 7,
+      "limit": 3
+    }
+  },
+  {
+    "model": "limitations.periodlimitation",
+    "pk": 28,
+    "fields": {
+      "period": 7,
+      "limit": 4
+    }
+  },
+  {
+    "model": "limitations.periodlimitation",
+    "pk": 29,
+    "fields": {
+      "period": 1,
+      "limit": 2
+    }
+  }
+]

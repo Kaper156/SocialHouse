@@ -1,0 +1,611 @@
+[
+  {
+    "model": "dashboard.dashboardpreferences",
+    "pk": 1,
+    "fields": {
+      "user": 21,
+      "data": "{}",
+      "dashboard_id": "dashboard"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+      "action_time": "2020-03-25T22:09:53.001",
+      "user": 21,
+      "content_type": 773,
+      "object_id": "4",
+      "object_repr": "\u0418\u043c\u044f \u041e\u0442\u0447\u0435\u0441\u0442\u0432\u043e \u0422\u0435\u0441\u0442\u0435\u0440",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0421\\u0442\\u0430\\u0432\\u043a\\u0430 \\u0441\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\\u0430\", \"object\": \"\\u0422\\u0435\\u0441\\u0442\\u0435\\u0440 \\u0418.\\u041e. (\\u0421\\u043e\\u0446\\u0438\\u0430\\u043b\\u044c\\u043d\\u044b\\u0439 \\u0440\\u0430\\u0431\\u043e\\u0442\\u043d\\u0438\\u043a)\"}}, {\"added\": {\"name\": \"\\u0421\\u0442\\u0430\\u0432\\u043a\\u0430 \\u0441\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\\u0430\", \"object\": \"\\u0422\\u0435\\u0441\\u0442\\u0435\\u0440 \\u0418.\\u041e. (\\u0417\\u0430\\u0432\\u0435\\u0434\\u0443\\u044e\\u0449\\u0438\\u0439 \\u043e\\u0442\\u0434\\u0435\\u043b\\u0435\\u043d\\u0438\\u0435\\u043c)\"}}, {\"added\": {\"name\": \"\\u0421\\u0442\\u0430\\u0432\\u043a\\u0430 \\u0441\\u043e\\u0442\\u0440\\u0443\\u0434\\u043d\\u0438\\u043a\\u0430\", \"object\": \"\\u0422\\u0435\\u0441\\u0442\\u0435\\u0440 \\u0418.\\u041e. (\\u0410\\u0434\\u043c\\u0438\\u043d\\u0438\\u0441\\u0442\\u0440\\u0430\\u0442\\u043e\\u0440 \\u043e\\u0442\\u0434\\u0435\\u043b\\u0435\\u043d\\u0438\\u044f)\"}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+      "action_time": "2020-03-25T22:10:02.501",
+      "user": 21,
+      "content_type": 774,
+      "object_id": "7",
+      "object_repr": "\u0422\u0435\u0441\u0442\u0435\u0440 \u0418.\u041e. (\u0421\u043e\u0446\u0438\u0430\u043b\u044c\u043d\u044b\u0439 \u0440\u0430\u0431\u043e\u0442\u043d\u0438\u043a)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+      "action_time": "2020-03-25T22:10:51.883",
+      "user": 21,
+      "content_type": 775,
+      "object_id": "45",
+      "object_repr": "\u041e\u0431\u0441\u043b\u0443\u0436\u0438\u0432\u0430\u0435\u043c\u044b\u0439 \u0418.\u041e.",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+      "action_time": "2020-03-25T22:11:21.578",
+      "user": 21,
+      "content_type": 781,
+      "object_id": "1",
+      "object_repr": "\u0418\u041f\u041f\u0421\u0423 \u041e\u0431\u0441\u043b\u0443\u0436\u0438\u0432\u0430\u0435\u043c\u044b\u0439 \u0418.\u041e. (\u0422\u0435\u0441\u0442\u0435\u0440 \u0418.\u041e. (\u0421\u043e\u0446\u0438\u0430\u043b\u044c\u043d\u044b\u0439 \u0440\u0430\u0431\u043e\u0442\u043d\u0438\u043a))",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+      "action_time": "2020-03-25T22:11:49.794",
+      "user": 21,
+      "content_type": 783,
+      "object_id": "31",
+      "object_repr": "[2020-03 \u041c\u0430\u0440\u0442] \u0418\u041f\u041f\u0421\u0423 \u041e\u0431\u0441\u043b\u0443\u0436\u0438\u0432\u0430\u0435\u043c\u044b\u0439 \u0418.\u041e. (\u0422\u0435\u0441\u0442\u0435\u0440 \u0418.\u041e. (\u0421\u043e\u0446\u0438\u0430\u043b\u044c\u043d\u044b\u0439 \u0440\u0430\u0431\u043e\u0442\u043d\u0438\u043a))",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+      "action_time": "2020-03-25T22:12:23.488",
+      "user": 21,
+      "content_type": 787,
+      "object_id": "292",
+      "object_repr": "\u043a\u0432.\u043c",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+      "action_time": "2020-03-25T22:12:43.944",
+      "user": 21,
+      "content_type": 788,
+      "object_id": "9",
+      "object_repr": "\u041f\u0435\u0440\u0435\u0447\u0435\u043d\u044c \u0443\u0441\u043b\u0443\u0433 \u043e\u0442 01.01.2020",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+      "action_time": "2020-03-25T22:13:03.716",
+      "user": 21,
+      "content_type": 785,
+      "object_id": "37",
+      "object_repr": "\u041d\u0435 \u0431\u043e\u043b\u0435\u0435 50.0 \u0435\u0434\u0438\u043d\u0438\u0446 \u0438\u0437\u043c\u0435\u0440\u0435\u043d\u0438\u044f",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+      "action_time": "2020-03-25T22:13:22.981",
+      "user": 21,
+      "content_type": 786,
+      "object_id": "30",
+      "object_repr": "\u041d\u0435 \u0431\u043e\u043b\u0435\u0435 2 \u0440\u0430\u0437 \u0432 \u043c\u0435\u0441\u044f\u0446",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+      "action_time": "2020-03-25T22:13:46.256",
+      "user": 21,
+      "content_type": 789,
+      "object_id": "2731",
+      "object_repr": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430 \u0413\u0430\u0440\u0430\u043d\u0442\u0438\u044f 50 \u0435\u0434. \u041d\u0435 \u0431\u043e\u043b\u0435\u0435 2 \u0440\u0430\u0437 \u0432 \u043c\u0435\u0441\u044f\u0446",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+      "action_time": "2020-03-25T22:14:04.586",
+      "user": 21,
+      "content_type": 782,
+      "object_id": "1",
+      "object_repr": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430 \u0413\u0430\u0440\u0430\u043d\u0442\u0438\u044f 50 \u0435\u0434. \u041d\u0435 \u0431\u043e\u043b\u0435\u0435 2 \u0440\u0430\u0437 \u0432 \u043c\u0435\u0441\u044f\u0446",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+      "action_time": "2020-03-25T22:15:00.988",
+      "user": 21,
+      "content_type": 785,
+      "object_id": "38",
+      "object_repr": "\u041d\u0435 \u0431\u043e\u043b\u0435\u0435 35.0 \u0435\u0434\u0438\u043d\u0438\u0446 \u0438\u0437\u043c\u0435\u0440\u0435\u043d\u0438\u044f",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+      "action_time": "2020-03-25T22:16:27.463",
+      "user": 21,
+      "content_type": 786,
+      "object_id": "31",
+      "object_repr": "\u041d\u0435 \u0431\u043e\u043b\u0435\u0435 2 \u0440\u0430\u0437 \u0432 \u043d\u0435\u0434\u0435\u043b\u044e",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+      "action_time": "2020-03-25T22:16:28.698",
+      "user": 21,
+      "content_type": 789,
+      "object_id": "2732",
+      "object_repr": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430 \u0413\u0430\u0440\u0430\u043d\u0442\u0438\u044f 35 \u0435\u0434. \u043d\u0435 \u0431\u043e\u043b\u0435\u0435 2 \u0440\u0430\u0437 \u0432 \u043d\u0435\u0434\u0435\u043b\u044e",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+      "action_time": "2020-03-25T22:16:31.696",
+      "user": 21,
+      "content_type": 782,
+      "object_id": "2",
+      "object_repr": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430 \u0413\u0430\u0440\u0430\u043d\u0442\u0438\u044f 35 \u0435\u0434. \u043d\u0435 \u0431\u043e\u043b\u0435\u0435 2 \u0440\u0430\u0437 \u0432 \u043d\u0435\u0434\u0435\u043b\u044e",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+      "action_time": "2020-03-25T22:16:52.787",
+      "user": 21,
+      "content_type": 789,
+      "object_id": "2731",
+      "object_repr": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430 \u0413\u0430\u0440\u0430\u043d\u0442\u0438\u044f 50 \u0435\u0434. \u043d\u0435 \u0431\u043e\u043b\u0435\u0435 2 \u0440\u0430\u0437 \u0432 \u043c\u0435\u0441\u044f\u0446",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0438\\u043c\\u0435\\u043d\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+      "action_time": "2020-03-25T22:17:41.381",
+      "user": 21,
+      "content_type": 785,
+      "object_id": "39",
+      "object_repr": "\u041d\u0435 \u0431\u043e\u043b\u0435\u0435 2.5 \u0435\u0434\u0438\u043d\u0438\u0446 \u0438\u0437\u043c\u0435\u0440\u0435\u043d\u0438\u044f",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+      "action_time": "2020-03-25T22:17:51.063",
+      "user": 21,
+      "content_type": 786,
+      "object_id": "32",
+      "object_repr": "\u041d\u0435 \u0431\u043e\u043b\u0435\u0435 2 \u0440\u0430\u0437 \u0432 \u0434\u0435\u043d\u044c",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+      "action_time": "2020-03-25T22:17:57.299",
+      "user": 21,
+      "content_type": 789,
+      "object_id": "2733",
+      "object_repr": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430 \u0413\u0430\u0440\u0430\u043d\u0442\u0438\u044f 2,5 \u0435\u0434. \u043d\u0435 \u0431\u043e\u043b\u0435\u0435 2 \u0440\u0430\u0437 \u0432 \u0434\u0435\u043d\u044c",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+      "action_time": "2020-03-25T22:18:07.054",
+      "user": 21,
+      "content_type": 782,
+      "object_id": "3",
+      "object_repr": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430 \u0413\u0430\u0440\u0430\u043d\u0442\u0438\u044f 2,5 \u0435\u0434. \u043d\u0435 \u0431\u043e\u043b\u0435\u0435 2 \u0440\u0430\u0437 \u0432 \u0434\u0435\u043d\u044c",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+      "action_time": "2020-03-25T22:19:24.637",
+      "user": 21,
+      "content_type": 785,
+      "object_id": "36",
+      "object_repr": "\u041d\u0435 \u0431\u043e\u043b\u0435\u0435 5.0 \u0435\u0434\u0438\u043d\u0438\u0446 \u0438\u0437\u043c\u0435\u0440\u0435\u043d\u0438\u044f",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"\\u041e\\u0433\\u0440\\u0430\\u043d\\u0438\\u0447\\u0435\\u043d\\u0438\\u0435\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+      "action_time": "2020-03-25T22:20:47.234",
+      "user": 21,
+      "content_type": 789,
+      "object_id": "2734",
+      "object_repr": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430 \u041f\u043b\u0430\u0442\u043d\u0430\u044f \u043d\u0435 \u0431\u043e\u043b\u0435\u0435 5 \u0435\u0434",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+      "action_time": "2020-03-25T22:22:13.138",
+      "user": 21,
+      "content_type": 785,
+      "object_id": "41",
+      "object_repr": "\u041d\u0435 \u0431\u043e\u043b\u0435\u0435 10.0 \u0435\u0434\u0438\u043d\u0438\u0446 \u0438\u0437\u043c\u0435\u0440\u0435\u043d\u0438\u044f",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+      "action_time": "2020-03-25T22:22:16.238",
+      "user": 21,
+      "content_type": 789,
+      "object_id": "2735",
+      "object_repr": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430 \u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044c\u043d\u0430\u044f \u043d\u0435 \u0431\u043e\u043b\u0435\u0435 10 \u0435\u0434",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "1jyzaneqauxc04orc0mqs4pn5jj1sy25",
+    "fields": {
+      "session_data": "YTRiOGI5NjZiY2NmM2RjODE1ZTNlNDg1Nzk2MjcxNGM4MWUzZmU0ODp7Il9hdXRoX3VzZXJfaWQiOiIyMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiZWVhOWEzMjY0OWM4NWI2YmEyMzU2OGU4MTQ2NjNmNDhiYjMxODU3OSJ9",
+      "expire_date": "2020-04-08T22:08:28.527"
+    }
+  },
+  {
+    "model": "people.worker",
+    "pk": 4,
+    "fields": {
+      "name": "\u0418\u043c\u044f",
+      "patronymic": "\u041e\u0442\u0447\u0435\u0441\u0442\u0432\u043e",
+      "surname": "\u0422\u0435\u0441\u0442\u0435\u0440",
+      "gender": "M",
+      "date_of_birth": "1990-05-18",
+      "user": 21,
+      "status": "WO"
+    }
+  },
+  {
+    "model": "people.workerposition",
+    "pk": 4,
+    "fields": {
+      "worker": 4,
+      "position": "S",
+      "date_of_appointment": "2020-03-25",
+      "dismissal_date": null,
+      "rate": 1.0
+    }
+  },
+  {
+    "model": "people.workerposition",
+    "pk": 5,
+    "fields": {
+      "worker": 4,
+      "position": "C",
+      "date_of_appointment": "2020-03-25",
+      "dismissal_date": null,
+      "rate": 1.0
+    }
+  },
+  {
+    "model": "people.workerposition",
+    "pk": 6,
+    "fields": {
+      "worker": 4,
+      "position": "R",
+      "date_of_appointment": "2020-03-25",
+      "dismissal_date": null,
+      "rate": 1.0
+    }
+  },
+  {
+    "model": "people.workerposition",
+    "pk": 7,
+    "fields": {
+      "worker": 4,
+      "position": "S",
+      "date_of_appointment": "2020-03-25",
+      "dismissal_date": null,
+      "rate": 1.0
+    }
+  },
+  {
+    "model": "people.servicedperson",
+    "pk": 45,
+    "fields": {
+      "name": "\u0418\u043c\u044f",
+      "patronymic": "\u041e\u0442\u0447\u0435\u0441\u0442\u0432\u043e",
+      "surname": "\u041e\u0431\u0441\u043b\u0443\u0436\u0438\u0432\u0430\u0435\u043c\u044b\u0439",
+      "gender": "F",
+      "date_of_birth": "1945-05-18",
+      "location": "HE",
+      "contract_number": "\u2116 35/51",
+      "date_of_income": "2020-01-01",
+      "date_of_death": null,
+      "date_of_departure": null,
+      "privileges": []
+    }
+  },
+  {
+    "model": "ippsu.ippsu",
+    "pk": 1,
+    "fields": {
+      "social_worker": 7,
+      "serviced_person": 45,
+      "date_from": "2020-01-01",
+      "date_to": "2023-01-01",
+      "is_archived": false
+    }
+  },
+  {
+    "model": "ippsu.includedservice",
+    "pk": 1,
+    "fields": {
+      "IPPSU": 1,
+      "service": 2731
+    }
+  },
+  {
+    "model": "ippsu.includedservice",
+    "pk": 2,
+    "fields": {
+      "IPPSU": 1,
+      "service": 2732
+    }
+  },
+  {
+    "model": "ippsu.includedservice",
+    "pk": 3,
+    "fields": {
+      "IPPSU": 1,
+      "service": 2733
+    }
+  },
+  {
+    "model": "providing.providedservicejournal",
+    "pk": 31,
+    "fields": {
+      "date_from": "2020-03-01",
+      "date_to": "2020-03-31",
+      "ippsu": 1
+    }
+  },
+  {
+    "model": "limitations.volumelimitation",
+    "pk": 36,
+    "fields": {
+      "limit": 5.0
+    }
+  },
+  {
+    "model": "limitations.volumelimitation",
+    "pk": 37,
+    "fields": {
+      "limit": 50.0
+    }
+  },
+  {
+    "model": "limitations.volumelimitation",
+    "pk": 38,
+    "fields": {
+      "limit": 35.0
+    }
+  },
+  {
+    "model": "limitations.volumelimitation",
+    "pk": 39,
+    "fields": {
+      "limit": 2.5
+    }
+  },
+  {
+    "model": "limitations.volumelimitation",
+    "pk": 40,
+    "fields": {
+      "limit": 1.0
+    }
+  },
+  {
+    "model": "limitations.volumelimitation",
+    "pk": 41,
+    "fields": {
+      "limit": 10.0
+    }
+  },
+  {
+    "model": "limitations.periodlimitation",
+    "pk": 30,
+    "fields": {
+      "period": 31,
+      "limit": 2
+    }
+  },
+  {
+    "model": "limitations.periodlimitation",
+    "pk": 31,
+    "fields": {
+      "period": 7,
+      "limit": 2
+    }
+  },
+  {
+    "model": "limitations.periodlimitation",
+    "pk": 32,
+    "fields": {
+      "period": 1,
+      "limit": 2
+    }
+  },
+  {
+    "model": "services.servicemeasurement",
+    "pk": 292,
+    "fields": {
+      "title": "\u043a\u0432.\u043c"
+    }
+  },
+  {
+    "model": "services.serviceslist",
+    "pk": 9,
+    "fields": {
+      "date_from": "2020-01-01",
+      "date_to": null,
+      "is_archived": false
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 2731,
+    "fields": {
+      "title": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430 \u0413\u0430\u0440\u0430\u043d\u0442\u0438\u044f 50 \u0435\u0434. \u043d\u0435 \u0431\u043e\u043b\u0435\u0435 2 \u0440\u0430\u0437 \u0432 \u043c\u0435\u0441\u044f\u0446",
+      "type_of_service": "G",
+      "service_category": "SB",
+      "measurement": 292,
+      "tax": "100.00",
+      "time_for_service": 5,
+      "services_list": 9,
+      "place": "-",
+      "volume_limitation": 37,
+      "period_limitation": 30
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 2732,
+    "fields": {
+      "title": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430 \u0413\u0430\u0440\u0430\u043d\u0442\u0438\u044f 35 \u0435\u0434. \u043d\u0435 \u0431\u043e\u043b\u0435\u0435 2 \u0440\u0430\u0437 \u0432 \u043d\u0435\u0434\u0435\u043b\u044e",
+      "type_of_service": "G",
+      "service_category": "SB",
+      "measurement": 292,
+      "tax": "100.00",
+      "time_for_service": null,
+      "services_list": 9,
+      "place": "-",
+      "volume_limitation": 38,
+      "period_limitation": 31
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 2733,
+    "fields": {
+      "title": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430 \u0413\u0430\u0440\u0430\u043d\u0442\u0438\u044f 2,5 \u0435\u0434. \u043d\u0435 \u0431\u043e\u043b\u0435\u0435 2 \u0440\u0430\u0437 \u0432 \u0434\u0435\u043d\u044c",
+      "type_of_service": "G",
+      "service_category": "SB",
+      "measurement": 292,
+      "tax": "10.00",
+      "time_for_service": 5,
+      "services_list": 9,
+      "place": "-",
+      "volume_limitation": 39,
+      "period_limitation": 32
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 2734,
+    "fields": {
+      "title": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430 \u041f\u043b\u0430\u0442\u043d\u0430\u044f \u043d\u0435 \u0431\u043e\u043b\u0435\u0435 5 \u0435\u0434",
+      "type_of_service": "P",
+      "service_category": "WO",
+      "measurement": 292,
+      "tax": "5.00",
+      "time_for_service": null,
+      "services_list": 9,
+      "place": "-",
+      "volume_limitation": 36,
+      "period_limitation": null
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 2735,
+    "fields": {
+      "title": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430 \u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044c\u043d\u0430\u044f \u043d\u0435 \u0431\u043e\u043b\u0435\u0435 10 \u0435\u0434",
+      "type_of_service": "A",
+      "service_category": "QU",
+      "measurement": 292,
+      "tax": "5.00",
+      "time_for_service": null,
+      "services_list": 9,
+      "place": "-",
+      "volume_limitation": 41,
+      "period_limitation": null
+    }
+  }
+]

@@ -11,6 +11,7 @@ class ProvidedServiceAdmin(admin.ModelAdmin):
     # date_hierarchy = 'date_of',
     # filter_horizontal = ('service',)
     # search_fields = ('service__title',)
+    autocomplete_fields = ('journal', 'service',)
 
 
 @admin.register(ProvidedServiceJournal)
@@ -19,3 +20,5 @@ class ProvidedServiceJournalAdmin(admin.ModelAdmin):
     sortable_by = ('period', 'date_from', 'date_to')
     list_filter = ('ippsu__serviced_person', 'ippsu__social_worker__worker')
     date_hierarchy = 'date_from'
+    search_fields = ('ippsu', 'period', 'date_from', 'date_to')
+    autocomplete_fields = ('ippsu',)

@@ -5,7 +5,8 @@ from .models import ServiceMeasurement, ServicesList, Service
 
 @admin.register(ServiceMeasurement)
 class ServiceMeasurementAdmin(admin.ModelAdmin):
-    list_display = ('title', 'period_statement', 'period', 'volume_statement')
+    list_display = ('title',)
+    search_fields = ('title',)
 
 
 @admin.register(ServicesList)
@@ -25,5 +26,7 @@ class ServiceAdmin(admin.ModelAdmin):
         'time_for_service',
         'services_list',
         'place',
+        'volume_limitation',
+        'period_limitation',
     )
-    # raw_id_fields = ('measurement', 'services_list')
+    search_fields = ('title', 'measurement')

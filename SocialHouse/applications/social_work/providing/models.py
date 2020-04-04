@@ -5,8 +5,10 @@ from django.db import models
 
 from applications.people.models.abstract import Journal
 from applications.social_work.ippsu.models import IPPSU
+from applications.social_work.limitations.utils.datetime import range_by_period_name
 from applications.social_work.services.enums import ServiceTypeEnum
 from applications.social_work.services.models import Service
+from .managers import ProvidedServiceByTypeManger
 
 
 class ProvidedServiceJournal(Journal):
@@ -16,15 +18,6 @@ class ProvidedServiceJournal(Journal):
 
     ippsu = models.ForeignKey(verbose_name="ИППСУ", to=IPPSU, on_delete=models.CASCADE,
                               related_name="provided_services_journals")
-
-    def save(self, *args, **kwargs):
-        # Check by quantity
-        for provided in self.services.all():
-            state = provided.service.measurement.volume_statement
-            if not state:  # Skip services without volume statement
-                continue
-
-        super(ProvidedServiceJournal, self).save(*args, **kwargs)
 
     def __str__(self):
         return f"[{self.period()}] {self.ippsu}"
@@ -46,75 +39,21 @@ class ProvidedService(models.Model):
     volume = models.FloatField(verbose_name="Оказанный объем услуги", default=1.0)
     quantity = models.PositiveSmallIntegerField(verbose_name="Количество услуг", default=1,
                                                 validators=[validators.MinValueValidator(1)])
+    by_type = ProvidedServiceByTypeManger()
+    objects = models.Manager()
 
-    def check_quantity(self):
-        statement = self.service.measurement.period_statement
-        limit = self.service.measurement.period_statement.limit
-        excess = int(statement.get_diff(self.quantity))
-        if excess > 0:
-            new_type_of_service = self.service.type_of_service
+    def is_from_guaranteed(self):
+        return self.service.type_of_service == ServiceTypeEnum.GUARANTEED
 
-            # Excess guaranteed should be paid
-            if self.service.type_of_service == ServiceTypeEnum.GUARANTEED:
-                new_type_of_service = ServiceTypeEnum.PAID
-            for _ in range(excess):
-                # TODO here
-                pass
-
-    # TODO rename
-    def check_volume(self):
-        state = self.service.measurement.volume_statement
-
-        # Excess volume which should be divided
-        excess_volume = state.get_diff(self.volume)
-
-        if excess_volume > 0:
-            # Max volume per each service
-            max_volume = state.limit
-
-            # Count of duplicates (without remainder of division)
-            duplicate_count = int(excess_volume // max_volume)
-
-            # Remainder of division
-            last_volume = excess_volume - max_volume * duplicate_count
-
-            # Duplicate max_volume
-            duplicates_volumes = [max_volume] * duplicate_count
-
-            # Add remainder
-            duplicates_volumes.append(last_volume)
-
-            for volume in duplicates_volumes:
-                ProvidedService(
-                    journal=self.journal,
-                    date_of=self.date_of,
-                    service=self.service,
-                    type_of_service=self.type_of_service,
-                    volume=volume,
-                    quantity=self.quantity
-                )
-                pass
-
-    def check_limits(self):
-        self.check_quantity()
-        self.check_volume()
-
-    # def save(self, *args, **kwargs):
-    #     def_type = self.service.type_of_service
-    #
-    #     # Checking only guaranteed, skip other types
-    #     if def_type != ServiceTypeEnum.GUARANTEED:
-    #         self.type_of_service = def_type
-    #         super(ProvidedService, self).save(*args, **kwargs)
-    #
-    #     coincidences = self.by_type.custom(type_of_service=def_type) \
-    #         .values('service').annotate(count=models.Count('service'))
-    #
-    #     if coincidences.get(self.service) is None:
-    #         self.type_of_service = def_type
-    #         super(ProvidedService, self).save(*args, **kwargs)
-    #
-    #     super(ProvidedService, self).save(*args, **kwargs)
+    def get_nearby_provided_services(self):
+        period_range = range_by_period_name(self.service.period_limitation.period, self.date_of)
+        # Todo check is new ippsu.date_from is in period_range
+        ippsu = self.journal.ippsu
+        nearby_services = ProvidedService.objects.filter(
+            journal__ippsu=ippsu,
+            date_of__in=period_range
+        ).order_by('date_of', 'volume', '-quantity')
+        return nearby_services
 
     def __str__(self):
         return f"[{self.date_of}][{self.service.get_type_of_service_display()[0].upper()}] {self.service}"

@@ -3,7 +3,7 @@ from decimal import Decimal
 
 import xlrd
 
-from applications.social_work.services.enums import ServiceTypeEnum
+from applications.social_work.services.enums import ServiceTypeEnum, ServiceCategoryEnum
 from applications.social_work.services.models import ServiceMeasurement, ServicesList, Service
 
 
@@ -20,7 +20,8 @@ class Loader:
         category = ''
 
         # Make dict, where keys is description and values is keeped in db values
-        categories = {key.lower(): value for value, key in Service.SERVICE_CATEGORIES}
+        # categories = {key.lower(): value for value, key in Service.SERVICE_CATEGORIES}
+        categories = {k[1]: k[0] for k in ServiceCategoryEnum.choices}
 
         for row in sheet.get_rows():
             if len(row[0].value) > 5:
@@ -51,7 +52,8 @@ class Loader:
         category = ''
 
         # Make dict, where keys is description and values is keeped in db values
-        categories = {key.lower(): value for value, key in Service.SERVICE_CATEGORIES}
+        # categories = {key.lower(): value for value, key in Service.SERVICE_CATEGORIES}
+        categories = {k[1]: k[0] for k in ServiceCategoryEnum.choices}
 
         for row in sheet.get_rows():
             if row[0].value is str and len(row[0].value) > 5:

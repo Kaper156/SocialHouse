@@ -1,7 +1,6 @@
 from django.contrib import admin
 
-from .forms import IncludedServiceForm
-from .models import IPPSU, IncludedService
+from .models import IPPSU
 
 
 # Register your models here.
@@ -22,10 +21,7 @@ class IPPSUAdmin(admin.ModelAdmin):
         'date_to',
         'is_archived',
     )
-
-
-@admin.register(IncludedService)
-class IncludedServiceAdmin(admin.ModelAdmin):
-    form = IncludedServiceForm
-    list_display = ('IPPSU', 'service')
-    list_filter = ('IPPSU', 'service')
+    search_fields = (
+        'social_worker',
+        'serviced_person',
+    )

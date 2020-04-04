@@ -1,14 +1,18 @@
 import os
-from datetime import datetime, timedelta
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'SocialHouse.settings.dev')
 
 import django
 
-from faker import Faker
+django.setup()
+
+from datetime import datetime, timedelta
 from random import randint, choice
 
-django.setup()
+from faker import Faker
+
+from django.core import management
+
 from applications.people.models import ServicedPerson, User, Worker, WorkerPosition
 from applications.serviced_data.models.data import PassportData, Privilege
 
@@ -17,13 +21,21 @@ from applications.people.enums import WorkerPositionEnum
 from utils.datetime import range_month, random_date_between
 from applications.social_work.services.models import ServicesList, Service
 from applications.social_work.providing.models import ProvidedServiceJournal, ProvidedService
-from applications.social_work.ippsu.models import IPPSU, IncludedService
+from applications.social_work.ippsu.models import IPPSU
 
+from applications.social_work.limitations.enums import PeriodEnum
+from applications.social_work.limitations.models import PeriodLimitation, VolumeLimitation
+
+from django.conf import settings  # correct way
+
+base_dir = settings.BASE_DIR
+APPLICATIONS_FOLDER_PATH = os.path.join(base_dir, 'applications')
 faker = Faker(locale='ru_RU')
 PASSWORD_FOR_TEST_USERS = 'aq12wsde3'
 
 
 def generate_privileges():
+    print("Add standard privileges")
     privs = (
         "Ветераны труда",
         "Труженики тыла",
@@ -108,21 +120,12 @@ def get_all_services():
 
 
 def create_included_services(ippsu, cnt=30):
-    already_included_services = None
-    # Service.objects.filter(pk=a.included_services.values('service_id', flat=True))
-    # if Service.objects.filter(pk=ippsu.included_services.values('service', flat=True)).exists():
-    # already_included_services = Service.objects.filter(pk=ippsu.included_services.values('service'))
-    already_included_services = Service.objects.filter(includedservice__IPPSU=ippsu)
-    # already_included_services = ippsu.included_services.values('service', flat=True)
-    all_services = get_all_services()
-    not_included_services = all_services.exclude(id__in=already_included_services.values('id'))
+    # not_included_services = get_all_services().by_type.guaranteed()
+    not_included_services = Service.by_type.guaranteed().filter(services_list=ServicesList.objects.last())
     while cnt:
         service = choice(not_included_services)
-        included_service = IncludedService.objects.get_or_create(
-            service=service,
-            IPPSU=ippsu
-        )[0]
-        included_service.save()
+        ippsu.included_services.add(service)
+        ippsu.save()
         not_included_services = not_included_services.exclude(pk=service.pk)
         cnt -= 1
 
@@ -141,8 +144,8 @@ def generate_IPPSU(serviced_person, social_worker, date_from, date_to=None, cnt_
     return ippsu
 
 
-def create_and_fill_IPPSU_serviced_workers():
-    cnt_workers = 3
+def create_and_fill_IPPSU_serviced_workers(cnt_workers=3):
+    # cnt_workers = 3
     # Exclude dead and leaved
     serviced = ServicedPerson.objects.exclude(location='LE').exclude(location='DE')
     serviced_per_worker = serviced.count() // cnt_workers
@@ -166,18 +169,29 @@ def pop_random_obj_from_q(queryset):
 
 def generate_provided_service(journal, service, date1, date2):
     date_of = random_date_between(date1, date2)
-    volume = randint(1, service.measurement.volume_statement.limit * 2)
-    quantity = randint(1, service.measurement.period_statement.limit * 2)
+    volume = 1
+    if service.volume_limitation:
+        volume = randint(1, service.volume_limitation.limit * 2)
+    quantity = 1
+    if service.period_limitation:
+        quantity = randint(1, service.period_limitation.limit * 2)
+        # volume = randint(1, service.volume_statement.measurement.volume_statement.limit * 2)
+    # quantity = randint(1, service.measurement.period_statement.limit * 2)
+    fields = {
+        'journal': journal,
+        'date_of': date_of,
+        'service': service,
+        'volume': volume,
+        'quantity': quantity,
+    }
 
-    provided_service = ProvidedService.objects.get_or_create(
-        journal=journal,
-        date_of=date_of,
-        service=service,
-        volume=volume,
-        quantity=quantity,
-
-    )[0]
-    provided_service.save()
+    provided_service = ProvidedService.objects.filter(**fields)
+    if provided_service.exists():
+        provided_service = provided_service.first()
+    else:
+        provided_service = ProvidedService.objects.get_or_create(**fields)[0]
+        provided_service.save()
+    print(f"\t\t{provided_service}")
 
 
 def create_and_fill_provided_services(ippsu, date_from=None, date_to=None, g_count=None, a_count=None, p_count=None):
@@ -187,15 +201,15 @@ def create_and_fill_provided_services(ippsu, date_from=None, date_to=None, g_cou
     date_range = {range_month(date_from), range_month(date_to)}
 
     for date1, date2 in date_range:
+
         journal = ProvidedServiceJournal.objects.get_or_create(
             ippsu=ippsu,
             date_from=date1,
             date_to=date2,
         )[0]
-        journal.save()
 
         # TODO Add it as manager
-        guaranteed = Service.objects.filter(includedservice__IPPSU=ippsu)
+        guaranteed = ippsu.included_services.all()
         additional = get_all_services().filter(type_of_service=ServiceTypeEnum.ADDITIONAL)
         paid = get_all_services().filter(type_of_service=ServiceTypeEnum.PAID)
 
@@ -208,10 +222,12 @@ def create_and_fill_provided_services(ippsu, date_from=None, date_to=None, g_cou
         for p in range(p_count or 5):
             service, paid = pop_random_obj_from_q(paid)
             generate_provided_service(journal, service, date1, date2)
+        print(f"\tAdd provided journal #{journal.id}_{journal.period()} to {journal.ippsu}")
 
 
 def generate_serviced(N=30, dead=False, left=False, location=None):
     privils = Privilege.objects.all()
+    result = list()
     for i in range(N):
         name, patronymic, surname = '', '', ''
         if randint(1, 10) % 2:
@@ -259,38 +275,65 @@ def generate_serviced(N=30, dead=False, left=False, location=None):
             serviced_person=serviced
         )
         passport.save()
+        result.append(serviced)
+    return result
 
 
-if __name__ == '__main__':
-    from django.core import management
-    import os
+def set_limits(service, volume_limit, period_limit=0, period_type=None):
+    if volume_limit:
+        volume_limitation = VolumeLimitation.objects.get_or_create(limit=volume_limit)[0]
+        volume_limitation.save()
+        service.volume_limitation = volume_limitation
+    if period_limit:
+        period_limitation = PeriodLimitation.objects.get_or_create(limit=period_limit, period=period_type)[0]
+        period_limitation.save()
+        service.period_limitation = period_limitation
+    return service
 
+
+def add_random_limits():
+    print("Add random limits by period and volume to services")
+    all_services = get_all_services()
+    guaranteed = all_services.filter(type_of_service=ServiceTypeEnum.GUARANTEED)
+    period_choices = [0] * 10 + list(range(1, 5))
+    volume_choices = [0] * 10 + list(range(10, 100, 10))
+    period_type_choices = PeriodEnum.values
+    period_type_choices.remove(None)
+    for g in guaranteed:
+        set_limits(
+            service=g,
+            volume_limit=choice(volume_choices),
+            period_limit=choice(period_choices),
+            period_type=choice(period_type_choices),
+        ).save()
+    for other in all_services.exclude(type_of_service=ServiceTypeEnum.GUARANTEED):
+        set_limits(
+            service=other,
+            volume_limit=choice(volume_choices),
+            # period_limit=choice(period_choices),
+            # period_type=choice(PeriodEnum.values),
+        ).save()
+
+
+def create_superuser(login='admin', mail='admin@mail.com', password='qwerty'):
+    User.objects.create_superuser(login, mail, password)
+    print("Erase DB ended, created superuser:\nadmin: qwerty")
+
+
+def flush_db():
+    print("Erase DB started")
     management.call_command('flush', '--noinput', '--settings=SocialHouse.settings.dev')
-    User.objects.create_superuser('admin', 'admin@mail.com', 'qwerty')
-    # print(os.path.abspath(os.path.curdir))
+    create_superuser()
 
-    management.call_command('services_import', '--file=..\source_data\services.xlsx',
+
+def try_load_fixture(fixture_path=''):
+    print("Trying to load data from fixture")
+    fixture_path = fixture_path or 'services_privs_and_standart_volume_limit.json'
+    management.call_command('loaddata', fixture_path)
+
+
+def load_services():
+    srvs_xlsx = '..\source_data\services.xlsx'
+    print("Loading services from %s" % srvs_xlsx)
+    management.call_command('services_import', '--file=' + srvs_xlsx,
                             '--settings=SocialHouse.settings.dev')
-    #
-    print("Filing random data")
-    print("Fill privileges")
-    generate_privileges()
-
-    print("Fill normal serviced")
-    generate_serviced(26)
-
-    print("Fill sick serviced")
-    generate_serviced(2, location=ServicedPerson.STATUSES[1][0])
-    print("Fill travel serviced")
-    generate_serviced(2, location=ServicedPerson.STATUSES[2][0])
-    print("Fill dead serviced")
-    generate_serviced(6, dead=True)
-    print("Fill leaved serviced")
-    generate_serviced(3, left=True)
-    cnt_ippsu = 0
-    for ippsu in create_and_fill_IPPSU_serviced_workers():
-        cnt_ippsu += 1
-        print(f"Fill IPPSU #{cnt_ippsu} - {ippsu}")
-        create_and_fill_provided_services(ippsu,
-                                          date_from=datetime.now().date() - timedelta(days=28),
-                                          date_to=datetime.now().date())

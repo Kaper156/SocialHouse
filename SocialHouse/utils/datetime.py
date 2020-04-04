@@ -55,8 +55,6 @@ def range_month(from_date=None):
 
 def range_week(from_date=None):
     from_date = from_date or def_date()
-    first_day = calendar.weekday(from_date.year, from_date.month, from_date.day)
-    last_day = first_day + datetime.timedelta(days=7)
+    first_day = from_date - datetime.timedelta(days=from_date.weekday())
+    last_day = first_day + datetime.timedelta(days=6)
     return first_day, last_day
-
-
