@@ -1,7 +1,4 @@
 from django.db import models
-from django.utils import dateformat
-
-from utils.datetime import month_start, month_end
 
 GENDERS = (
     ('M', 'Мужской'),
@@ -40,16 +37,3 @@ class ExtendedPerson(Person):
     date_of_birth = models.DateField(null=False, blank=False, verbose_name="Дата рождения",
                                      help_text="В формате ДД.ММ.ГГГГ (например 27.02.2019")
 
-
-# TODO: delete (unused)
-class Journal(models.Model):
-    class Meta:
-        abstract = True
-
-    date_from = models.DateField(verbose_name="Период от", default=month_start)
-    date_to = models.DateField(verbose_name="Период до", default=month_end)
-
-    def period(self):
-        return dateformat.format(self.date_from, 'Y-m F')
-
-    period.short_description = "Период"

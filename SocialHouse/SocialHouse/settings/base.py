@@ -50,6 +50,7 @@ MY_APPLICATIONS = [
     'applications.social_work.providing',
     'applications.social_work.limitations',
     'applications.social_work.services',
+    'applications.social_work.acts',
 
     'applications.receptionist',
     'applications.receptionist.visits',
@@ -162,6 +163,10 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+DOCUMENTS_ROOT_FOLDER = os.path.abspath(os.path.join(MEDIA_ROOT, 'documents'))
+MEDIA_URL = '/media/'
 
 # STATICFILES_STORAGE = 'ManifestStaticFilesStorage'
 # STATICFILES_DIRS += [f"/{app.replace('.', '/')}/static/" for app in MY_APPLICATIONS]

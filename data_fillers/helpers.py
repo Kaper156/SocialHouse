@@ -1,5 +1,6 @@
 import os
 
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'SocialHouse.settings.dev')
 
 import django
@@ -13,6 +14,8 @@ from faker import Faker
 
 from django.core import management
 
+from applications.serviced_data.models import LivingWage, AveragePerCapitaIncome
+from applications.social_work.acts.models import SocialAct
 from applications.people.models import ServicedPerson, User, Worker, WorkerPosition
 from applications.serviced_data.models.data import PassportData, Privilege
 
@@ -199,7 +202,7 @@ def create_and_fill_provided_services(ippsu, date_from=None, date_to=None, g_cou
     # TODO for many months
     # Be careful create only first and last month journal
     date_range = {range_month(date_from), range_month(date_to)}
-
+    journals = list()
     for date1, date2 in date_range:
 
         journal = ProvidedServiceJournal.objects.get_or_create(
@@ -223,6 +226,27 @@ def create_and_fill_provided_services(ippsu, date_from=None, date_to=None, g_cou
             service, paid = pop_random_obj_from_q(paid)
             generate_provided_service(journal, service, date1, date2)
         print(f"\tAdd provided journal #{journal.id}_{journal.period()} to {journal.ippsu}")
+        journals.append(journal)
+    return journals
+
+
+def generate_social_act(journal: ProvidedServiceJournal,
+                        living_wage: LivingWage = None, avg: AveragePerCapitaIncome = None,
+                        living_tax=6000, avg_tax=5000):
+    date_before = journal.date_from - timedelta(days=90)
+    living_wage = living_wage or LivingWage.objects.get_or_create(tax=living_tax,
+                                                                  date_to=date_before)[0]
+
+    avg = avg or AveragePerCapitaIncome.objects.get_or_create(
+        serviced_person=journal.ippsu.serviced_person,
+        date_to=date_before,
+        avg_income=avg_tax
+    )[0]
+    return SocialAct.objects.get_or_create(
+        living_wage=living_wage,
+        avg_per_capita_income=avg,
+        journal=journal,
+    )[0]
 
 
 def generate_serviced(N=30, dead=False, left=False, location=None):
@@ -320,10 +344,11 @@ def create_superuser(login='admin', mail='admin@mail.com', password='qwerty'):
     print("Erase DB ended, created superuser:\nadmin: qwerty")
 
 
-def flush_db():
+def flush_db(create_admin=True):
     print("Erase DB started")
     management.call_command('flush', '--noinput', '--settings=SocialHouse.settings.dev')
-    create_superuser()
+    if create_admin:
+        create_superuser()
 
 
 def try_load_fixture(fixture_path=''):

@@ -13,4 +13,5 @@ urlpatterns = [
     path('news/', include('applications.website.news.urls'), ),
     # path('', include('applications.core.urls')),
     path('lk/', include('applications.website.cabinet.urls')),
+    # static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 ]

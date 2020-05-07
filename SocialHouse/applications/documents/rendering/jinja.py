@@ -1,6 +1,11 @@
+import locale
 from datetime import datetime
+from decimal import Decimal
 
 import jinja2
+import num2words
+
+locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
 
 months_ru = {
     1: "Январь", 2: "Февраль", 3: "Март", 4: "Апрель", 5: "Май", 6: "Июнь",
@@ -25,11 +30,33 @@ def month_plural_ru(value: datetime, lower=True):
     return months_ru_plural.get(value.month)
 
 
-def datetime_as_numeric(value: datetime):
+def date_as_numeric(value: datetime):
     return value.strftime("%d.%m.%Y")
+
+
+def date_with_month_ru(value: datetime):
+    return f"{value.day} {month_plural_ru(value)} {value.year}"
+
+
+def decimal_convert(value: Decimal):
+    return locale.currency(value, symbol=False, grouping=True)
+    # return str(float(value)).replace('.', ',')
+
+
+def convert_number_to_words(value):
+    return num2words.num2words(value, lang='ru')
+
+
+def convert_number_to_words_as_currency(value):
+    return num2words.num2words(value, lang='ru', to='currency', currency='RUB', separator='')
 
 
 jinja_env = jinja2.Environment()
 jinja_env.filters['month_ru'] = month_ru
 jinja_env.filters['month_plural_ru'] = month_plural_ru
-jinja_env.filters['dt_num'] = datetime_as_numeric
+jinja_env.filters['dt_num'] = date_as_numeric
+jinja_env.filters['dt_month'] = date_with_month_ru
+
+jinja_env.filters['dec'] = decimal_convert
+jinja_env.filters['num2words'] = convert_number_to_words
+jinja_env.filters['num2wordsAsCurrency'] = convert_number_to_words_as_currency

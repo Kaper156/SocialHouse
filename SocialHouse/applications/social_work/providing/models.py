@@ -2,13 +2,14 @@ import datetime
 
 from django.core import validators
 from django.db import models
+from django.db.models import Sum, F
 
-from applications.people.models.abstract import Journal
 from applications.social_work.ippsu.models import IPPSU
 from applications.social_work.limitations.utils.datetime import range_by_period_name
 from applications.social_work.services.enums import ServiceTypeEnum
 from applications.social_work.services.models import Service
 from .managers import ProvidedServiceByTypeManger
+from ...documents.models.base import Journal
 
 
 class ProvidedServiceJournal(Journal):
@@ -18,6 +19,20 @@ class ProvidedServiceJournal(Journal):
 
     ippsu = models.ForeignKey(verbose_name="ИППСУ", to=IPPSU, on_delete=models.CASCADE,
                               related_name="provided_services_journals")
+
+    def get_aggregated_rows(self, type_of_service: ServiceTypeEnum) -> list:
+        '''
+        Get rows for documents
+        :param type_of_service: type of service which is usually GUARANTEED, ADDITIONAL, PAID
+        :return: list of dicts contain these fields: service_id, title, tax, quantity, volume, total (tax*quantity)
+        '''
+        result_set = list(self.services.filter(type_of_service=type_of_service)
+                          .annotate(title=F('service__title'), tax=F('service__tax'))  # Rename as short as possible
+                          .values('service_id', 'title', 'tax', )  # Group by service
+                          .annotate(quantity=Sum('quantity'), volume=Sum('volume')))  # Aggregate
+        for service in result_set:
+            service['total'] = service['tax'] * service['quantity']
+        return result_set
 
     def __str__(self):
         return f"[{self.period()}] {self.ippsu}"

@@ -26,5 +26,7 @@ if __name__ == '__main__':
         cnt_ippsu += 1
         print(f"Fill IPPSU #{cnt_ippsu} - {ippsu}")
         create_and_fill_provided_services(ippsu,
-                                          date_from=datetime.now().date() - timedelta(days=28),
-                                          date_to=datetime.now().date())
+                                          # date_from=datetime.now().date() - timedelta(days=28),
+                                          # date_to=datetime.now().date())
+                                          date_from=datetime(2020, 1, 1),
+                                          date_to=datetime(2020, 2, 31))

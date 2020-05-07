@@ -31,3 +31,4 @@ class VisitorOvernight(models.Model):
 
     overnight = models.ForeignKey(verbose_name="Ночь", to=NightShift, on_delete=models.CASCADE)
     serviced_person = models.ForeignKey(verbose_name="Посетитель", to=Visitor, on_delete=models.CASCADE)
+    # Todo rename field to visitor

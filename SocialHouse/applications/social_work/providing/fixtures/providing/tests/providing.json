@@ -1,362 +1,345 @@
 [
-    {
-        "model": "services.servicemeasurement",
-        "pk": 595,
-        "fields": {
-            "title": "\u0435\u0434\u0438\u043d\u0438\u0446"
-        }
-    },
-    {
-        "model": "services.serviceslist",
-        "pk": 10,
-        "fields": {
-            "date_from": "2020-01-01",
-            "date_to": "2025-01-01",
-            "is_archived": false
-        }
-    },
-    {
-        "model": "services.service",
-        "pk": 5707,
-        "fields": {
-            "title": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430",
-            "type_of_service": "G",
-            "service_category": null,
-            "measurement": 595,
-            "tax": "10.00",
-            "time_for_service": null,
-            "services_list": 10,
-            "place": "-",
-            "volume_limitation": 91,
-            "period_limitation": 91
-        }
-    },
-    {
-        "model": "services.service",
-        "pk": 5708,
-        "fields": {
-            "title": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430",
-            "type_of_service": "G",
-            "service_category": null,
-            "measurement": 595,
-            "tax": "50.00",
-            "time_for_service": null,
-            "services_list": 10,
-            "place": "-",
-            "volume_limitation": 92,
-            "period_limitation": 92
-        }
-    },
-    {
-        "model": "services.service",
-        "pk": 5709,
-        "fields": {
-            "title": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430",
-            "type_of_service": "G",
-            "service_category": null,
-            "measurement": 595,
-            "tax": "100.00",
-            "time_for_service": null,
-            "services_list": 10,
-            "place": "-",
-            "volume_limitation": 93,
-            "period_limitation": 93
-        }
-    },
-    {
-        "model": "services.service",
-        "pk": 5710,
-        "fields": {
-            "title": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430",
-            "type_of_service": "A",
-            "service_category": null,
-            "measurement": 595,
-            "tax": "100.00",
-            "time_for_service": null,
-            "services_list": 10,
-            "place": "-",
-            "volume_limitation": 93,
-            "period_limitation": null
-        }
-    },
-    {
-        "model": "services.service",
-        "pk": 5711,
-        "fields": {
-            "title": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430",
-            "type_of_service": "P",
-            "service_category": null,
-            "measurement": 595,
-            "tax": "10.00",
-            "time_for_service": null,
-            "services_list": 10,
-            "place": "-",
-            "volume_limitation": 91,
-            "period_limitation": null
-        }
-    },
-    {
-        "model": "people.workerposition",
-        "pk": 13,
-        "fields": {
-            "worker": 13,
-            "position": "S",
-            "date_of_appointment": "2015-10-26",
-            "dismissal_date": null,
-            "rate": 1.0
-        }
-    },
-    {
-        "model": "people.servicedperson",
-        "pk": 352,
-        "fields": {
-            "name": "\u0413\u043b\u0430\u0444\u0438\u0440\u0430",
-            "patronymic": "\u0417\u0430\u0445\u0430\u0440\u043e\u0432\u043d\u0430",
-            "surname": "\u0421\u0430\u043c\u043e\u0439\u043b\u043e\u0432\u0430",
-            "gender": "F",
-            "date_of_birth": "1928-04-08",
-            "location": "HE",
-            "contract_number": "\u211680/72",
-            "date_of_income": "2019-08-14",
-            "date_of_death": null,
-            "date_of_departure": null,
-            "privileges": [
-                145
-            ]
-        }
-    },
-    {
-        "model": "serviced_data.passportdata",
-        "pk": 352,
-        "fields": {
-            "serial": "9312",
-            "number": "767715",
-            "date_of_issue": "2019-04-08",
-            "serviced_person": 352
-        }
-    },
-    {
-        "model": "serviced_data.privilege",
-        "pk": 136,
-        "fields": {
-            "title": "\u0412\u0435\u0442\u0435\u0440\u0430\u043d\u044b \u0442\u0440\u0443\u0434\u0430"
-        }
-    },
-    {
-        "model": "serviced_data.privilege",
-        "pk": 137,
-        "fields": {
-            "title": "\u0422\u0440\u0443\u0436\u0435\u043d\u0438\u043a\u0438 \u0442\u044b\u043b\u0430"
-        }
-    },
-    {
-        "model": "serviced_data.privilege",
-        "pk": 138,
-        "fields": {
-            "title": "\u0420\u0435\u0430\u0431\u0438\u043b\u0438\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u0435 \u043b\u0438\u0446\u0430"
-        }
-    },
-    {
-        "model": "serviced_data.privilege",
-        "pk": 139,
-        "fields": {
-            "title": "\u041b\u0438\u0446\u0430, \u043f\u043e\u0441\u0442\u0440\u0430\u0434\u0430\u0432\u0448\u0438\u0435 \u043e\u0442 \u043f\u043e\u043b\u0438\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u0445 \u0440\u0435\u043f\u0440\u0435\u0441\u0441\u0438\u0439"
-        }
-    },
-    {
-        "model": "serviced_data.privilege",
-        "pk": 140,
-        "fields": {
-            "title": "\u0412\u0435\u0442\u0435\u0440\u0430\u043d\u044b \u041e\u043c\u0441\u043a\u043e\u0439 \u043e\u0431\u043b\u0430\u0441\u0442\u0438"
-        }
-    },
-    {
-        "model": "serviced_data.privilege",
-        "pk": 141,
-        "fields": {
-            "title": "\u0413\u0435\u0440\u043e\u0439 \u0421\u0421\u0421\u0420, \u0413\u0435\u0440\u043e\u0439 \u0420\u0424, \u0413\u0435\u0440\u043e\u0439 \u0421\u043e\u0446. \u0442\u0440\u0443\u0434\u0430, \u043f\u043e\u043b\u043d\u044b\u0439 \u043a\u0430\u0432\u0430\u043b\u0435\u0440 \u043e\u0440\u0434\u0435\u043d\u0430 \u0422\u0440\u0443\u0434\u043e\u0432\u043e\u0439 \u0421\u043b\u0430\u0432\u044b \u0438 \u0447\u043b\u0435\u043d\u044b \u0438\u0445 \u0441\u0435\u043c\u0435\u0439"
-        }
-    },
-    {
-        "model": "serviced_data.privilege",
-        "pk": 142,
-        "fields": {
-            "title": "\u0423\u0447\u0430\u0441\u0442\u043d\u0438\u043a\u0438 \u0431\u043e\u0435\u0432\u044b\u0445 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0439 \u0438 \u0447\u043b\u0435\u043d\u044b \u0438\u0445 \u0441\u0435\u043c\u0435\u0439"
-        }
-    },
-    {
-        "model": "serviced_data.privilege",
-        "pk": 143,
-        "fields": {
-            "title": "\u0416\u0435\u043d\u0449\u0438\u043d\u044b-\u0443\u0447\u0430\u0441\u0442\u043d\u0438\u0446\u044b \u0412\u0435\u043b\u0438\u043a\u043e\u0439 \u041e\u0442\u0435\u0447\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0439 \u0432\u043e\u0439\u043d\u044b"
-        }
-    },
-    {
-        "model": "serviced_data.privilege",
-        "pk": 144,
-        "fields": {
-            "title": "\u041d\u0430\u0433\u0440\u0430\u0436\u0434\u0435\u043d\u043d\u044b\u0435 \u043c\u0435\u0434\u0430\u043b\u044c\u044e '\u0417\u0430 \u043e\u0431\u043e\u0440\u043e\u043d\u0443 \u041b\u0435\u043d\u0438\u043d\u0433\u0440\u0430\u0434\u0430', \u0437\u043d\u0430\u043a\u043e\u043c '\u0416\u0438\u0442\u0435\u043b\u044e \u0431\u043b\u043e\u043a\u0430\u0434\u043d\u043e\u0433\u043e \u041b\u0435\u043d\u0438\u043d\u0433\u0440\u0430\u0434\u0430'"
-        }
-    },
-    {
-        "model": "serviced_data.privilege",
-        "pk": 145,
-        "fields": {
-            "title": "\u041b\u0438\u0446\u0430, \u043f\u0440\u043e\u0436\u0438\u0432\u0430\u044e\u0449\u0438\u0435 \u043d\u0430 \u0442\u0435\u0440\u0440\u0438\u0442\u043e\u0440\u0438\u0438 \u041e\u043c\u0441\u043a\u043e\u0439 \u043e\u0431\u043b\u0430\u0441\u0442\u0438, \u043a\u043e\u0442\u043e\u0440\u044b\u043c \u043f\u043e \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u044e \u043d\u0430 9 \u043c\u0430\u044f 1945 \u0433\u043e\u0434\u0430 \u043d\u0435 \u0438\u0441\u043f\u043e\u043b\u043d\u0438\u043b\u043e\u0441\u044c 18 \u043b\u0435\u0442 \u0438 \u0440\u043e\u0434\u0438\u0442\u0435\u043b\u0438 (\u043e\u0434\u0438\u043d \u0438\u0437 \u0440\u043e\u0434\u0438\u0442\u0435\u043b\u0435\u0439) \u043a\u043e\u0442\u043e\u0440\u044b\u0445 \u0432 \u043f\u0435\u0440\u0438\u043e\u0434 \u0441 22 \u0438\u044e\u043d\u044f 1941 \u0433\u043e\u0434\u0430 \u043f\u043e 9 \u043c\u0430\u044f 1945 \u0433\u043e\u0434\u0430 \u043f\u043e\u0433\u0438\u0431\u043b\u0438 (\u043f\u0440\u043e\u043f\u0430\u043b\u0438 \u0431\u0435\u0437 \u0432\u0435\u0441\u0442\u0438), \u0443\u043c\u0435\u0440\u043b\u0438 \u0432 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u043f\u0435\u0440\u0438\u043e\u0434 \u0432\u0441\u043b\u0435\u0434\u0441\u0442\u0432\u0438\u0435 \u0440\u0430\u043d\u0435\u043d\u0438\u044f, \u0443\u0432\u0435\u0447\u044c\u044f \u0438\u043b\u0438 \u0437\u0430\u0431\u043e\u043b\u0435\u0432\u0430\u043d\u0438\u044f, \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u043d\u044b\u0445 \u043f\u0440\u0438 \u0437\u0430\u0449\u0438\u0442\u0435 \u041e\u0442\u0435\u0447\u0435\u0441\u0442\u0432\u0430 \u0438\u043b\u0438 \u0438\u0441\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0438 \u043e\u0431\u044f\u0437\u0430\u043d\u043d\u043e\u0441\u0442\u0435\u0439 \u0432\u043e\u0435\u043d\u043d\u043e\u0439 \u0441\u043b\u0443\u0436\u0431\u044b \u043d\u0430 \u0444\u0440\u043e\u043d\u0442\u0435, \u0432 \u0440\u0430\u0439\u043e\u043d\u0430\u0445 \u0431\u043e\u0435\u0432\u044b\u0445 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0439"
-        }
-    },
-    {
-        "model": "serviced_data.privilege",
-        "pk": 146,
-        "fields": {
-            "title": "\u0427\u043b\u0435\u043d\u044b \u0441\u0435\u043c\u0435\u0439 \u043f\u043e\u0433\u0438\u0431\u0448\u0438\u0445 (\u0443\u043c\u0435\u0440\u0448\u0438\u0445) \u0438\u043d\u0432\u0430\u043b\u0438\u0434\u043e\u0432 \u0432\u043e\u0439\u043d\u044b, \u0443\u0447\u0430\u0441\u0442\u043d\u0438\u043a\u043e\u0432 \u0412\u0435\u043b\u0438\u043a\u043e\u0439 \u041e\u0442\u0435\u0447\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0439 \u0432\u043e\u0439\u043d\u044b \u0438 \u0432\u0435\u0442\u0435\u0440\u0430\u043d\u043e\u0432 \u0431\u043e\u0435\u0432\u044b\u0445 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0439, \u0447\u043b\u0435\u043d\u044b \u0441\u0435\u043c\u0435\u0439 \u043f\u043e\u0433\u0438\u0431\u0448\u0438\u0445 \u0432 \u0412\u0435\u043b\u0438\u043a\u043e\u0439 \u041e\u0442\u0435\u0447\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0439 \u0432\u043e\u0439\u043d\u0435 \u043b\u0438\u0446 \u0438\u0437 \u0447\u0438\u0441\u043b\u0430 \u043b\u0438\u0447\u043d\u043e\u0433\u043e \u0441\u043e\u0441\u0442\u0430\u0432\u0430 \u0433\u0440\u0443\u043f\u043f \u0441\u0430\u043c\u043e\u0437\u0430\u0449\u0438\u0442\u044b \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432\u044b\u0445 \u0438 \u0430\u0432\u0430\u0440\u0438\u0439\u043d\u044b\u0445 \u043a\u043e\u043c\u0430\u043d\u0434 \u043c\u0435\u0441\u0442\u043d\u043e\u0439 \u043f\u0440\u043e\u0442\u0438\u0432\u043e\u0432\u043e\u0437\u0434\u0443\u0448\u043d\u043e\u0439 \u043e\u0431\u043e\u0440\u043e\u043d\u044b, \u0430 \u0442\u0430\u043a\u0436\u0435 \u0447\u043b\u0435\u043d\u044b \u0441\u0435\u043c\u0435\u0439 \u043f\u043e\u0433\u0438\u0431\u0448\u0438\u0445 \u0440\u0430\u0431\u043e\u0442\u043d\u0438\u043a\u043e\u0432 \u0433\u043e\u0441\u043f\u0438\u0442\u0430\u043b\u0435\u0439 \u0438 \u0431\u043e\u043b\u044c\u043d\u0438\u0446 \u0433\u043e\u0440\u043e\u0434\u0430 \u041b\u0435\u043d\u0438\u043d\u0433\u0440\u0430\u0434\u0430"
-        }
-    },
-    {
-        "model": "serviced_data.privilege",
-        "pk": 147,
-        "fields": {
-            "title": "\u041f\u043e\u0441\u0442\u0440\u0430\u0434\u0430\u0432\u0448\u0438\u0435 \u043e\u0442 \u0442\u0435\u0445\u043d\u043e\u0433\u0435\u043d\u043d\u044b\u0445 \u043a\u0430\u0442\u0430\u0441\u0442\u0440\u043e\u0444"
-        }
-    },
-    {
-        "model": "serviced_data.privilege",
-        "pk": 148,
-        "fields": {
-            "title": "'\u041f\u043e\u0447\u0435\u0442\u043d\u044b\u0439 \u0434\u043e\u043d\u043e\u0440 \u0420\u043e\u0441\u0441\u0438\u0438', '\u041f\u043e\u0447\u0435\u0442\u043d\u044b\u0439 \u0434\u043e\u043d\u043e\u0440 \u0421\u0421\u0421\u0420'"
-        }
-    },
-    {
-        "model": "serviced_data.privilege",
-        "pk": 149,
-        "fields": {
-            "title": "\u0413\u0440\u0430\u0436\u0434\u0430\u043d\u0435, \u0438\u043c\u0435\u044e\u0449\u0438\u0435 \u043f\u043e\u0447\u0435\u0442\u043d\u044b\u0435 \u0437\u0432\u0430\u043d\u0438\u044f"
-        }
-    },
-    {
-        "model": "serviced_data.privilege",
-        "pk": 150,
-        "fields": {
-            "title": "\u0418\u043d\u0432\u0430\u043b\u0438\u0434\u044b"
-        }
-    },
-    {
-        "model": "limitations.volumelimitation",
-        "pk": 91,
-        "fields": {
-            "limit": 10.0
-        }
-    },
-    {
-        "model": "limitations.volumelimitation",
-        "pk": 92,
-        "fields": {
-            "limit": 50.0
-        }
-    },
-    {
-        "model": "limitations.volumelimitation",
-        "pk": 93,
-        "fields": {
-            "limit": 100.0
-        }
-    },
-    {
-        "model": "limitations.periodlimitation",
-        "pk": 91,
-        "fields": {
-            "period": 1,
-            "limit": 1
-        }
-    },
-    {
-        "model": "limitations.periodlimitation",
-        "pk": 92,
-        "fields": {
-            "period": 7,
-            "limit": 2
-        }
-    },
-    {
-        "model": "limitations.periodlimitation",
-        "pk": 93,
-        "fields": {
-            "period": 31,
-            "limit": 3
-        }
-    },
-    {
-        "model": "providing.providedservicejournal",
-        "pk": 150,
-        "fields": {
-            "date_from": "2020-04-01",
-            "date_to": "2020-04-30",
-            "ippsu": 80
-        }
-    },
-    {
-        "model": "ippsu.ippsu",
-        "pk": 80,
-        "fields": {
-            "social_worker": 13,
-            "serviced_person": 352,
-            "date_from": "2020-01-01",
-            "date_to": "2023-01-01",
-            "is_archived": false,
-            "included_services": [
-                5707,
-                5708,
-                5709
-            ]
-        }
-    },
-    {
-        "model": "auth.user",
-        "pk": 22,
-        "fields": {
-            "password": "pbkdf2_sha256$180000$9EeJ126fQegq$z+1R9Sgs0un1xUOkehD9X9IaRgzBWf6XuvP24vPjV6I=",
-            "last_login": null,
-            "is_superuser": true,
-            "username": "admin",
-            "first_name": "",
-            "last_name": "",
-            "email": "admin@mail.com",
-            "is_staff": true,
-            "is_active": true,
-            "date_joined": "2020-04-04T16:19:07.144",
-            "groups": [],
-            "user_permissions": []
-        }
-    },
-    {
-        "model": "auth.user",
-        "pk": 23,
-        "fields": {
-            "password": "pbkdf2_sha256$180000$B0XSJxo2veDN$Q8AadlF650pFDjqLY/nLekZ+m8xVUCx0wbE5m38DrcU=",
-            "last_login": null,
-            "is_superuser": false,
-            "username": "sobolevaoksana",
-            "first_name": "",
-            "last_name": "",
-            "email": "",
-            "is_staff": false,
-            "is_active": true,
-            "date_joined": "2020-04-04T16:19:07.441",
-            "groups": [],
-            "user_permissions": []
-        }
-    },
-    {
-        "model": "people.worker",
-        "pk": 13,
-        "fields": {
-            "name": "\u0413\u043b\u0430\u0444\u0438\u0440\u0430",
-            "patronymic": "\u0413\u0435\u043d\u043d\u0430\u0434\u0438\u0435\u0432\u043d\u0430",
-            "surname": "\u0421\u0438\u043b\u0438\u043d\u0430",
-            "gender": "F",
-            "date_of_birth": "1988-04-28",
-            "user": 23,
-            "status": "FI"
-        }
+  {
+    "model": "services.servicemeasurement",
+    "pk": 269,
+    "fields": {
+      "title": "\u0435\u0434\u0438\u043d\u0438\u0446"
     }
+  },
+  {
+    "model": "services.serviceslist",
+    "pk": 9,
+    "fields": {
+      "date_from": "2020-01-01",
+      "date_to": "2025-01-01",
+      "is_archived": false
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 2557,
+    "fields": {
+      "title": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430",
+      "type_of_service": "G",
+      "service_category": null,
+      "measurement": 269,
+      "tax": "10.00",
+      "time_for_service": null,
+      "services_list": 9,
+      "place": "-",
+      "volume_limitation": 17,
+      "period_limitation": 13
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 2558,
+    "fields": {
+      "title": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430",
+      "type_of_service": "G",
+      "service_category": null,
+      "measurement": 269,
+      "tax": "50.00",
+      "time_for_service": null,
+      "services_list": 9,
+      "place": "-",
+      "volume_limitation": 18,
+      "period_limitation": 14
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 2559,
+    "fields": {
+      "title": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430",
+      "type_of_service": "G",
+      "service_category": null,
+      "measurement": 269,
+      "tax": "100.00",
+      "time_for_service": null,
+      "services_list": 9,
+      "place": "-",
+      "volume_limitation": 19,
+      "period_limitation": 15
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 2560,
+    "fields": {
+      "title": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430",
+      "type_of_service": "A",
+      "service_category": null,
+      "measurement": 269,
+      "tax": "100.00",
+      "time_for_service": null,
+      "services_list": 9,
+      "place": "-",
+      "volume_limitation": 19,
+      "period_limitation": null
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 2561,
+    "fields": {
+      "title": "\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f \u0443\u0441\u043b\u0443\u0433\u0430",
+      "type_of_service": "P",
+      "service_category": null,
+      "measurement": 269,
+      "tax": "10.00",
+      "time_for_service": null,
+      "services_list": 9,
+      "place": "-",
+      "volume_limitation": 17,
+      "period_limitation": null
+    }
+  },
+  {
+    "model": "people.workerposition",
+    "pk": 9,
+    "fields": {
+      "worker": 9,
+      "position": "S",
+      "date_of_appointment": "2015-02-26",
+      "dismissal_date": null,
+      "rate": 1.0
+    }
+  },
+  {
+    "model": "people.servicedperson",
+    "pk": 9,
+    "fields": {
+      "name": "\u041d\u0430\u0434\u0435\u0436\u0434\u0430",
+      "patronymic": "\u0421\u0442\u0430\u043d\u0438\u0441\u043b\u0430\u0432\u043e\u0432\u043d\u0430",
+      "surname": "\u041e\u0434\u0438\u043d\u0446\u043e\u0432\u0430",
+      "gender": "F",
+      "date_of_birth": "1929-02-26",
+      "location": "HE",
+      "contract_number": "\u211698/17",
+      "date_of_income": "2019-11-28",
+      "date_of_death": null,
+      "date_of_departure": null,
+      "privileges": [
+        69,
+        73
+      ]
+    }
+  },
+  {
+    "model": "serviced_data.passportdata",
+    "pk": 9,
+    "fields": {
+      "serial": "4196",
+      "number": "832406",
+      "date_of_issue": "2011-02-26",
+      "serviced_person": 9
+    }
+  },
+  {
+    "model": "serviced_data.privilege",
+    "pk": 61,
+    "fields": {
+      "title": "\u0412\u0435\u0442\u0435\u0440\u0430\u043d\u044b \u0442\u0440\u0443\u0434\u0430"
+    }
+  },
+  {
+    "model": "serviced_data.privilege",
+    "pk": 62,
+    "fields": {
+      "title": "\u0422\u0440\u0443\u0436\u0435\u043d\u0438\u043a\u0438 \u0442\u044b\u043b\u0430"
+    }
+  },
+  {
+    "model": "serviced_data.privilege",
+    "pk": 63,
+    "fields": {
+      "title": "\u0420\u0435\u0430\u0431\u0438\u043b\u0438\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u0435 \u043b\u0438\u0446\u0430"
+    }
+  },
+  {
+    "model": "serviced_data.privilege",
+    "pk": 64,
+    "fields": {
+      "title": "\u041b\u0438\u0446\u0430, \u043f\u043e\u0441\u0442\u0440\u0430\u0434\u0430\u0432\u0448\u0438\u0435 \u043e\u0442 \u043f\u043e\u043b\u0438\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u0445 \u0440\u0435\u043f\u0440\u0435\u0441\u0441\u0438\u0439"
+    }
+  },
+  {
+    "model": "serviced_data.privilege",
+    "pk": 65,
+    "fields": {
+      "title": "\u0412\u0435\u0442\u0435\u0440\u0430\u043d\u044b \u041e\u043c\u0441\u043a\u043e\u0439 \u043e\u0431\u043b\u0430\u0441\u0442\u0438"
+    }
+  },
+  {
+    "model": "serviced_data.privilege",
+    "pk": 66,
+    "fields": {
+      "title": "\u0413\u0435\u0440\u043e\u0439 \u0421\u0421\u0421\u0420, \u0413\u0435\u0440\u043e\u0439 \u0420\u0424, \u0413\u0435\u0440\u043e\u0439 \u0421\u043e\u0446. \u0442\u0440\u0443\u0434\u0430, \u043f\u043e\u043b\u043d\u044b\u0439 \u043a\u0430\u0432\u0430\u043b\u0435\u0440 \u043e\u0440\u0434\u0435\u043d\u0430 \u0422\u0440\u0443\u0434\u043e\u0432\u043e\u0439 \u0421\u043b\u0430\u0432\u044b \u0438 \u0447\u043b\u0435\u043d\u044b \u0438\u0445 \u0441\u0435\u043c\u0435\u0439"
+    }
+  },
+  {
+    "model": "serviced_data.privilege",
+    "pk": 67,
+    "fields": {
+      "title": "\u0423\u0447\u0430\u0441\u0442\u043d\u0438\u043a\u0438 \u0431\u043e\u0435\u0432\u044b\u0445 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0439 \u0438 \u0447\u043b\u0435\u043d\u044b \u0438\u0445 \u0441\u0435\u043c\u0435\u0439"
+    }
+  },
+  {
+    "model": "serviced_data.privilege",
+    "pk": 68,
+    "fields": {
+      "title": "\u0416\u0435\u043d\u0449\u0438\u043d\u044b-\u0443\u0447\u0430\u0441\u0442\u043d\u0438\u0446\u044b \u0412\u0435\u043b\u0438\u043a\u043e\u0439 \u041e\u0442\u0435\u0447\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0439 \u0432\u043e\u0439\u043d\u044b"
+    }
+  },
+  {
+    "model": "serviced_data.privilege",
+    "pk": 69,
+    "fields": {
+      "title": "\u041d\u0430\u0433\u0440\u0430\u0436\u0434\u0435\u043d\u043d\u044b\u0435 \u043c\u0435\u0434\u0430\u043b\u044c\u044e '\u0417\u0430 \u043e\u0431\u043e\u0440\u043e\u043d\u0443 \u041b\u0435\u043d\u0438\u043d\u0433\u0440\u0430\u0434\u0430', \u0437\u043d\u0430\u043a\u043e\u043c '\u0416\u0438\u0442\u0435\u043b\u044e \u0431\u043b\u043e\u043a\u0430\u0434\u043d\u043e\u0433\u043e \u041b\u0435\u043d\u0438\u043d\u0433\u0440\u0430\u0434\u0430'"
+    }
+  },
+  {
+    "model": "serviced_data.privilege",
+    "pk": 70,
+    "fields": {
+      "title": "\u041b\u0438\u0446\u0430, \u043f\u0440\u043e\u0436\u0438\u0432\u0430\u044e\u0449\u0438\u0435 \u043d\u0430 \u0442\u0435\u0440\u0440\u0438\u0442\u043e\u0440\u0438\u0438 \u041e\u043c\u0441\u043a\u043e\u0439 \u043e\u0431\u043b\u0430\u0441\u0442\u0438, \u043a\u043e\u0442\u043e\u0440\u044b\u043c \u043f\u043e \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u044e \u043d\u0430 9 \u043c\u0430\u044f 1945 \u0433\u043e\u0434\u0430 \u043d\u0435 \u0438\u0441\u043f\u043e\u043b\u043d\u0438\u043b\u043e\u0441\u044c 18 \u043b\u0435\u0442 \u0438 \u0440\u043e\u0434\u0438\u0442\u0435\u043b\u0438 (\u043e\u0434\u0438\u043d \u0438\u0437 \u0440\u043e\u0434\u0438\u0442\u0435\u043b\u0435\u0439) \u043a\u043e\u0442\u043e\u0440\u044b\u0445 \u0432 \u043f\u0435\u0440\u0438\u043e\u0434 \u0441 22 \u0438\u044e\u043d\u044f 1941 \u0433\u043e\u0434\u0430 \u043f\u043e 9 \u043c\u0430\u044f 1945 \u0433\u043e\u0434\u0430 \u043f\u043e\u0433\u0438\u0431\u043b\u0438 (\u043f\u0440\u043e\u043f\u0430\u043b\u0438 \u0431\u0435\u0437 \u0432\u0435\u0441\u0442\u0438), \u0443\u043c\u0435\u0440\u043b\u0438 \u0432 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u043f\u0435\u0440\u0438\u043e\u0434 \u0432\u0441\u043b\u0435\u0434\u0441\u0442\u0432\u0438\u0435 \u0440\u0430\u043d\u0435\u043d\u0438\u044f, \u0443\u0432\u0435\u0447\u044c\u044f \u0438\u043b\u0438 \u0437\u0430\u0431\u043e\u043b\u0435\u0432\u0430\u043d\u0438\u044f, \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u043d\u044b\u0445 \u043f\u0440\u0438 \u0437\u0430\u0449\u0438\u0442\u0435 \u041e\u0442\u0435\u0447\u0435\u0441\u0442\u0432\u0430 \u0438\u043b\u0438 \u0438\u0441\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0438 \u043e\u0431\u044f\u0437\u0430\u043d\u043d\u043e\u0441\u0442\u0435\u0439 \u0432\u043e\u0435\u043d\u043d\u043e\u0439 \u0441\u043b\u0443\u0436\u0431\u044b \u043d\u0430 \u0444\u0440\u043e\u043d\u0442\u0435, \u0432 \u0440\u0430\u0439\u043e\u043d\u0430\u0445 \u0431\u043e\u0435\u0432\u044b\u0445 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0439"
+    }
+  },
+  {
+    "model": "serviced_data.privilege",
+    "pk": 71,
+    "fields": {
+      "title": "\u0427\u043b\u0435\u043d\u044b \u0441\u0435\u043c\u0435\u0439 \u043f\u043e\u0433\u0438\u0431\u0448\u0438\u0445 (\u0443\u043c\u0435\u0440\u0448\u0438\u0445) \u0438\u043d\u0432\u0430\u043b\u0438\u0434\u043e\u0432 \u0432\u043e\u0439\u043d\u044b, \u0443\u0447\u0430\u0441\u0442\u043d\u0438\u043a\u043e\u0432 \u0412\u0435\u043b\u0438\u043a\u043e\u0439 \u041e\u0442\u0435\u0447\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0439 \u0432\u043e\u0439\u043d\u044b \u0438 \u0432\u0435\u0442\u0435\u0440\u0430\u043d\u043e\u0432 \u0431\u043e\u0435\u0432\u044b\u0445 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0439, \u0447\u043b\u0435\u043d\u044b \u0441\u0435\u043c\u0435\u0439 \u043f\u043e\u0433\u0438\u0431\u0448\u0438\u0445 \u0432 \u0412\u0435\u043b\u0438\u043a\u043e\u0439 \u041e\u0442\u0435\u0447\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0439 \u0432\u043e\u0439\u043d\u0435 \u043b\u0438\u0446 \u0438\u0437 \u0447\u0438\u0441\u043b\u0430 \u043b\u0438\u0447\u043d\u043e\u0433\u043e \u0441\u043e\u0441\u0442\u0430\u0432\u0430 \u0433\u0440\u0443\u043f\u043f \u0441\u0430\u043c\u043e\u0437\u0430\u0449\u0438\u0442\u044b \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432\u044b\u0445 \u0438 \u0430\u0432\u0430\u0440\u0438\u0439\u043d\u044b\u0445 \u043a\u043e\u043c\u0430\u043d\u0434 \u043c\u0435\u0441\u0442\u043d\u043e\u0439 \u043f\u0440\u043e\u0442\u0438\u0432\u043e\u0432\u043e\u0437\u0434\u0443\u0448\u043d\u043e\u0439 \u043e\u0431\u043e\u0440\u043e\u043d\u044b, \u0430 \u0442\u0430\u043a\u0436\u0435 \u0447\u043b\u0435\u043d\u044b \u0441\u0435\u043c\u0435\u0439 \u043f\u043e\u0433\u0438\u0431\u0448\u0438\u0445 \u0440\u0430\u0431\u043e\u0442\u043d\u0438\u043a\u043e\u0432 \u0433\u043e\u0441\u043f\u0438\u0442\u0430\u043b\u0435\u0439 \u0438 \u0431\u043e\u043b\u044c\u043d\u0438\u0446 \u0433\u043e\u0440\u043e\u0434\u0430 \u041b\u0435\u043d\u0438\u043d\u0433\u0440\u0430\u0434\u0430"
+    }
+  },
+  {
+    "model": "serviced_data.privilege",
+    "pk": 72,
+    "fields": {
+      "title": "\u041f\u043e\u0441\u0442\u0440\u0430\u0434\u0430\u0432\u0448\u0438\u0435 \u043e\u0442 \u0442\u0435\u0445\u043d\u043e\u0433\u0435\u043d\u043d\u044b\u0445 \u043a\u0430\u0442\u0430\u0441\u0442\u0440\u043e\u0444"
+    }
+  },
+  {
+    "model": "serviced_data.privilege",
+    "pk": 73,
+    "fields": {
+      "title": "'\u041f\u043e\u0447\u0435\u0442\u043d\u044b\u0439 \u0434\u043e\u043d\u043e\u0440 \u0420\u043e\u0441\u0441\u0438\u0438', '\u041f\u043e\u0447\u0435\u0442\u043d\u044b\u0439 \u0434\u043e\u043d\u043e\u0440 \u0421\u0421\u0421\u0420'"
+    }
+  },
+  {
+    "model": "serviced_data.privilege",
+    "pk": 74,
+    "fields": {
+      "title": "\u0413\u0440\u0430\u0436\u0434\u0430\u043d\u0435, \u0438\u043c\u0435\u044e\u0449\u0438\u0435 \u043f\u043e\u0447\u0435\u0442\u043d\u044b\u0435 \u0437\u0432\u0430\u043d\u0438\u044f"
+    }
+  },
+  {
+    "model": "serviced_data.privilege",
+    "pk": 75,
+    "fields": {
+      "title": "\u0418\u043d\u0432\u0430\u043b\u0438\u0434\u044b"
+    }
+  },
+  {
+    "model": "limitations.volumelimitation",
+    "pk": 17,
+    "fields": {
+      "limit": 10.0
+    }
+  },
+  {
+    "model": "limitations.volumelimitation",
+    "pk": 18,
+    "fields": {
+      "limit": 50.0
+    }
+  },
+  {
+    "model": "limitations.volumelimitation",
+    "pk": 19,
+    "fields": {
+      "limit": 100.0
+    }
+  },
+  {
+    "model": "limitations.periodlimitation",
+    "pk": 13,
+    "fields": {
+      "period": 1,
+      "limit": 1
+    }
+  },
+  {
+    "model": "limitations.periodlimitation",
+    "pk": 14,
+    "fields": {
+      "period": 7,
+      "limit": 2
+    }
+  },
+  {
+    "model": "limitations.periodlimitation",
+    "pk": 15,
+    "fields": {
+      "period": 31,
+      "limit": 3
+    }
+  },
+  {
+    "model": "providing.providedservicejournal",
+    "pk": 13,
+    "fields": {
+      "date_from": "2020-04-01",
+      "date_to": "2020-04-30",
+      "ippsu": 9
+    }
+  },
+  {
+    "model": "ippsu.ippsu",
+    "pk": 9,
+    "fields": {
+      "social_worker": 9,
+      "serviced_person": 9,
+      "date_from": "2020-01-01",
+      "date_to": "2023-01-01",
+      "is_archived": false,
+      "included_services": [
+        2557,
+        2558,
+        2559
+      ]
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 9,
+    "fields": {
+      "password": "pbkdf2_sha256$180000$43vDT64aTVef$FLlrg3mkd9Xs9uSKHnAL9Njs1PBNG2WhqjEos3woSo8=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "gorbachevvadim",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2020-04-08T19:19:19.635",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "people.worker",
+    "pk": 9,
+    "fields": {
+      "name": "\u0415\u043b\u0438\u0437\u0430\u0432\u0435\u0442\u0430",
+      "patronymic": "\u0424\u0435\u0434\u043e\u0440\u043e\u0432\u043d\u0430",
+      "surname": "\u0411\u0435\u043b\u043e\u0437\u0435\u0440\u043e\u0432\u0430",
+      "gender": "F",
+      "date_of_birth": "1989-10-31",
+      "user": 9,
+      "status": "FI"
+    }
+  }
 ]

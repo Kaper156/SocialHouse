@@ -32,7 +32,7 @@ def check_provided_service(sender, instance: ProvidedServiceJournal, **kwargs):
         # if current journal start not from Monday, old provided services must be taken into neigbors_by_period
 
         if current_service.period_limitation.period == PeriodEnum.WEEK \
-                and period_range[0] < current_provided_service.journal.date_from:
+                and period_range[0].date() < current_provided_service.journal.date_from:
             provided_before = ProvidedService.objects.filter(
                 journal__ippsu=instance.ippsu,
                 service__type_of_service=ServiceTypeEnum.GUARANTEED,

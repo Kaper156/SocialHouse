@@ -30,3 +30,7 @@ class AveragePerCapitaIncome(models.Model):
 
     def __str__(self):
         return f"[{self.date_to}] {self.serviced_person} - {self.avg_income}"
+
+
+def last_living_wage():
+    return LivingWage.objects.order_by('date_to').last()

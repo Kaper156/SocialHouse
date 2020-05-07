@@ -2,7 +2,11 @@
 
 {% block submit_buttons_bottom %}
     {{ block.super }}
+
     <div class="submit-row">
-        <input type="submit" value="Сформировать документ" name="_make-docx">
+        {% if original.file %}
+            <input type="submit" value="Скачать документ (ред. {{ original.last_modify }})" name="_make-docx">
+        {% endif %}
+        <input type="submit" value="Обновить данные и скачать документ" name="_force-make-docx">
     </div>
 {% endblock %}

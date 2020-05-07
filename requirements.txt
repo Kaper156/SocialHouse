@@ -4,11 +4,13 @@ django-admin-tools==0.9.0
 django-crispy-forms==1.9.0
 django-extensions==2.2.9
 django-formtools==2.2
+docopt==0.6.2
 docxtpl==0.6.3
 Faker==4.0.2
 Jinja2==2.11.1
 lxml==4.5.0
 MarkupSafe==1.1.1
+num2words==0.5.10
 pydot==1.4.1
 pydotplus==2.0.2
 pyparsing==2.4.6

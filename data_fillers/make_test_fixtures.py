@@ -1,10 +1,12 @@
-from applications.social_work.services.models import ServiceMeasurement
 from data_fillers.helpers import *
 
 FIXTURES_PROJECT_FOLDER = os.path.join(base_dir, 'SocialHouse', 'fixtures')
 FIXTURE_FOR_ALL_PROJECT_PATH = os.path.join(FIXTURES_PROJECT_FOLDER, 'all_data.json')
 FIXTURE_PROVIDING_TEST_PATH = os.path.join(
     APPLICATIONS_FOLDER_PATH, 'social_work', 'providing', 'fixtures', 'providing', 'tests', 'providing.json'
+)
+FIXTURE_ACTS_TEST_PATH = os.path.join(
+    APPLICATIONS_FOLDER_PATH, 'social_work', 'acts', 'fixtures', 'acts', 'tests', 'acts.json'
 )
 
 
@@ -150,6 +152,46 @@ def providing_tests_fixture():
                  FIXTURE_PROVIDING_TEST_PATH, exclude_auth=False)
 
 
-if __name__ == '__main__':
-    flush_db()
+def acts_tests_fixture():
+    d1, d2 = datetime(2020, 1, 1), datetime(2020, 2, 28)
+    serviced = generate_serviced(1)[0]
+    wp = generate_worker_position()
+    ippsu = generate_IPPSU(serviced, wp, d1 - timedelta(days=180))
+
+    journals = create_and_fill_provided_services(ippsu, d1, d2, g_count=30, a_count=15, p_count=30)
+    for journal in journals:
+        generate_social_act(journal)
+        # TODO generate paid act
+
+    print("Make fixture for providing-tests")
+    make_fixture(['auth.user', 'people', 'serviced_data', 'limitations', 'services', 'ippsu', 'providing', 'documents',
+                  'acts', ],
+                 FIXTURE_ACTS_TEST_PATH, exclude_auth=False)
+
+
+def run_all_test_fixtures():
     providing_tests_fixture()
+    load_services()
+    acts_tests_fixture()
+
+
+def save_all_data():
+    make_fixture(exclude_auth=False, exclude_contenttypes=True)
+
+
+def reset_all_data():
+    tmp = os.path.abspath(os.curdir)
+    os.chdir(os.path.dirname(FIXTURE_FOR_ALL_PROJECT_PATH))
+    print(os.path.abspath(os.curdir))
+    management.call_command(*('loaddata', os.path.basename(FIXTURE_FOR_ALL_PROJECT_PATH)))
+    os.chdir(tmp)
+
+
+if __name__ == '__main__':
+    create_superuser()
+    # flush_db(create_admin=False)
+    # run_all_test_fixtures()
+    # save_all_data()
+
+    # run_all_test_fixtures()
+    # reset_all_data()
