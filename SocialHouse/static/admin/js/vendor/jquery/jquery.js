@@ -719,26 +719,26 @@ function Sizzle( selector, context, results, seed ) {
 		// nodeType defaults to 9, since context defaults to document
 		nodeType = context ? context.nodeType : 9;
 
-	results = results || [];
+    results = results || [];
 
-	// Return early from calls with invalid selector or context
-	if ( typeof selector !== "string" || !selector ||
-		nodeType !== 1 && nodeType !== 9 && nodeType !== 11 ) {
+    // Return early from calls with invalid selector or context
+    if (typeof selector !== "string" || !selector ||
+        nodeType !== 1 && nodeType !== 9 && nodeType !== 11) {
 
-		return results;
-	}
+        return results;
+    }
 
-	// Try to shortcut find operations (as opposed to filters) in HTML documents
-	if ( !seed ) {
+    // Try to shortcut find operations (as opposed to filters) in HTML standardization
+    if (!seed) {
 
-		if ( ( context ? context.ownerDocument || context : preferredDoc ) !== document ) {
-			setDocument( context );
-		}
-		context = context || document;
+        if ((context ? context.ownerDocument || context : preferredDoc) !== document) {
+            setDocument(context);
+        }
+        context = context || document;
 
-		if ( documentIsHTML ) {
+        if (documentIsHTML) {
 
-			// If the selector is sufficiently simple, try using a "get*By*" DOM method
+            // If the selector is sufficiently simple, try using a "get*By*" DOM method
 			// (excepting DocumentFragment context, where the methods don't exist)
 			if ( nodeType !== 11 && (match = rquickExpr.exec( selector )) ) {
 
@@ -1071,27 +1071,27 @@ setDocument = Sizzle.setDocument = function( node ) {
 		doc = node ? node.ownerDocument || node : preferredDoc;
 
 	// Return early if doc is invalid or already selected
-	if ( doc === document || doc.nodeType !== 9 || !doc.documentElement ) {
-		return document;
-	}
+    if (doc === document || doc.nodeType !== 9 || !doc.documentElement) {
+        return document;
+    }
 
-	// Update global variables
-	document = doc;
-	docElem = document.documentElement;
-	documentIsHTML = !isXML( document );
+    // Update global variables
+    document = doc;
+    docElem = document.documentElement;
+    documentIsHTML = !isXML(document);
 
-	// Support: IE 9-11, Edge
-	// Accessing iframe documents after unload throws "permission denied" errors (jQuery #13936)
-	if ( preferredDoc !== document &&
-		(subWindow = document.defaultView) && subWindow.top !== subWindow ) {
+    // Support: IE 9-11, Edge
+    // Accessing iframe standardization after unload throws "permission denied" errors (jQuery #13936)
+    if (preferredDoc !== document &&
+        (subWindow = document.defaultView) && subWindow.top !== subWindow) {
 
-		// Support: IE 11, Edge
-		if ( subWindow.addEventListener ) {
-			subWindow.addEventListener( "unload", unloadHandler, false );
+        // Support: IE 11, Edge
+        if (subWindow.addEventListener) {
+            subWindow.addEventListener("unload", unloadHandler, false);
 
-		// Support: IE 9 - 10 only
-		} else if ( subWindow.attachEvent ) {
-			subWindow.attachEvent( "onunload", unloadHandler );
+            // Support: IE 9 - 10 only
+        } else if (subWindow.attachEvent) {
+            subWindow.attachEvent("onunload", unloadHandler);
 		}
 	}
 
@@ -1417,27 +1417,27 @@ setDocument = Sizzle.setDocument = function( node ) {
 		// Exit early if the nodes are identical
 		if ( a === b ) {
 			hasDuplicate = true;
-			return 0;
-		}
+            return 0;
+        }
 
-		var cur,
-			i = 0,
-			aup = a.parentNode,
-			bup = b.parentNode,
-			ap = [ a ],
-			bp = [ b ];
+        var cur,
+            i = 0,
+            aup = a.parentNode,
+            bup = b.parentNode,
+            ap = [a],
+            bp = [b];
 
-		// Parentless nodes are either documents or disconnected
-		if ( !aup || !bup ) {
-			return a === document ? -1 :
-				b === document ? 1 :
-				aup ? -1 :
-				bup ? 1 :
-				sortInput ?
-				( indexOf( sortInput, a ) - indexOf( sortInput, b ) ) :
-				0;
+        // Parentless nodes are either standardization or disconnected
+        if (!aup || !bup) {
+            return a === document ? -1 :
+                b === document ? 1 :
+                    aup ? -1 :
+                        bup ? 1 :
+                            sortInput ?
+                                (indexOf(sortInput, a) - indexOf(sortInput, b)) :
+                                0;
 
-		// If the nodes are siblings, we can do a quick check
+            // If the nodes are siblings, we can do a quick check
 		} else if ( aup === bup ) {
 			return siblingCheck( a, b );
 		}
@@ -2804,7 +2804,7 @@ function nodeName( elem, name ) {
 
   return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
 
-};
+}
 var rsingleTag = ( /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i );
 
 
@@ -9783,10 +9783,8 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 } );
 
 
-
-
 // Support: Safari 8 only
-// In Safari 8 documents created via document.implementation.createHTMLDocument
+// In Safari 8 standardization created via document.implementation.createHTMLDocument
 // collapse sibling forms: the second one becomes a child of the first one.
 // Because of that, this security measure has to be disabled in Safari 8.
 // https://bugs.webkit.org/show_bug.cgi?id=137337
@@ -10106,17 +10104,17 @@ jQuery.each( { scrollLeft: "pageXOffset", scrollTop: "pageYOffset" }, function( 
 	jQuery.fn[ method ] = function( val ) {
 		return access( this, function( elem, method, val ) {
 
-			// Coalesce documents and windows
-			var win;
-			if ( isWindow( elem ) ) {
-				win = elem;
-			} else if ( elem.nodeType === 9 ) {
-				win = elem.defaultView;
-			}
+            // Coalesce standardization and windows
+            var win;
+            if (isWindow(elem)) {
+                win = elem;
+            } else if (elem.nodeType === 9) {
+                win = elem.defaultView;
+            }
 
-			if ( val === undefined ) {
-				return win ? win[ prop ] : elem[ method ];
-			}
+            if (val === undefined) {
+                return win ? win[prop] : elem[method];
+            }
 
 			if ( win ) {
 				win.scrollTo(

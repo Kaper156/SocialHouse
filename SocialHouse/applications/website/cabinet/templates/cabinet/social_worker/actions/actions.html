@@ -1,0 +1,31 @@
+<H6>Журналы оказания услуг</H6>
+<table class="table table-striped">
+
+    <thead>
+    <tr>
+        <th scope="col" class="">Ф.И.О.</th>
+        <th scope="col" class="" style="">Журналы</th>
+        <th scope="col" class="">Срок ИППСУ</th>
+    </tr>
+    </thead>
+
+    {% for ippsu in worker_pos.get_active_IPPSU_set.all %}
+        <tr>
+            <td>
+                {{ ippsu.serviced_person.FIO }}
+            </td>
+            <td class="">
+                <div class="btn-group-vertical">
+                    <a href="{% url 'provided_services_list' ippsu.get_current_journal.id %}" class="btn btn-primary">
+                        {{ ippsu.get_current_journal.period }}
+                    </a>
+                    <a href="#" class="btn btn-secondary">Архив </a>
+                </div>
+            </td>
+            <td class="">
+                {{ ippsu.date_expiration }}
+            </td>
+        </tr>
+
+    {% endfor %}
+</table>

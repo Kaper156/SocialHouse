@@ -4,11 +4,19 @@ from django.dispatch import receiver
 from applications.social_work.limitations.enums import PeriodEnum
 from applications.social_work.limitations.utils.datetime import range_by_period_name
 from applications.social_work.services.enums import ServiceTypeEnum
-from ..models import ProvidedServiceJournal, ProvidedService
+from ..models import ProvidedJournal, ProvidedService
 
 
-@receiver(pre_save, sender=ProvidedServiceJournal)
-def check_provided_service(sender, instance: ProvidedServiceJournal, **kwargs):
+# @receiver(pre_save, sender=ProvidedJournal)
+# def check_contracts(sender, instance: ProvidedJournal, **kwargs):
+#     ippsu, social, paid = instance.ippsu, instance.contract_social, instance.contract_paid
+#     if not (ippsu.serviced_person == social.serviced_person == paid.serviced_person) or
+#         not (ippsu.executor == social.executor == paid):
+#         raise ServicedNotEqual
+
+
+@receiver(pre_save, sender=ProvidedJournal)
+def check_provided_service(sender, instance: ProvidedJournal, **kwargs):
     guaranteed_services = instance.services.filter(service__type_of_service=ServiceTypeEnum.GUARANTEED)
     # Get only with period limitations
     guaranteed_services = guaranteed_services.exclude(service__period_limitation__isnull=True)
@@ -17,19 +25,16 @@ def check_provided_service(sender, instance: ProvidedServiceJournal, **kwargs):
 
     while guaranteed_services.exists():
         current_provided_service = guaranteed_services.first()
-        # current_provided_service = ProvidedService()
         current_service = current_provided_service.service
 
         period_range = range_by_period_name(current_service.period_limitation.period, current_provided_service.date_of)
         neighbors_by_period = guaranteed_services.filter(
             service=current_service,
             date_of__range=period_range,
-            # date_of__gt=period_range[0],
-            # date_of__lt=period_range[1],
         )
 
         # For week range
-        # if current journal start not from Monday, old provided services must be taken into neigbors_by_period
+        # if current journal start not from Monday, old provided services must be taken into neighbors_by_period
 
         if current_service.period_limitation.period == PeriodEnum.WEEK \
                 and period_range[0].date() < current_provided_service.journal.date_from:

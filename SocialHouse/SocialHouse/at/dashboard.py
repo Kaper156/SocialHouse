@@ -1,8 +1,9 @@
-from django.urls import reverse
 from admin_tools.dashboard import modules, Dashboard, AppIndexDashboard
 from admin_tools.utils import get_admin_site_name
+from django.urls import reverse
 
-from SocialHouse.at.applist import all_models, receptionist_models
+from SocialHouse.at.applist import receptionist_models, persons_models, department, social_work, \
+    documentation
 
 
 class SocialHouseIndexDashboard(Dashboard):
@@ -22,14 +23,43 @@ class SocialHouseIndexDashboard(Dashboard):
                 ["Выйти из учётной записи", reverse('%s:logout' % site_name)],
             ]
         ))
-
         self.children.append(modules.Group(
-            title="Данные",
+            title="Личные дела",
             display="tabs",
             children=[
-                modules.AppList(title=title, models=models) for title, models in all_models.items()
+                modules.AppList(title=title, models=models) for title, models in persons_models.items()
             ]
         ))
+        self.children.append(modules.Group(
+            title="Отделение и внешние даннные",
+            display="tabs",
+            children=[
+                modules.AppList(title=title, models=models) for title, models in department.items()
+            ]
+        ))
+        self.children.append(modules.Group(
+            title="Социальная работа",
+            display="tabs",
+            children=[
+                modules.AppList(title=title, models=models) for title, models in social_work.items()
+            ]
+        ))
+
+        self.children.append(modules.Group(
+            title="Документация",
+            display="tabs",
+            children=[
+                modules.AppList(title=title, models=models) for title, models in documentation.items()
+            ]
+        ))
+        #
+        # self.children.append(modules.Group(
+        #     title="Данные",
+        #     display="tabs",
+        #     children=[
+        #         modules.AppList(title=title, models=models) for title, models in all_models.items()
+        #     ]
+        # ))
         self.children.append(modules.Group(
             title="Работа администратора",
             display="tabs",

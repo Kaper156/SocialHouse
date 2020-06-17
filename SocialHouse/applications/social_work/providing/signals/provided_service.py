@@ -1,7 +1,7 @@
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
-from applications.social_work.ippsu.exceptions import ServiceNotIncluded
+from applications.documentation.contracts.exceptions import ServiceNotIncluded
 from applications.social_work.providing.models import ProvidedService
 from utils.clone import clone, force_save
 
@@ -15,10 +15,12 @@ def check_provided_service(sender, instance: ProvidedService, **kwargs):
     if instance.is_from_guaranteed():
         # Is Guaranteed
         if instance.service not in instance.journal.ippsu.included_services.all():
-            # If service.type is Guranteed, then it must be in ippsu.included_services
+            # If service.type is Guranteed, then it must be in contracts.included_services
             raise ServiceNotIncluded()
     else:
         instance.type_of_service = instance.service.type_of_service
+
+    # instance.type_of_service = instance.service.type_of_service
 
     # Split by q and volume
     update_dict = {'quantity': 1}

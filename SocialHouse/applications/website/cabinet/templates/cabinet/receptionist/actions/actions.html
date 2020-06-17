@@ -1,0 +1,20 @@
+{% with shift=worker_pos.try_start_night_shift %}
+    {% if shift.receptionist.id == worker_pos.id %}
+
+        <div class="list-group list-group-hover text-center">
+            <a href="#" class="list-group-item list-group-item-action">Журнал посетителей</a>
+            <a href="#" class="list-group-item list-group-item-action">Список присутствующих в ночное время</a>
+            <a href="#" class="list-group-item list-group-item-action">Потребление коммунальных услуг
+                (Электричество)</a>
+            <a href="#" class="list-group-item list-group-item-action">Потребление коммунальных услуг
+                (Водоснабжение)</a>
+            <a href="#" class="list-group-item list-group-item-action">Поездки обслуживаемых</a>
+            <a href="#" class="list-group-item list-group-item-action">Больничные обслуживаемых</a>
+        </div>
+
+    {% else %}
+        <h5>Сегодня дежурит: </h5> <em>{{ shift }}</em>
+    {% endif %}
+{% endwith %}
+
+

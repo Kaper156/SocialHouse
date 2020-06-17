@@ -3,7 +3,7 @@ import datetime
 from django.test import TestCase
 
 from applications.social_work.limitations.enums import PeriodEnum
-from applications.social_work.providing.models import ProvidedService, ProvidedServiceJournal
+from applications.social_work.providing.models import ProvidedService, ProvidedJournal
 from applications.social_work.services.enums import ServiceTypeEnum
 from applications.social_work.services.models import Service
 from utils.datetime import range_month
@@ -41,7 +41,7 @@ class TestGuaranteedProvidedService(TestCase, AssertProvidedServiceMixin):
                                                      period_limitation__period=PeriodEnum.DAY,
                                                      type_of_service=ServiceTypeEnum.GUARANTEED
                                                      ).first()
-        cls.journal = ProvidedServiceJournal.objects.first()
+        cls.journal = ProvidedJournal.objects.first()
 
     def test_journal__with_one_guaranteed_service__period_over_limit_by_month(self):
         service = self.service_g_month_3
@@ -485,7 +485,7 @@ class TestGuaranteedProvidedService(TestCase, AssertProvidedServiceMixin):
         date1, date2 = datetime.datetime(year=2020, month=1, day=31), datetime.datetime(year=2020, month=2, day=1)
         journal_old = self.journal
         new_journal_month_range = range_month(date2)
-        journal_new = ProvidedServiceJournal(
+        journal_new = ProvidedJournal(
             ippsu=journal_old.ippsu,
             date_from=new_journal_month_range[0],
             date_to=new_journal_month_range[1],

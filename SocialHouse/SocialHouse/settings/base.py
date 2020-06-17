@@ -25,6 +25,7 @@ ANOTHER_APPS_PRE = [
     'admin_tools.theming',
     'admin_tools.menu',
     'admin_tools.dashboard',
+    'froala_editor',
 ]
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -41,22 +42,31 @@ ANOTHER_APPS_POST = [
     'django_extensions',
 ]
 MY_APPLICATIONS = [
-    'applications.people',
-    'applications.serviced_data',
-    'applications.documents',
+    'applications.department',
+    'applications.department.general_data',
+    'applications.department.people',
+    'applications.department.people_data',
+    'applications.department.income_data',
+    'applications.department.events',
 
     'applications.social_work',
-    'applications.social_work.ippsu',
-    'applications.social_work.providing',
     'applications.social_work.limitations',
     'applications.social_work.services',
-    'applications.social_work.acts',
+    'applications.social_work.providing',
 
     'applications.receptionist',
     'applications.receptionist.visits',
-    'applications.receptionist.sleepover',
+    'applications.receptionist.night_shifts',
     'applications.receptionist.meter',
     'applications.receptionist.movements',
+
+    'applications.documentation',
+    'applications.documentation.standardization',
+    'applications.documentation.acts',
+    'applications.documentation.contracts',
+    'applications.documentation.letters',
+    'applications.documentation.statistic',
+    'applications.documentation.reports',
 
     'applications.website',
     'applications.website.news',
@@ -174,13 +184,13 @@ MEDIA_URL = '/media/'
 FIXTURE_DIRS = [
     os.path.join(BASE_DIR, 'SocialHouse/fixtures')
 ]
-
-GRAPH_MODELS = {
-    'all_applications': False,
-    'group_models': True,
-    'exclude_models': 'Permission,ContentType,LogEntry,AbstractUser,User,Group',
-    'output': './docs/models.png',
-}
+#
+# GRAPH_MODELS = {
+#     'all_applications': False,
+#     'group_models': True,
+#     'exclude_models': 'Permission,ContentType,LogEntry,AbstractUser,User,Group',
+#     'output': './docs/models.png',
+# }
 
 ADMIN_TOOLS_MENU = 'SocialHouse.at.menu.SocialHouseMenu'
 ADMIN_TOOLS_INDEX_DASHBOARD = 'SocialHouse.at.dashboard.SocialHouseIndexDashboard'

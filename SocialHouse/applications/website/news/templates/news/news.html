@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-Новости | {{ block.super }}
+    Новости | {{ block.super }}
 {% endblock %}
 {% block content %}
 <h2 class="text-center">Новости</h2>
 <div class="news">
-    <div class="card-columns">
+    <div class="card-columns"
+            {#         style="column-count:3"#}
+    >
         {% for post in posts %}
 
         <article class="card ">
@@ -24,8 +26,9 @@
                 </div>
             </div>
             <div class="card-body">
-                <p class="card-text">{{ post.content|linebreaksbr|truncatewords:36 }}</p>
-                <!-- <p class="card-subtitle text-muted">Создана:{{ post.date_of_creation }}</p> -->
+                {% autoescape off %}
+                <p class="card-text">{{ post.content|linebreaksbr|truncatewords:15 }}</p>
+                {% endautoescape %}
                 <!-- TODO dates only when visited -->
             </div>
         </article>

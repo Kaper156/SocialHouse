@@ -1,7 +1,6 @@
 from django.contrib import admin
 
-from applications.people.models import Visitor
-# Register your models here.
+from applications.department.people.models import Visitor
 from .models import Visit
 
 admin.site.register(Visit)

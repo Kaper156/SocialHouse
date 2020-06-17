@@ -2,7 +2,7 @@ import datetime
 
 from django.db import models
 
-from applications.people.models import WorkerPosition
+from applications.department.people.models import WorkerPosition
 from .enums import MeterTypesEnum
 
 
@@ -38,14 +38,14 @@ class MeterData(models.Model):
     receptionist = models.ForeignKey(verbose_name="Ответственный администратор", to=WorkerPosition,
                                      on_delete=models.CASCADE)
 
-
-class UtilityBil(models.Model):
-    class Meta:
-        verbose_name = "Квитанция коммунальных услуг"
-        verbose_name_plural = "Квитанции коммунальных услуг"
-
-    date_of = models.DateField(verbose_name="Дата начисления", default=datetime.datetime.now)
-    total = models.DecimalField(verbose_name="Сумма", max_digits=15, decimal_places=5)
-    chief = models.ForeignKey(verbose_name="Ответственный заведующий", to=WorkerPosition,
-                              on_delete=models.CASCADE)
-    sealing_meter = models.ForeignKey(verbose_name="Опломбировка", to='SealingMeter', on_delete=models.DO_NOTHING)
+#
+# class UtilityBil(models.Model):
+#     class Meta:
+#         verbose_name = "Квитанция коммунальных услуг"
+#         verbose_name_plural = "Квитанции коммунальных услуг"
+#
+#     date_of = models.DateField(verbose_name="Дата начисления", default=datetime.datetime.now)
+#     total = models.DecimalField(verbose_name="Сумма", max_digits=15, decimal_places=5)
+#     chief = models.ForeignKey(verbose_name="Ответственный заведующий", to=WorkerPosition,
+#                               on_delete=models.CASCADE)
+#     sealing_meter = models.ForeignKey(verbose_name="Опломбировка", to='SealingMeter', on_delete=models.DO_NOTHING)

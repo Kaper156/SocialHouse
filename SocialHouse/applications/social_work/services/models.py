@@ -67,6 +67,10 @@ class Service(models.Model):
                                           null=True, on_delete=models.SET_NULL, blank=True,
                                           help_text="Установите значение если услуга ограничена периодичностью оказания"
                                                     " (например 'не более 2 раз в неделю'")
+    is_archived = models.BooleanField(verbose_name="В архиве",
+                                      help_text="Для совместимости со старыми отчетами, "
+                                                "установите флаг, вместо удаления услуги",
+                                      default=False)
     objects = models.Manager()
     by_type = ServiceByTypeManger()
 

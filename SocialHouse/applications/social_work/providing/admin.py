@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import ProvidedServiceJournal, ProvidedService
+from .models import ProvidedJournal, ProvidedService
 
 
 @admin.register(ProvidedService)
@@ -14,11 +14,13 @@ class ProvidedServiceAdmin(admin.ModelAdmin):
     autocomplete_fields = ('journal', 'service',)
 
 
-@admin.register(ProvidedServiceJournal)
+@admin.register(ProvidedJournal)
 class ProvidedServiceJournalAdmin(admin.ModelAdmin):
     list_display = ('ippsu', 'period', 'date_from', 'date_to')
     sortable_by = ('period', 'date_from', 'date_to')
-    list_filter = ('ippsu__serviced_person', 'ippsu__social_worker__worker')
+    list_filter = ('ippsu__serviced_person', 'ippsu__executor__worker',
+                   'contract_social__serviced_person', 'contract_social__executor__worker',
+                   'contract_paid__serviced_person', 'contract_paid__executor__worker',)
     date_hierarchy = 'date_from'
-    search_fields = ('ippsu', 'period', 'date_from', 'date_to')
-    autocomplete_fields = ('ippsu',)
+    search_fields = ('ippsu', 'contract_social', 'contract_paid', 'period', 'date_from', 'date_to')
+    autocomplete_fields = ('ippsu', 'contract_social', 'contract_paid',)

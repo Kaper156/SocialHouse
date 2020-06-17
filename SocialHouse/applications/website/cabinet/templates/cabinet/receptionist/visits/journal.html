@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h4 class="text-center">Журнал посещений</h4>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col" style="width: 20%">Дата и время</th>
+            <th scope="col">Посетитель</th>
+            <th scope="col" style="width: 14%" class="text-center">
+                {% if can_manage_journal %}
+                    <a href="{% url 'provided_service_add' journal.id %}" class="btn btn-link">
+                        <i class="fa fa-plus"></i>
+                        {#                        <span class="d-md-none d-lg-inline">Добавить </span>#}
+                        <span class="d-lg-inline d-none">Добавить </span>
+                    </a>
+                {% endif %}
+            </th>
+        </tr>
+        </thead>
+        {% for visit in visits %}
+            <tr class="">
+                <td>
+
+                </td>
+                <td>
+                    {{ service.service.title }}
+                </td>
+                <td class="text-center">
+                    {% if can_manage_journal %}
+                        <a href="{% url 'provided_service_add' journal.id %}" class="btn btn-primary">
+                            <i class="fa fa-pen "></i>
+                        </a>
+                        <a href="{% url 'provided_service_add' journal.id %}" class="btn btn-danger">
+                            <i class="fa fa-ban "></i>
+                        </a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+
+    </table>
+{% endblock content %}

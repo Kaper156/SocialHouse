@@ -2,7 +2,7 @@ import datetime
 
 from django.db import models
 
-from applications.people.models import ServicedPerson, Visitor
+from applications.department.people.models import ServicedPerson, Visitor
 
 
 class Leaving(models.Model):

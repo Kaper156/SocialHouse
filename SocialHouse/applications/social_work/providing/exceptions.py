@@ -1,0 +1,2 @@
+class ServicedNotEqual(Exception):
+    pass

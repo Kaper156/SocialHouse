@@ -24,6 +24,31 @@
     <div class="container flex-fill py-3 ">
         {% block content %}
         {% endblock content %}
+        {% block pagination %}
+            {% if is_paginated %}
+                <hr>
+                <div class="pagination">
+                    <span class="page-links">
+                      {% if page_obj.has_previous %}
+                          <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+                      {% endif %}
+                        <span class="page-current">
+                          Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+                      </span>
+                        {% if page_obj.has_next %}
+                            <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">Следующая</a>
+                        {% endif %}
+                    </span>
+                    {#                    <ul>#}
+                    {#                        {% mkrange page_obj.num_pages as num_pages %}#}
+                    {#                        {% for page in 'x'|ljust:page_obj.num_pages %}#}
+                    {#                            <li>page # {{ loop }}</li>#}
+                    {#                        {% endfor %}#}
+                    {##}
+                    {#                    </ul>#}
+                </div>
+            {% endif %}
+        {% endblock %}
     </div>
 
     {% include 'footer.html' %}

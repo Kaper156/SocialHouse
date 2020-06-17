@@ -24,9 +24,12 @@ class ServiceAdmin(admin.ModelAdmin):
         'measurement',
         'tax',
         'time_for_service',
-        'services_list',
-        'place',
+        # 'services_list',
+        # 'place',
         'volume_limitation',
         'period_limitation',
     )
+    list_filter = ('services_list', 'type_of_service', 'service_category',)
+    sortable_by = ('type_of_service', 'title', 'measurement', 'time_for_service', 'volume_limitation',
+                   'period_limitation',),
     search_fields = ('title', 'measurement')

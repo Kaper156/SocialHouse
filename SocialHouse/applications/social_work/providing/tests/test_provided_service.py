@@ -1,10 +1,10 @@
 import datetime
 
+from applications.social_work.contracts.exceptions import ServiceNotIncluded
 from django.test import TestCase
 
-from applications.social_work.ippsu.exceptions import ServiceNotIncluded
 from applications.social_work.limitations.models import VolumeLimitation, PeriodLimitation
-from applications.social_work.providing.models import ProvidedService, ProvidedServiceJournal
+from applications.social_work.providing.models import ProvidedService, ProvidedJournal
 from applications.social_work.services.enums import ServiceTypeEnum
 from applications.social_work.services.models import Service, ServiceMeasurement, ServicesList
 
@@ -32,7 +32,7 @@ class TestGuaranteedProvidedService(TestCase):
                                          period_limitation=PeriodLimitation.objects.first(),
                                          )
         date = datetime.datetime.now()
-        journal = ProvidedServiceJournal.objects.first()
+        journal = ProvidedJournal.objects.first()
         # Set it to new provided service
         provided_service = ProvidedService(
             date_of=date,
@@ -50,7 +50,7 @@ class TestGuaranteedProvidedService(TestCase):
                                          type_of_service=ServiceTypeEnum.GUARANTEED
                                          ).first()
         date = datetime.datetime.now()
-        journal = ProvidedServiceJournal.objects.first()
+        journal = ProvidedJournal.objects.first()
         expected = [
             ProvidedService(
                 date_of=date,
@@ -94,7 +94,7 @@ class TestGuaranteedProvidedService(TestCase):
                                          type_of_service=ServiceTypeEnum.GUARANTEED
                                          ).first()
         date = datetime.datetime.now()
-        journal = ProvidedServiceJournal.objects.first()
+        journal = ProvidedJournal.objects.first()
         expected = [
             ProvidedService(
                 date_of=date,
@@ -131,7 +131,7 @@ class TestGuaranteedProvidedService(TestCase):
                                          type_of_service=ServiceTypeEnum.GUARANTEED
                                          ).first()
         date = datetime.datetime.now()
-        journal = ProvidedServiceJournal.objects.first()
+        journal = ProvidedJournal.objects.first()
         expected = [
             ProvidedService(
                 date_of=date,

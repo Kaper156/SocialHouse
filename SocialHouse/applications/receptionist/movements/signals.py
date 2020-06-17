@@ -1,9 +1,9 @@
 import datetime
 
+from applications.people.models import ServicedPerson
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
-from applications.people.models import ServicedPerson
 from .models import Travel, SickLeave
 
 
@@ -13,7 +13,7 @@ from .models import Travel, SickLeave
 def check_dates(instance):
     date_now = datetime.datetime.now().date()
     if instance.date_from <= date_now:
-        if (instance.date_to and instance.date_to > date_now) or not instance.date_to:
+        if (instance.date_expiration and instance.date_expiration > date_now) or not instance.date_expiration:
             print(f"Date correct for {instance}")
             return True
     return False

@@ -12,7 +12,7 @@ def later(delta: datetime.timedelta, from_date=None):
 
 
 def later_two_hours():
-    return later(delta=datetime.timedelta(hours=2))
+    return later(delta=datetime.timedelta(hours=2), from_date=datetime.datetime.now())
 
 
 def later_years(years, from_date=None):
@@ -45,6 +45,78 @@ def month_end(from_date=None):
     return from_date.replace(day=last_day)
 
 
+def month_previous_start(from_date=None):
+    # TODO implement
+    from_date = from_date or def_date()
+    return from_date.replace(day=1)
+
+
+def month_previous_end(from_date=None):
+    # TODO implement
+    from_date = from_date or def_date()
+    last_day = calendar.monthrange(from_date.year, from_date.month)[1]
+    return from_date.replace(day=last_day)
+
+
+def quarter_start(from_date=None):
+    # TODO make for quarter
+    from_date = from_date or def_date()
+    return from_date.replace(day=1)
+
+
+def quarter_end(from_date=None):
+    # TODO make for quarter
+    from_date = from_date or def_date()
+    last_day = calendar.monthrange(from_date.year, from_date.month)[1]
+    return from_date.replace(day=last_day)
+
+
+def quarter_previous_start(from_date=None):
+    # TODO make for quarter
+    from_date = from_date or def_date()
+    return from_date.replace(day=1)
+
+
+def quarter_previous_end(from_date=None):
+    # TODO make for quarter
+    from_date = from_date or def_date()
+    last_day = calendar.monthrange(from_date.year, from_date.month)[1]
+    return from_date.replace(day=last_day)
+
+
+def year_previous_start(from_date=None):
+    # TODO make for year
+    from_date = from_date or def_date()
+    return from_date.replace(day=1)
+
+
+def year_previous_end(from_date=None):
+    # TODO make for year
+    from_date = from_date or def_date()
+    last_day = calendar.monthrange(from_date.year, from_date.month)[1]
+    return from_date.replace(day=last_day)
+
+
+def year_start(from_date=None):
+    # TODO make for year
+    from_date = from_date or def_date()
+    return from_date.replace(day=1)
+
+
+def year_end(from_date=None):
+    # TODO make for year
+    from_date = from_date or def_date()
+    last_day = calendar.monthrange(from_date.year, from_date.month)[1]
+    return from_date.replace(day=last_day)
+
+
+def range_week(from_date=None):
+    from_date = from_date or def_date()
+    first_day = from_date - datetime.timedelta(days=from_date.weekday())
+    last_day = first_day + datetime.timedelta(days=6)
+    return first_day, last_day
+
+
 def range_month(from_date=None):
     from_date = from_date or def_date()
     return (
@@ -53,7 +125,16 @@ def range_month(from_date=None):
     )
 
 
-def range_week(from_date=None):
+def range_quarter(from_date=None):
+    # TODO implement
+    from_date = from_date or def_date()
+    first_day = from_date - datetime.timedelta(days=from_date.weekday())
+    last_day = first_day + datetime.timedelta(days=6)
+    return first_day, last_day
+
+
+def range_year(from_date=None):
+    # TODO implement
     from_date = from_date or def_date()
     first_day = from_date - datetime.timedelta(days=from_date.weekday())
     last_day = first_day + datetime.timedelta(days=6)

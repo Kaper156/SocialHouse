@@ -1,40 +1,55 @@
 {% extends 'base.html' %}
 {% block content %}
     <h2 class="title">Личный кабинет</h2>
-    <p>Добрый день, {{ user.worker.fullFIO }}</p>
+    <p>Здравствуйте, {{ user.worker.fullFIO }}, вы занимаете следующие должности:</p>
     {% if user.worker.membership.count %}
-        <p>На данный момент вы занимаете следующие должности:</p>
-        <div class="profile__position-list">
-            {% for worker_pos in user.worker.membership.all %}
-                <div class="position">
-                    <span>Должность:</span> <span class="position__title"> {{ worker_pos.position.title }}</span> <br>
-                    <span>Дата устройства:</span><em
-                        class="position__date-of-appointment">{{ worker_pos.date_of_appointment }}</em>
-                    <br>
-                    <span>Ставка:</span><span class="position__rate">{{ worker_pos.rate }}</span> <br>
-                    {% if worker_pos.position.title == 'Социальный работник' %}
-                        {#                        <a class="btn btn-primary" href="{% url 'url_services_journals_create' %}">#}
-                        {#                            <i class="fas fa-calendar-plus"></i>#}
-                        {#                            Список оказанных услуг#}
-                        {#                        </a>#}
-                    {% elif worker_pos.position.title == 'Заведующий отделением' %}
-                        <a class="btn btn-primary" href="{% url 'serviced_person_list' %}">
-                            <i class="fas fa-calendar-plus"></i>
-                            Список обслуживаемых
-                        </a>
-                        <a class="btn btn-primary" href="{% url 'serviced_person_create' %}">
-                            <i class="fas fa-calendar-plus"></i>
-                            Добавить обслуживаемого
-                        </a>
 
-                    {% endif %}
+        <ul class="nav nav-tabs">
+            <!-- Первая вкладка (активная) -->
+            {% for worker_pos in user.worker.membership.all.active %}
+                <li class="nav-item">
+                    <a class="nav-link {% if forloop.first %} active {% endif %}"
+                       data-toggle="tab" href="#description{{ worker_pos.id }}">
+                        {#                        {% if worker_pos.position == 'C' %}#}
+                        {#                            Деятельность заведующего#}
+                        {#                        {% elif worker_pos.position == 'S' %}#}
+                        {#                            Социальная работа#}
+                        {#                        {% elif worker_pos.position == 'R' %}#}
+                        {#                            Администрирование отделения#}
+                        {#                        {% endif %}#}
 
+                        {{ worker_pos.get_position_display }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <div class="tab-content">
+            {% for worker_pos in user.worker.membership.all.active %}
+                <div class="tab-pane fade {% if forloop.first %}show active {% endif %}"
+                     id="description{{ worker_pos.id }}">
+                    <div class="">
+
+                        {% if worker_pos.position == 'C' %}
+                            {% include 'cabinet/chief/actions/actions.html' %}
+                        {% elif worker_pos.position == 'S' %}
+                            {% include 'cabinet/social_worker/actions/actions.html' %}
+                        {% elif worker_pos.position == 'R' %}
+                            {% include 'cabinet/receptionist/actions/actions.html' %}
+                        {% endif %}
+                        <hr>
+                        <p>
+                            Вы занимаете должность "{{ worker_pos.get_position_display }}" c
+                            <em>{{ worker_pos.date_of_appointment }}</em>
+
+                        </p>
+                    </div>
                 </div>
                 <hr>
             {% endfor %}
         </div>
     {% else %}
-        <p> На данный момент вы не занимаете должности</p>
+        <p> На данный момент вы не занимаете должности, обратитесь к заведующему отделения.</p>
     {% endif %}
 
 {% endblock %}
